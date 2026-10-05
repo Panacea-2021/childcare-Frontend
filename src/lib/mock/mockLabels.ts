@@ -1,0 +1,18 @@
+export const MOCK_LABELS = [
+  'Homework',
+  'Reminder',
+  'Important',
+  'Sports',
+  'Science',
+  'Music',
+  'Reading',
+  'Art',
+  'Technology',
+  'Celebration',
+  'Competition',
+  'Portfolio',
+  'Assessment',
+  'Story Time',
+  'Daily Update',
+  'Urgent',
+];

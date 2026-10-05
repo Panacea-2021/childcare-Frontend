@@ -1,0 +1,237 @@
+/* Parent Notifications page */
+
+.pnp-page {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding-bottom: 24px;
+  box-sizing: border-box;
+}
+
+.pnp-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.pnp-search {
+  max-width: 420px;
+}
+
+.pnp-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.pnp-filter {
+  appearance: none;
+  border: 1px solid #dbe3ee;
+  background: #fff;
+  color: #475569;
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  padding: 0.42rem 0.9rem;
+  border-radius: 999px;
+  cursor: pointer;
+  line-height: 1.2;
+  transition:
+    border-color 140ms ease,
+    color 140ms ease,
+    background 140ms ease;
+}
+
+.pnp-filter:hover {
+  border-color: var(--color-accent, #5d5fef);
+  color: var(--color-accent, #5d5fef);
+}
+
+.pnp-filter.is-active {
+  border-color: var(--color-accent, #5d5fef);
+  color: var(--color-accent, #5d5fef);
+  background: var(--color-accent-soft, #e8f2ff);
+}
+
+.pnp-card {
+  background: #fff;
+  border: 1px solid #e8edf5;
+  border-radius: 16px;
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.04);
+  overflow: hidden;
+  min-height: 360px;
+  display: flex;
+  flex-direction: column;
+}
+
+.pnp-cardHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #eef2f7;
+  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+}
+
+.pnp-this {
+  margin: 0;
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: #111827;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.45rem;
+}
+
+.pnp-count {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #94a3b8;
+}
+
+.pnp-list {
+  list-style: none;
+  margin: 0;
+  padding: 0.45rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.pnp-row {
+  appearance: none;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 0.9rem 0.95rem;
+  border: none;
+  border-radius: 12px;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  position: relative;
+  transition: background 140ms ease;
+}
+
+.pnp-row:hover {
+  background: #f8fafc;
+}
+
+.pnp-row.is-unread {
+  background: color-mix(in srgb, var(--color-accent-soft, #e8f2ff) 55%, #fff);
+}
+
+.pnp-row.is-unread:hover {
+  background: color-mix(in srgb, var(--color-accent-soft, #e8f2ff) 78%, #fff);
+}
+
+.pnp-icon {
+  flex-shrink: 0;
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 13px;
+  background: var(--color-accent-soft, #e8f2ff);
+  color: var(--color-accent, #5d5fef);
+}
+
+.pnp-icon--billing,
+.pnp-icon--invoice {
+  background: color-mix(in srgb, var(--color-warning, #8a7040) 12%, #fff);
+  color: var(--color-warning, #8a7040);
+}
+
+.pnp-icon--attendance {
+  background: color-mix(in srgb, #0284c7 12%, #fff);
+  color: #0369a1;
+}
+
+.pnp-icon--events {
+  background: color-mix(in srgb, var(--color-success, #3d7a55) 12%, #fff);
+  color: var(--color-success, #3d7a55);
+}
+
+.pnp-icon--concern {
+  background: #fde8e8;
+  color: var(--color-close, #e53935);
+}
+
+.pnp-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.pnp-cat {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+.pnp-message {
+  font-size: 0.92rem;
+  font-weight: 550;
+  color: #1f2937;
+  line-height: 1.4;
+}
+
+.pnp-row.is-unread .pnp-message {
+  font-weight: 650;
+}
+
+.pnp-time {
+  font-size: 0.78rem;
+  color: #94a3b8;
+}
+
+.pnp-dot {
+  flex-shrink: 0;
+  width: 9px;
+  height: 9px;
+  margin-top: 0.45rem;
+  border-radius: 999px;
+  background: var(--color-accent, #5d5fef);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 18%, transparent);
+}
+
+.pnp-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.pnp-detail-msg {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #1f2937;
+}
+
+.pnp-detail-time {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+@media (max-width: 720px) {
+  .pnp-search {
+    max-width: none;
+  }
+
+  .pnp-cardHead {
+    padding: 0.9rem 1rem;
+  }
+}

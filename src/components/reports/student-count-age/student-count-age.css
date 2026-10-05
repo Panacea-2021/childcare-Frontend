@@ -1,0 +1,149 @@
+.scag-dash {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.scag-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  align-items: center;
+  font-size: 0.86rem;
+  color: var(--text-secondary);
+}
+
+.scag-meta strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.scag-kpis {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+@media (max-width: 900px) {
+  .scag-kpis {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .scag-kpis {
+    grid-template-columns: 1fr;
+  }
+}
+
+.scag-kpi {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px 16px;
+  background: linear-gradient(145deg, #ffffff 0%, var(--color-accent-soft) 140%);
+  box-shadow: 0 6px 18px rgba(93, 95, 239, 0.06);
+  min-height: 96px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.scag-kpi-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.scag-kpi-value {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  line-height: 1.15;
+}
+
+.scag-kpi-sub {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  line-height: 1.35;
+}
+
+.scag-charts {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 14px;
+}
+
+@media (max-width: 860px) {
+  .scag-charts {
+    grid-template-columns: 1fr;
+  }
+}
+
+.scag-panel {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: #ffffff;
+  padding: 14px 14px 8px;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+}
+
+.scag-panel h3 {
+  margin: 0 0 8px;
+  font-size: 0.95rem;
+  font-weight: 650;
+  color: var(--text);
+}
+
+.scag-panel-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.scag-chart-wrap {
+  width: 100%;
+  height: 260px;
+}
+
+.scag-sort-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.scag-sort-btn:hover {
+  color: var(--color-accent);
+}
+
+.scag-gen-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.scag-gen-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--ripple-x, 50%) var(--ripple-y, 50%), rgba(255, 255, 255, 0.45), transparent 55%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.scag-gen-btn:hover:not(:disabled)::after {
+  opacity: 1;
+}
+
+.scag-gen-btn:active:not(:disabled) {
+  transform: translateY(1px);
+}

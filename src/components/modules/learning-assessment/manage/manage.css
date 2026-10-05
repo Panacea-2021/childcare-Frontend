@@ -1,0 +1,271 @@
+/* Learning & Assessment — Manage */
+
+.mg-page {
+  position: relative;
+}
+
+.mg-tabs {
+  display: flex;
+  gap: 6px;
+  margin: 18px 0 14px;
+  border-bottom: 1px solid var(--border, #e8edf5);
+}
+
+.mg-tab {
+  border: none;
+  background: transparent;
+  padding: 10px 18px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary, #6b7280);
+  cursor: pointer;
+  font-family: var(--font-body, 'Poppins', sans-serif);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+
+.mg-tab:hover {
+  color: var(--text-primary, #1f2937);
+}
+
+.mg-tab.is-active {
+  color: var(--color-accent, #5d5fef);
+  border-bottom-color: var(--color-accent, #5d5fef);
+}
+
+.mg-panel {
+  padding: 8px 20px 20px;
+}
+
+.mg-empty {
+  color: var(--text-secondary, #6b7280);
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 0.9rem;
+}
+
+.mg-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.mg-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 4px;
+  border-bottom: 1px solid var(--border, #e8edf5);
+}
+
+.mg-row:last-child {
+  border-bottom: none;
+}
+
+.mg-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.mg-row-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.mg-row-main strong {
+  font-size: 0.92rem;
+  color: var(--text-primary, #1f2937);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.mg-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-secondary, #6b7280);
+}
+
+.mg-status.is-on {
+  color: #15803d;
+}
+
+.mg-status::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.mg-levels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  font-size: 0.78rem;
+  color: var(--text-secondary, #6b7280);
+}
+
+.mg-level {
+  font-weight: 500;
+}
+
+.mg-row-actions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.mg-row-actions .ui-btn {
+  padding: 5px 10px;
+  font-size: 0.74rem;
+}
+
+/* Settings */
+.mg-settings {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.mg-setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 4px;
+  border-bottom: 1px solid var(--border, #e8edf5);
+}
+
+.mg-setting-row:last-child {
+  border-bottom: none;
+}
+
+.mg-setting-row strong {
+  font-size: 0.9rem;
+  color: var(--text-primary, #1f2937);
+}
+
+.mg-setting-row p {
+  margin: 4px 0 0;
+  font-size: 0.78rem;
+  color: var(--text-secondary, #6b7280);
+}
+
+.mg-setting-row .ui-filter {
+  min-width: 220px;
+}
+
+.mg-settings-hint {
+  margin: 16px 4px 8px;
+  font-size: 0.8rem;
+  color: var(--text-secondary, #6b7280);
+}
+
+.mg-settings-hint strong {
+  color: var(--text-primary, #1f2937);
+}
+
+/* Toggle */
+.mg-toggle {
+  position: relative;
+  display: inline-flex;
+  cursor: pointer;
+}
+
+.mg-toggle input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.mg-toggle span {
+  width: 42px;
+  height: 24px;
+  border-radius: 999px;
+  background: var(--border-strong, #d9d9d9);
+  position: relative;
+  transition: background 0.2s ease;
+}
+
+.mg-toggle span::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+}
+
+.mg-toggle input:checked + span {
+  background: var(--color-accent, #5d5fef);
+}
+
+.mg-toggle input:checked + span::after {
+  transform: translateX(18px);
+}
+
+/* Color picker */
+.mg-colors {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.mg-color {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+
+.mg-color.is-selected {
+  border-color: var(--text-primary, #1f2937);
+  box-shadow: 0 0 0 2px #fff inset;
+}
+
+.mg-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.84rem;
+  color: var(--text-primary, #1f2937);
+  cursor: pointer;
+}
+
+/* Scale level editor */
+.mg-level-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.mg-level-row .ui-btn {
+  padding: 6px 8px;
+}
+
+.mg-add-level {
+  margin-top: 4px;
+}
+
+@media (max-width: 640px) {
+  .mg-setting-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .mg-setting-row .ui-filter {
+    width: 100%;
+    min-width: 0;
+  }
+}

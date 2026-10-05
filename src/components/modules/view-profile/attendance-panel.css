@@ -1,0 +1,163 @@
+/* Staff Attendance — Panacea tokens / Poppins */
+
+.att-panel {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  font-family: var(--font-body);
+}
+
+.att-toolbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 16px;
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+/* Month picker — matches admin dashboard date control */
+.att-monthBox {
+  position: relative;
+  display: inline-flex;
+  align-items: stretch;
+  flex-shrink: 0;
+  width: fit-content;
+  max-width: 100%;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ffffff 0%, #f5f3ff 55%, #fdf2f8 100%);
+  border: 1.5px solid #c4b5fd;
+  box-shadow:
+    0 8px 20px rgba(93, 95, 239, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transition:
+    border-color 0.22s ease,
+    box-shadow 0.22s ease,
+    transform 0.22s ease;
+}
+
+.att-monthBox:hover,
+.att-monthBox:focus-within {
+  border-color: var(--color-accent);
+  box-shadow:
+    0 0 0 4px rgba(93, 95, 239, 0.14),
+    0 10px 24px rgba(93, 95, 239, 0.12);
+  transform: translateY(-1px);
+}
+
+.att-monthTrigger {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.65rem 1.05rem;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+.att-monthLabel {
+  color: #1e293b;
+  font-weight: var(--font-weight-semibold);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.92rem;
+  font-family: var(--font-body);
+}
+
+.att-monthIcon {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  color: var(--color-accent);
+  background: linear-gradient(160deg, #eef2ff 0%, #fce7f3 100%);
+  border: 1px solid #ddd6fe;
+  flex-shrink: 0;
+}
+
+.att-monthInput {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  border: none;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+  color-scheme: light;
+}
+
+.att-stats {
+  width: 100%;
+}
+
+.att-tableCard {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.att-tableCard .cm-pagination {
+  margin-top: 0;
+}
+
+.att-empty {
+  padding: 48px 20px;
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  font-weight: var(--font-weight-medium);
+}
+
+.att-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: var(--font-weight-semibold);
+}
+
+.att-badge--yes {
+  background: #fce7f3;
+  color: #be185d;
+}
+
+.att-badge--no {
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+.att-badge--leave {
+  background: #fff7ed;
+  color: #c2410c;
+}
+
+.att-reason {
+  max-width: 220px;
+  color: var(--text-secondary);
+  font-size: 0.86rem;
+}
+
+@media (max-width: 560px) {
+  .att-monthBox {
+    width: 100%;
+  }
+
+  .att-monthTrigger {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

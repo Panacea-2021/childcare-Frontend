@@ -1,0 +1,265 @@
+.root {
+  --sup-accent: var(--color-accent);
+  --sup-muted: #6b7280;
+  --sup-text: #1f2937;
+  --sup-line: #ebeff5;
+  --sup-soft: #eaf4ff;
+  --sup-success: #16a34a;
+  --sup-danger: #e53935;
+
+  width: 100%;
+  min-height: calc(100vh - 140px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px 40px;
+  box-sizing: border-box;
+}
+
+.card {
+  width: 100%;
+  max-width: 520px;
+  background: #fff;
+  border: 1px solid var(--sup-line);
+  border-radius: 16px;
+  box-shadow: 0 8px 28px rgba(15, 23, 42, 0.06);
+  padding: 48px 40px 40px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.title {
+  margin: 0 0 12px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--sup-accent);
+}
+
+.email {
+  margin: 0 0 6px;
+  font-size: 0.95rem;
+  color: var(--sup-text);
+}
+
+.emailLink {
+  color: var(--sup-accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.emailLink:hover {
+  text-decoration: underline;
+}
+
+.version {
+  margin: 0 0 28px;
+  font-size: 0.875rem;
+  color: var(--sup-accent);
+  opacity: 0.85;
+}
+
+.langBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.langLabel {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--sup-accent);
+}
+
+.langWrap {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+}
+
+.langTrigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  min-height: 42px;
+  padding: 10px 14px;
+  border: 1px solid var(--border, #e8edf5);
+  border-radius: 8px;
+  background: var(--color-input-bg, #f8fafc);
+  font: inherit;
+  font-size: 0.9rem;
+  color: var(--sup-text);
+  text-align: left;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.langTrigger:hover,
+.langTrigger:focus-visible {
+  border-color: var(--sup-accent);
+  outline: none;
+}
+
+.langChevron {
+  color: var(--sup-muted);
+  font-size: 0.75rem;
+}
+
+.langMenu {
+  position: absolute;
+  z-index: 30;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 1px solid var(--sup-line);
+  border-radius: 10px;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+  overflow: hidden;
+}
+
+.langSearch {
+  padding: 8px;
+  border-bottom: 1px solid var(--sup-line);
+}
+
+.langList {
+  max-height: 220px;
+  overflow: auto;
+  padding: 6px;
+}
+
+.langOption {
+  width: 100%;
+  display: block;
+  text-align: left;
+  padding: 9px 10px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  font: inherit;
+  font-size: 0.875rem;
+  color: var(--sup-text);
+  cursor: pointer;
+}
+
+.langOption:hover {
+  background: var(--sup-soft);
+}
+
+.langOptionOn {
+  background: var(--sup-soft);
+  color: var(--sup-accent);
+  font-weight: 600;
+}
+
+.langEmpty {
+  margin: 0;
+  padding: 12px;
+  text-align: center;
+  color: var(--sup-muted);
+  font-size: 0.85rem;
+}
+
+.ticketBtn {
+  min-width: 220px;
+}
+
+.confirmText {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--sup-muted);
+  line-height: 1.5;
+}
+
+.issueArea {
+  resize: vertical;
+  min-height: 160px;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 280px;
+  width: 100%;
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 3px solid #dbe7f5;
+  border-top-color: var(--sup-accent);
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.toast {
+  position: fixed;
+  top: 76px;
+  right: 24px;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 360px;
+  padding: 12px 14px;
+  background: #fff;
+  border: 1px solid var(--sup-line);
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.12);
+  font-size: 0.875rem;
+  color: var(--sup-text);
+}
+
+.toastOk,
+.toastErr {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 0.75rem;
+}
+
+.toastOk {
+  background: var(--sup-success);
+}
+
+.toastErr {
+  background: var(--sup-danger);
+}
+
+.toastClose {
+  border: none;
+  background: none;
+  padding: 0;
+  margin-left: auto;
+  color: var(--sup-muted);
+  cursor: pointer;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+@media (max-width: 560px) {
+  .card {
+    padding: 32px 20px 28px;
+  }
+
+  .ticketBtn {
+    width: 100%;
+  }
+}

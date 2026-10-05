@@ -1,0 +1,84 @@
+---
+description: Panacea design system — tables, buttons, forms, inputs, dropdowns must use shared tokens/classes. Do not invent one-off styles.
+globs: src/**/*.{tsx,css}
+alwaysApply: true
+---
+
+# Panacea Design System (mandatory)
+
+Do **not** invent one-off colors, fonts, or form/table/button styles. Reuse tokens in `src/app/globals.css` and shared classes below.
+
+Source of truth: `docs/DESIGN_SYSTEM.md`
+
+## Typography
+
+- UI font: **Poppins** (`--font-body` / `--font-display` / `--font-mono`)
+- Display headings: **Bodoni Moda** for sidebar subsections (`.shell-subnavEditorial`). **Source Sans 3** for Center Management list page titles (`.cmph-title` / `CenterManagementPageHeader`). Parent nav labels stay Poppins.
+- Never use Georgia, Inter, Arial, system stacks, cursive, or other one-off fonts
+
+## Shell
+
+- Sidebar + top navbar backgrounds: **pure white** `#FFFFFF`
+- Do not restyle shell layout/structure unless asked
+
+## Core tokens (use these)
+
+| Token | Value | Use |
+|-------|-------|-----|
+| `--color-accent` | `#5D5FEF` | Primary buttons, table headers, focus |
+| `--color-accent-hover` | `#4B51E0` | Primary hover |
+| `--color-accent-soft` | `#E8F2FF` | Form section / soft surfaces |
+| `--color-input-bg` | `#F8FAFC` | Inputs, selects, textareas |
+| `--border` | `#E8EDF5` | Borders |
+| `--modal-header-bg` | `#DEECFF` | Modal/drawer header band only |
+| `--form-section-bg` | `#DEECFF` | Optional nested sections — not used as popup form frame |
+| `--color-close` | `#E53935` | Popup Close action |
+
+## Required shared classes
+
+- **Buttons:** `ui-btn` + `ui-btn-primary` | `ui-btn-outline` | `ui-btn-secondary` | `ui-btn-danger`
+- **Inputs / dropdowns:** `ui-input` / `ui-select` / `ui-textarea` + `ui-label` + `ui-field`
+- **Tables:** `ui-table` (thead = accent bg + white text)
+- **Popups:** `Modal` / `Drawer` **only** — never hand-roll backdrop/header/footer
+- **Popup fields:** prefer `ui-grid-2` two-column layout; footer = outline Cancel + primary Save
+- **Page forms:** `mod-form-card`
+
+## Popup contract (all Add / Edit views)
+
+```tsx
+// ❌ BAD — custom modal markup
+<div className="fixed inset-0...">...</div>
+
+// ✅ GOOD — shared Modal (Room Information pattern)
+<Modal
+  open={open}
+  title="Room Information"
+  onClose={onClose}
+  footer={
+    <>
+      <button type="button" className="ui-btn ui-btn-outline" onClick={onClose}>Cancel</button>
+      <button type="button" className="ui-btn ui-btn-primary" onClick={onSave}>Save</button>
+    </>
+  }
+>
+  <div className="ui-grid-2">...</div>
+</Modal>
+```
+
+## Rules
+
+```tsx
+// ❌ BAD — custom colors / native controls without system classes
+<button style={{ background: '#6366F1' }}>Save</button>
+<input className="border rounded p-2" />
+
+// ✅ GOOD
+<button className="ui-btn ui-btn-primary">Save</button>
+<div className="ui-field">
+  <label className="ui-label">Name</label>
+  <input className="ui-input" />
+</div>
+<table className="ui-table">...</table>
+```
+
+When adding UI: extend tokens/classes in `globals.css` / `module.css` if needed — do not bypass the system.

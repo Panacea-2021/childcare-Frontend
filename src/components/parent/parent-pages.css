@@ -1,0 +1,244 @@
+/* Parent Portal page surfaces — design-system aligned */
+
+.pp-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.pp-panel {
+  background: #ffffff;
+  border: 1px solid var(--border, #e8edf5);
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+  overflow: hidden;
+}
+
+.pp-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border, #e8edf5);
+  background: #fff;
+}
+
+.pp-panel-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin: 0;
+  color: var(--text-primary, #1f2937);
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.pp-panel-title-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: var(--color-accent-soft, #e8f2ff);
+  color: var(--color-accent, #5d5fef);
+}
+
+.pp-panel-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.pp-seg {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px;
+  border-radius: 10px;
+  background: #f1f4f9;
+  border: 1px solid #e2e8f0;
+}
+
+.pp-seg-btn {
+  appearance: none;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #64748b;
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  padding: 0.4rem 0.85rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    background 160ms ease,
+    color 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.pp-seg-btn.is-active {
+  background: #ffffff;
+  color: var(--text-primary, #1f2937);
+  border-color: #e2e8f0;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+}
+
+.pp-filter-select {
+  min-width: 120px;
+  height: 36px;
+  padding: 0 0.75rem;
+  border-radius: 10px;
+  border: 1px solid var(--border, #e8edf5);
+  background: var(--color-input-bg, #f8fafc);
+  color: var(--text-primary, #1f2937);
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.pp-panel-body {
+  padding: 1.5rem 1.25rem;
+  min-height: 280px;
+}
+
+.pp-empty {
+  display: grid;
+  place-items: center;
+  text-align: center;
+  gap: 0.35rem;
+  min-height: 220px;
+  color: #64748b;
+  font-family: var(--font-body);
+}
+
+.pp-empty-primary {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #64748b;
+}
+
+.pp-empty-secondary {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #94a3b8;
+}
+
+.pp-muted {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.pp-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.pp-card {
+  background: #fff;
+  border: 1px solid var(--border, #e8edf5);
+  border-radius: 14px;
+  padding: 1rem 1.1rem;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.03);
+}
+
+.pp-card h3 {
+  margin: 0 0 0.35rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary, #1f2937);
+}
+
+.pp-card p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #64748b;
+  line-height: 1.45;
+}
+
+.pp-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+}
+
+.pp-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  background: var(--color-accent-soft, #e8f2ff);
+  color: var(--color-accent, #5d5fef);
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.pp-status {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.pp-status--paid {
+  background: #ecfdf5;
+  color: #047857;
+}
+
+.pp-status--pending {
+  background: #fff7ed;
+  color: #c2410c;
+}
+
+.pp-status--partial {
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+.pp-status--overdue {
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+.pp-support-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.pp-profile-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.pp-field label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.pp-field .ui-input,
+.pp-field .ui-textarea {
+  width: 100%;
+}
+
+@media (max-width: 720px) {
+  .pp-profile-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,157 @@
+/* Billing Invoices - spacing / overflow (loaded after billing-invoices.css) */
+
+.bi-root {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  gap: 20px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  overflow-x: hidden !important;
+  box-sizing: border-box !important;
+}
+
+.bi-root > .mph,
+.bi-root > .bi-command-bar,
+.bi-root > .bi-filters,
+.bi-root > .bi-kpis,
+.bi-root > .bi-panel,
+.bi-root > .bi-up-panel {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/* Margin fallback so sections never collapse flush even if gap fails */
+.bi-root > .bi-command-bar {
+  margin-top: 4px !important;
+}
+.bi-root > .bi-filters,
+.bi-root > .bi-up-panel {
+  margin-top: 0 !important;
+}
+.bi-root > .bi-kpis {
+  margin-top: 0 !important;
+}
+.bi-root > .bi-panel {
+  margin-top: 0 !important;
+}
+
+.bi-filters {
+  display: grid !important;
+  grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+  column-gap: 16px !important;
+  row-gap: 14px !important;
+  gap: 14px 16px !important;
+  padding: 16px !important;
+  box-sizing: border-box !important;
+}
+
+.bi-filters > * {
+  min-width: 0 !important;
+  margin: 0 !important;
+}
+
+.bi-filter-field {
+  display: flex !important;
+  flex-direction: column !important;
+  row-gap: 6px !important;
+  gap: 6px !important;
+  min-width: 0 !important;
+}
+
+.bi-kpis {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  column-gap: 16px !important;
+  row-gap: 16px !important;
+  gap: 16px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.bi-kpis > * {
+  min-width: 0 !important;
+  margin: 0 !important;
+}
+
+.bi-panel {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+}
+
+.bi-panel-toolbar {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 14px 16px !important;
+}
+
+.bi-table-wrap {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.bi-root .ui-table {
+  width: 100% !important;
+  min-width: 720px !important;
+}
+
+.bi-root .ui-table th,
+.bi-root .ui-table td {
+  padding: 12px 14px !important;
+}
+
+.bi-command-bar {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+}
+
+@media (max-width: 1100px) {
+  .bi-filters {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+  .bi-kpis {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 720px) {
+  .bi-root {
+    gap: 16px !important;
+  }
+  .bi-filters {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .bi-kpis {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Receipt PDF overlay must sit above shell sidebar (z-index 1100) */
+.bi-receipt-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 1400 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100vh !important;
+  max-height: 100dvh !important;
+  overflow: hidden !important;
+  background: #0b1220 !important;
+}
+
+.bi-receipt-overlay .ivw-pdf-stage {
+  min-height: 0 !important;
+  height: 100% !important;
+  overflow: auto !important;
+  display: block !important;
+}

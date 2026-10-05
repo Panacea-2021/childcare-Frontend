@@ -1,0 +1,1013 @@
+/* Talk to Expert — multi-center pricing */
+
+.tte-page {
+  --tte-ink: #1e1b4b;
+  --tte-muted: #64748b;
+  --tte-accent: #5d5fef;
+  --tte-pink: #ec4899;
+  --tte-border: #e8e0f5;
+  background: #fff;
+  color: var(--tte-ink);
+  overflow-x: visible;
+}
+
+.tte-main {
+  overflow-x: visible;
+}
+
+.tte-wrap {
+  width: min(1160px, calc(100% - 2.5rem));
+  margin-inline: auto;
+}
+
+/* Hero */
+
+.tte-hero {
+  position: relative;
+  padding: 3rem 0 2rem;
+  background: linear-gradient(180deg, #faf5ff 0%, #fff1f7 45%, #eef8ff 100%);
+  background-size: 180% 180%;
+  animation: tte-shift 18s ease-in-out infinite alternate;
+  overflow: hidden;
+}
+
+@keyframes tte-shift {
+  from {
+    background-position: 0% 40%;
+  }
+  to {
+    background-position: 100% 60%;
+  }
+}
+
+.tte-heroDecor {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.tte-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(50px);
+  opacity: 0.45;
+}
+
+.tte-blob--a {
+  width: 300px;
+  height: 300px;
+  top: -40px;
+  left: 5%;
+  background: #fbcfe8;
+}
+.tte-blob--b {
+  width: 340px;
+  height: 340px;
+  top: 10%;
+  right: 0;
+  background: #ddd6fe;
+}
+.tte-blob--c {
+  width: 220px;
+  height: 220px;
+  bottom: 5%;
+  left: 40%;
+  background: #bae6fd;
+  opacity: 0.35;
+}
+
+.tte-star {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #c4b5fd;
+  opacity: 0.7;
+}
+.tte-star--1 {
+  top: 18%;
+  left: 20%;
+}
+.tte-star--2 {
+  top: 30%;
+  right: 18%;
+}
+
+.tte-dot {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(93, 95, 239, 0.35);
+}
+.tte-dot--1 {
+  top: 50%;
+  left: 12%;
+}
+.tte-dot--2 {
+  bottom: 20%;
+  right: 28%;
+}
+
+.tte-hero h1 {
+  position: relative;
+  z-index: 1;
+  margin: 0 auto;
+  max-width: 18ch;
+  text-align: center;
+  font-size: clamp(1.85rem, 4vw, 3rem);
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  font-weight: 750;
+}
+
+.tte-heroSub {
+  position: relative;
+  z-index: 1;
+  margin: 0.85rem auto 0;
+  text-align: center;
+  max-width: 36rem;
+  color: var(--tte-muted);
+  font-size: clamp(1rem, 1.5vw, 1.12rem);
+}
+
+.tte-planGrid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.1rem;
+  margin-top: 2rem;
+  align-items: stretch;
+}
+
+.tte-cardShell {
+  height: 100%;
+}
+.tte-cardShell.is-popular {
+  transform: scale(1.03);
+  z-index: 2;
+}
+
+.tte-card {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.35rem 1.2rem 1.25rem;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid #e6eaf2;
+  box-shadow: 0 16px 40px rgba(76, 70, 120, 0.1);
+  backdrop-filter: blur(10px);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.tte-card:hover {
+  transform: translateY(-8px) !important;
+  border-color: #ddd6fe;
+  box-shadow: 0 24px 48px rgba(93, 95, 239, 0.16);
+}
+
+.tte-card.is-popular {
+  border-color: rgba(167, 139, 250, 0.65);
+  box-shadow:
+    0 20px 50px rgba(93, 95, 239, 0.22),
+    0 0 0 1px rgba(236, 72, 153, 0.12);
+}
+
+.tte-ribbon {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0.32rem 0.85rem;
+  border-radius: 999px;
+  background: linear-gradient(110deg, #ec4899, #5d5fef);
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 750;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.tte-cardTag {
+  margin: 0.4rem 0 0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #7c3aed;
+}
+
+.tte-introNote {
+  margin: 0.15rem 0 0;
+  font-size: 0.86rem;
+  font-weight: 650;
+  color: #5b21b6;
+}
+
+.tte-aiBadge {
+  display: inline-flex;
+  margin-left: 0.35rem;
+  padding: 0.08rem 0.35rem;
+  border-radius: 6px;
+  background: #fce7f3;
+  color: #db2777;
+  font-size: 0.62rem;
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  vertical-align: middle;
+}
+
+.tte-featureName {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.tte-compareWith {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  margin: 0 0 1.1rem;
+  font-size: 0.88rem;
+  font-weight: 650;
+  color: var(--tte-muted);
+}
+
+.tte-competitorToggle {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  border-radius: 999px;
+  background: #f8fafc;
+  border: 1px solid #e6eaf2;
+}
+
+.tte-competitorToggle button {
+  min-height: 36px;
+  padding: 0 0.85rem;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 650;
+  color: var(--tte-muted);
+  cursor: pointer;
+}
+
+.tte-competitorToggle button.is-active {
+  background: #111827;
+  color: #fff;
+}
+
+.tte-card h3 {
+  margin: 0;
+  font-size: 1.45rem;
+  letter-spacing: -0.02em;
+}
+
+.tte-cardDesc {
+  margin: 0;
+  color: var(--tte-muted);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.tte-cardCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: 46px;
+  padding: 0 1rem;
+  border-radius: 12px;
+  background: #111827;
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.3s ease;
+}
+
+.tte-cardCta:hover {
+  transform: scale(1.03);
+  background: linear-gradient(120deg, #312e81, #5d5fef);
+  box-shadow: 0 12px 26px rgba(93, 95, 239, 0.3);
+}
+
+.tte-cardCta:hover .tte-ctaArrow {
+  transform: translateX(3px);
+}
+
+.tte-ctaArrow {
+  transition: transform 0.25s ease;
+}
+
+.tte-cardFeatures {
+  display: grid;
+  gap: 0.85rem;
+  margin-top: 0.35rem;
+}
+
+.tte-groupHead {
+  margin: 0 0 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 750;
+  color: #5b21b6;
+}
+
+.tte-cardFeatures ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.tte-cardFeatures li {
+  display: flex;
+  gap: 0.45rem;
+  align-items: flex-start;
+  font-size: 0.86rem;
+  line-height: 1.4;
+}
+
+.tte-check {
+  flex: 0 0 auto;
+  margin-top: 0.12rem;
+  color: #ec4899;
+}
+
+/* Promo */
+
+.tte-promo {
+  padding: 1.25rem 0 1.75rem;
+  background: linear-gradient(180deg, #eef8ff, #f5f3ff);
+}
+
+.tte-promoCard {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 0;
+  max-height: 280px;
+  border-radius: 22px;
+  overflow: hidden;
+  background: linear-gradient(120deg, #4c1d95, #7c3aed 45%, #db2777);
+  box-shadow: 0 18px 40px rgba(76, 29, 149, 0.22);
+}
+
+.tte-promoMedia {
+  position: relative;
+  min-height: 0;
+  max-height: 280px;
+  overflow: hidden;
+}
+
+.tte-promoImg {
+  width: 100%;
+  height: 100%;
+  max-height: 280px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  animation: tte-float 4s ease-in-out infinite;
+}
+
+@keyframes tte-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.tte-promoFloat {
+  position: absolute;
+  inset: auto -8% -20% 40%;
+  height: 60%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.25), transparent 70%);
+  pointer-events: none;
+}
+
+.tte-promoCopy {
+  padding: 1.25rem 1.5rem;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.65rem;
+}
+
+.tte-promoCopy h2 {
+  margin: 0;
+  font-size: clamp(1.25rem, 2.2vw, 1.65rem);
+  letter-spacing: -0.02em;
+}
+
+.tte-promoCopy p {
+  margin: 0;
+  opacity: 0.92;
+  line-height: 1.45;
+  font-size: 0.9rem;
+}
+
+.tte-promoCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  min-height: 42px;
+  padding: 0 1.1rem;
+  border-radius: 999px;
+  background: #fff;
+  color: #4c1d95;
+  font-weight: 750;
+  font-size: 0.9rem;
+  text-decoration: none;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+  transition: transform 0.25s ease;
+}
+
+.tte-promoCta:hover {
+  transform: scale(1.03);
+}
+
+/* Comparison */
+
+.tte-compare {
+  padding: 2.5rem 0 2.75rem;
+  background: #fff;
+}
+
+.tte-compare h2 {
+  margin: 0 0 1.2rem;
+  text-align: center;
+  font-size: clamp(1.45rem, 2.6vw, 1.95rem);
+  letter-spacing: -0.02em;
+}
+
+.tte-swipeHint {
+  display: none;
+  margin: 0 0 0.65rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--tte-muted);
+}
+
+.tte-mobileCols {
+  display: none;
+  gap: 0.35rem;
+  margin-bottom: 0.85rem;
+  padding: 0.25rem;
+  border-radius: 14px;
+  background: #f8fafc;
+  border: 1px solid #e6eaf2;
+}
+
+.tte-mobileCols button {
+  flex: 1;
+  min-height: 38px;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 650;
+  color: var(--tte-muted);
+  cursor: pointer;
+}
+
+.tte-mobileCols button.is-active {
+  background: linear-gradient(120deg, #5d5fef, #ec4899);
+  color: #fff;
+}
+
+.tte-tableShell {
+  border-radius: 18px;
+  border: 1px solid var(--tte-border);
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(76, 70, 120, 0.06);
+}
+
+.tte-tableScroll {
+  overflow-x: auto;
+}
+
+.tte-table {
+  width: 100%;
+  min-width: 820px;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.tte-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  padding: 0.9rem 0.85rem;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--tte-border);
+  font-size: 0.84rem;
+  font-weight: 750;
+  box-shadow: 0 6px 14px rgba(15, 23, 42, 0.04);
+}
+
+.tte-colFeature {
+  width: 32%;
+  text-align: left;
+  position: sticky;
+  left: 0;
+  z-index: 4;
+  background: #fff;
+}
+
+.tte-table thead .tte-colFeature {
+  z-index: 6;
+}
+
+.tte-colPlan {
+  width: 17%;
+  text-align: center;
+}
+
+.tte-colPlan.is-rec,
+.tte-table thead .is-rec {
+  background: rgba(245, 243, 255, 0.75);
+  color: #5b21b6;
+}
+
+.tte-catRow th {
+  padding: 0;
+  background: linear-gradient(90deg, #ede9fe, #fce7f3);
+}
+
+.tte-catBtn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.8rem 1rem;
+  border: none;
+  background: transparent;
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #5b21b6;
+  cursor: pointer;
+  text-align: left;
+}
+
+.tte-catChevron {
+  transition: transform 0.3s ease;
+}
+.tte-catChevron.is-open {
+  transform: rotate(180deg);
+}
+
+.tte-featureRow th,
+.tte-featureRow td {
+  padding: 0.7rem 0.85rem;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 0.86rem;
+  font-weight: 500;
+}
+
+.tte-featureRow:hover th,
+.tte-featureRow:hover td {
+  background: #faf5ff;
+}
+
+.tte-cellOk {
+  display: inline-grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #fce7f3;
+  color: #db2777;
+}
+
+.tte-cellNo {
+  color: #cbd5e1;
+}
+
+.tte-cellText {
+  font-size: 0.78rem;
+  color: var(--tte-muted);
+}
+
+/* Add-ons */
+
+.tte-addons {
+  padding: 2.5rem 0;
+  background: #faf5ff;
+}
+
+.tte-addonsHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.tte-addonsHead h2 {
+  margin: 0;
+  font-size: clamp(1.4rem, 2.4vw, 1.85rem);
+}
+
+.tte-addonsCta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 1rem;
+  border-radius: 999px;
+  background: #111827;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.88rem;
+  text-decoration: none;
+}
+
+.tte-addonGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.tte-addonCard {
+  padding: 1.15rem;
+  border-radius: 18px;
+  background: linear-gradient(160deg, #f5f3ff, #fdf2f8);
+  border: 1px solid var(--tte-border);
+  box-shadow: 0 10px 24px rgba(124, 58, 237, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tte-addonCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 32px rgba(93, 95, 239, 0.14);
+}
+
+.tte-addonIcon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  margin-bottom: 0.7rem;
+  border-radius: 12px;
+  background: #fff;
+  color: #7c3aed;
+}
+
+.tte-addonCard h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+}
+
+.tte-addonCard p {
+  margin: 0;
+  font-size: 0.86rem;
+  color: var(--tte-muted);
+  line-height: 1.45;
+}
+
+/* Agentic AI */
+
+.tte-ai {
+  padding: 2.5rem 0 2.75rem;
+  background: linear-gradient(180deg, #fff1f7, #faf5ff);
+}
+
+.tte-aiHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.35rem;
+}
+
+.tte-aiHead h2 {
+  margin: 0;
+  font-size: clamp(1.45rem, 2.6vw, 2rem);
+  background: linear-gradient(100deg, #db2777, #5d5fef);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.tte-aiCta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 42px;
+  padding: 0 1.05rem;
+  border-radius: 999px;
+  background: #111827;
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.tte-aiCarousel {
+  position: relative;
+}
+
+.tte-aiTrack {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.tte-aiCard {
+  padding: 0.85rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--tte-border);
+  box-shadow: 0 12px 28px rgba(124, 58, 237, 0.08);
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+.tte-aiCard.is-center {
+  transform: scale(1.03);
+}
+
+.tte-aiCard.is-side {
+  transform: scale(0.97);
+  opacity: 0.92;
+}
+
+.tte-aiCard.is-far {
+  transform: scale(0.94);
+  opacity: 0.78;
+}
+
+.tte-aiCard img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 0.65rem;
+}
+
+.tte-aiCard h3,
+.tte-aiMobileCard h3 {
+  margin: 0 0 0.3rem;
+  font-size: 1rem;
+}
+
+.tte-aiCard p,
+.tte-aiMobileCard p {
+  margin: 0;
+  font-size: 0.84rem;
+  color: var(--tte-muted);
+  line-height: 1.45;
+}
+
+.tte-aiMobileCard {
+  display: none;
+}
+
+.tte-aiControls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1.1rem;
+}
+
+.tte-aiNav {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid #ddd6fe;
+  background: #fff;
+  color: var(--tte-accent);
+  cursor: pointer;
+}
+
+.tte-aiDots {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.tte-aiDot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: none;
+  border-radius: 999px;
+  background: #e2e8f0;
+  cursor: pointer;
+}
+
+.tte-aiDot.is-active {
+  width: 20px;
+  background: linear-gradient(90deg, #ec4899, #5d5fef);
+}
+
+/* Platform CTA */
+
+.tte-platform {
+  padding: 1.25rem 0 2rem;
+  background: #fff;
+}
+
+.tte-platformGrid {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  max-height: 300px;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(76, 70, 120, 0.12);
+}
+
+.tte-platformMedia {
+  overflow: hidden;
+  min-height: 0;
+  max-height: 300px;
+}
+
+.tte-platformMedia img {
+  width: 100%;
+  height: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.tte-platformMedia:hover img {
+  transform: scale(1.03);
+}
+
+.tte-platformPanel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.7rem;
+  padding: 1.25rem 1.5rem;
+  background: linear-gradient(135deg, #5d5fef, #a855f7 50%, #ec4899);
+  color: #fff;
+}
+
+.tte-platformPanel h2 {
+  margin: 0;
+  font-size: clamp(1.2rem, 2.2vw, 1.65rem);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.tte-platformPanel p {
+  margin: 0;
+  opacity: 0.92;
+  line-height: 1.45;
+  font-size: 0.9rem;
+}
+
+.tte-platformCta {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  min-height: 42px;
+  padding: 0 1.1rem;
+  border-radius: 999px;
+  background: #fff;
+  color: #5b21b6;
+  font-weight: 750;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.tte-platformCta:hover {
+  transform: scale(1.03);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+}
+
+/* FAQ */
+
+.tte-faq {
+  padding: clamp(3rem, 6vw, 5.5rem) 0;
+  background: linear-gradient(180deg, #faf5ff, #fff1f7);
+  overflow: visible;
+}
+
+.tte-faq .tte-wrap {
+  overflow: visible;
+}
+
+/* Responsive */
+
+@media (max-width: 980px) {
+  .tte-planGrid,
+  .tte-addonGrid {
+    grid-template-columns: 1fr;
+    max-width: 460px;
+    margin-inline: auto;
+  }
+
+  .tte-cardShell.is-popular {
+    transform: none;
+  }
+
+  .tte-promoCard,
+  .tte-platformGrid {
+    grid-template-columns: 1fr;
+    max-height: none;
+  }
+
+  .tte-promoMedia,
+  .tte-promoImg,
+  .tte-platformMedia,
+  .tte-platformMedia img {
+    max-height: 200px;
+    min-height: 180px;
+  }
+
+  .tte-promoCopy,
+  .tte-platformPanel {
+    padding: 1.15rem 1.25rem;
+  }
+
+  .tte-aiTrack {
+    display: none;
+  }
+
+  .tte-aiMobileCard {
+    display: block;
+    padding: 1rem;
+    border-radius: 18px;
+    background: #fff;
+    border: 1px solid var(--tte-border);
+  }
+
+  .tte-aiMobileCard img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 0.75rem;
+  }
+
+  .tte-mobileCols {
+    display: flex;
+  }
+
+  .tte-swipeHint {
+    display: block;
+  }
+
+  .tte-table {
+    min-width: 0;
+  }
+
+  .tte-table .tte-plan-essentials,
+  .tte-table .tte-plan-growth,
+  .tte-table .tte-plan-scale,
+  .tte-table .tte-plan-competitor {
+    display: none;
+  }
+
+  .tte-table--essentials .tte-plan-essentials,
+  .tte-table--growth .tte-plan-growth,
+  .tte-table--scale .tte-plan-scale,
+  .tte-table--competitor .tte-plan-competitor {
+    display: table-cell;
+  }
+}
+
+@media (max-width: 640px) {
+  .tte-wrap {
+    width: calc(100% - 1.5rem);
+  }
+
+  .tte-addonsHead,
+  .tte-aiHead {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tte-hero,
+  .tte-promoImg,
+  .tte-card,
+  .tte-addonCard {
+    animation: none !important;
+    transition: none !important;
+  }
+}

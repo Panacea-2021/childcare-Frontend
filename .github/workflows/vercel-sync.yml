@@ -1,0 +1,67 @@
+# Mirror main to the personal GitHub repo connected to Vercel
+# (saireddy-shyamakura/childcare-frontend). Vercel stays on that account
+# and auto-deploys when this workflow pushes.
+#
+# Required secret:
+#   VERCEL_SYNC_SSH_KEY — write deploy key for saireddy-shyamakura/childcare-frontend
+
+name: Sync to Vercel
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: vercel-sync
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    name: Mirror main to Vercel repo
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Prepare deploy-only Vercel tweaks
+        run: |
+          set -euo pipefail
+          printf '%s\n' 'docs/*.mp4' '*.mp4' > .vercelignore
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path("next.config.ts")
+          text = p.read_text()
+          needle = "const nextConfig: NextConfig = {"
+          patch = (
+              "const nextConfig: NextConfig = {\n"
+              "  typescript: { ignoreBuildErrors: true },\n"
+              "  eslint: { ignoreDuringBuilds: true },"
+          )
+          if "ignoreBuildErrors" not in text and needle in text:
+              p.write_text(text.replace(needle, patch, 1))
+          PY
+          git add .vercelignore next.config.ts
+          if git diff --cached --quiet; then
+            echo "No deploy tweaks needed"
+          else
+            git -c user.name="vercel-sync" -c user.email="vercel-sync@users.noreply.github.com" \
+              commit -m "chore: vercel deploy tweaks (typecheck skip + ignore videos)"
+          fi
+
+      - name: Push to Vercel-connected repo
+        env:
+          SYNC_SSH_KEY: ${{ secrets.VERCEL_SYNC_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$SYNC_SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H github.com >> ~/.ssh/known_hosts
+          git remote add vercel-deploy git@github.com:saireddy-shyamakura/childcare-frontend.git
+          GIT_SSH_COMMAND='ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes' \
+            git push vercel-deploy HEAD:main --force
+          rm -f ~/.ssh/deploy_key

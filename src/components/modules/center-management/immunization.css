@@ -1,0 +1,894 @@
+/* Student Immunization — Panacea design system */
+
+.imm-card {
+  position: relative;
+  padding: 1.1rem 1.2rem 1.25rem;
+  overflow: hidden;
+}
+
+.imm-toast {
+  position: fixed;
+  top: 88px;
+  right: 20px;
+  z-index: 9999;
+  background: linear-gradient(180deg, #fff, #f0fdf4);
+  border: 1px solid #bbf7d0;
+  color: #166534;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 10px 14px;
+  border-radius: 12px;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+  animation: imm-toast-in 0.28s ease;
+}
+
+@keyframes imm-toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.imm-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border, #e8edf5);
+}
+
+.imm-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-primary);
+}
+
+.imm-title-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: var(--color-accent-soft, #e8f2ff);
+  color: var(--color-accent, #5d5fef);
+  flex-shrink: 0;
+}
+
+.imm-title strong {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.imm-head-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-left: auto;
+}
+
+.imm-toggle-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.86rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  user-select: none;
+}
+
+.imm-switch {
+  position: relative;
+  width: 42px;
+  height: 24px;
+  border-radius: 999px;
+  background: #e2e8f0;
+  border: 1px solid #cbd5e1;
+  transition: background 0.2s ease, border-color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  padding: 2px;
+  flex-shrink: 0;
+}
+
+.imm-switch input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  margin: 0;
+}
+
+.imm-switch-knob {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.18);
+  transition: transform 0.2s ease;
+}
+
+.imm-switch.is-on {
+  background: var(--color-accent, #5d5fef);
+  border-color: var(--color-accent, #5d5fef);
+}
+
+.imm-switch.is-on .imm-switch-knob {
+  transform: translateX(18px);
+}
+
+.imm-send-btn {
+  padding: 8px 16px;
+  font-size: 0.84rem;
+  min-height: 38px;
+}
+
+/* Table shell — keeps content inset from card edges */
+.imm-table-shell {
+  border: 1px solid var(--border, #e8edf5);
+  border-radius: 14px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+}
+
+.imm-table-wrap {
+  overflow-x: auto;
+  margin: 0;
+  padding: 0;
+}
+
+.imm-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 0.9rem;
+}
+
+.imm-col-vaccine {
+  width: 38%;
+}
+.imm-col-doses {
+  width: 28%;
+}
+.imm-col-status {
+  width: 22%;
+}
+.imm-col-actions {
+  width: 12%;
+  text-align: right;
+}
+
+/* Accent header — matches cm-table / design system */
+.imm-table thead th {
+  text-align: left;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--color-accent, #5d5fef);
+  padding: 12px 16px;
+  border-bottom: none;
+  vertical-align: middle;
+}
+
+.imm-table thead th.imm-col-actions {
+  text-align: right;
+}
+
+.imm-table td {
+  padding: 16px;
+  border-bottom: 1px solid var(--border, #e8edf5);
+  vertical-align: middle;
+  background: #fff;
+  transition: background 0.15s ease;
+}
+
+.imm-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.imm-table tbody tr:hover td {
+  background: #f8faff;
+}
+
+.imm-vax-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.imm-vax-name {
+  font-weight: 700;
+  color: var(--text-primary, #1f2937);
+  line-height: 1.3;
+}
+
+.imm-instructions {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: none;
+  background: none;
+  padding: 0;
+  color: #64748b;
+  font: inherit;
+  font-size: 0.76rem;
+  font-weight: 600;
+  cursor: pointer;
+  line-height: 1.2;
+  transition: color 0.15s ease;
+}
+
+.imm-instructions:hover {
+  color: var(--color-accent, #5d5fef);
+}
+
+.imm-mandatory {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #fff;
+  background: #e53935;
+  border-radius: 999px;
+  padding: 2px 8px;
+  line-height: 1.25;
+  margin-top: 2px;
+}
+
+.imm-doses {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 28px;
+}
+
+.imm-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.imm-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #e5e7eb;
+  flex-shrink: 0;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+  box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.06);
+}
+
+.imm-dot:hover {
+  transform: scale(1.22);
+  box-shadow: 0 0 0 3px rgba(93, 95, 239, 0.18);
+}
+
+.imm-dot:focus-visible {
+  outline: 2px solid var(--color-accent, #5d5fef);
+  outline-offset: 2px;
+}
+
+.imm-dot.is-done {
+  background: #22c55e;
+}
+
+.imm-dot.is-overdue {
+  background: #ef4444;
+}
+
+.imm-dot.is-exempt {
+  background: #94a3b8;
+}
+
+.imm-dot.is-pending {
+  background: #e5e7eb;
+}
+
+.imm-dose-count {
+  color: #64748b;
+  font-size: 0.84rem;
+  font-weight: 600;
+  line-height: 1;
+  min-width: 28px;
+}
+
+.imm-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.imm-status.ok {
+  color: #15803d;
+}
+
+.imm-status.overdue {
+  color: #dc2626;
+}
+
+.imm-status.exempt {
+  color: #64748b;
+}
+
+.imm-col-actions .cm-row-action {
+  margin-left: auto;
+}
+
+.imm-kebab {
+  display: block;
+  font-size: 1.15rem;
+  line-height: 1;
+  font-weight: 700;
+}
+
+/* Instructions modal */
+.imm-instructions-body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.imm-instructions-hero {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px;
+  border-radius: 12px;
+  background: var(--color-accent-soft, #e8f2ff);
+  border: 1px solid var(--border, #e8edf5);
+}
+
+.imm-instructions-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: #fff;
+  color: var(--color-accent, #5d5fef);
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(93, 95, 239, 0.12);
+}
+
+.imm-instructions-hero strong {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.imm-instructions-hero .imm-mandatory {
+  margin: 0 0 4px 8px;
+  vertical-align: middle;
+}
+
+.imm-instructions-hero p {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+.imm-instructions-text {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--text-primary);
+}
+
+.imm-instructions-list {
+  margin: 0;
+  padding: 12px 12px 12px 28px;
+  border-radius: 12px;
+  background: #f8fafc;
+  border: 1px solid var(--border, #e8edf5);
+  color: var(--text-secondary);
+  font-size: 0.84rem;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.imm-instructions-list strong {
+  color: var(--text-primary);
+}
+
+.imm-modal-sub {
+  margin: -4px 0 16px;
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+}
+
+.imm-upload-hint {
+  margin: -4px 0 8px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.imm-no-upload-hint {
+  margin: 4px 0 0;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #f8fafc;
+  border: 1px dashed var(--border, #e8edf5);
+  color: var(--text-secondary);
+  font-size: 0.84rem;
+  line-height: 1.4;
+}
+
+.imm-check-row,
+.imm-select-all {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.imm-reminder-list {
+  max-height: 280px;
+  overflow: auto;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  margin-bottom: 12px;
+}
+
+.imm-reminder-row {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1.4fr) auto auto;
+  gap: 10px;
+  align-items: center;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  font-size: 0.88rem;
+}
+
+.imm-reminder-row:last-child {
+  border-bottom: none;
+}
+
+.imm-reminder-label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.imm-reminder-label strong {
+  color: var(--text-primary);
+}
+
+.imm-reminder-label span {
+  color: var(--text-secondary);
+}
+
+.imm-mini-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 999px;
+  justify-self: start;
+}
+
+.imm-mini-badge.overdue {
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+.imm-mini-badge.upcoming {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.imm-reminder-date {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #94a3b8;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  justify-self: end;
+}
+
+.imm-info-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 0.84rem;
+  margin-bottom: 14px;
+}
+
+.imm-check-block {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+
+.imm-check-block strong {
+  display: block;
+  font-size: 0.9rem;
+}
+
+.imm-check-block small {
+  display: block;
+  margin-top: 2px;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+}
+
+.imm-pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.imm-pill {
+  border: 1px solid var(--border);
+  background: #fff;
+  border-radius: 10px;
+  padding: 8px 12px;
+  font: inherit;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease, transform 0.12s ease;
+}
+
+.imm-pill:hover {
+  border-color: #c7d2fe;
+}
+
+.imm-pill.is-on {
+  border-color: var(--color-accent);
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+}
+
+.imm-status-pill {
+  border: 1.5px solid #e2e8f0;
+  background: #fff;
+  border-radius: 999px;
+  padding: 7px 12px;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.12s ease;
+}
+
+.imm-status-pill:hover {
+  transform: translateY(-1px);
+}
+
+.imm-status-pill.tone-done {
+  color: #15803d;
+  border-color: #86efac;
+}
+.imm-status-pill.tone-pending {
+  color: #c2410c;
+  border-color: #fdba74;
+}
+.imm-status-pill.tone-overdue {
+  color: #dc2626;
+  border-color: #fca5a5;
+}
+.imm-status-pill.tone-exempt {
+  color: #64748b;
+  border-color: #cbd5e1;
+}
+
+.imm-status-pill.is-on.tone-done {
+  background: #f0fdf4;
+}
+.imm-status-pill.is-on.tone-pending {
+  background: #fff7ed;
+}
+.imm-status-pill.is-on.tone-overdue {
+  background: #fef2f2;
+}
+.imm-status-pill.is-on.tone-exempt {
+  background: #f1f5f9;
+}
+
+.imm-upload {
+  width: 100%;
+  border: 1.5px dashed #c7d2fe;
+  border-radius: 14px;
+  background: #fbfcff;
+  padding: 28px 16px;
+  display: grid;
+  place-items: center;
+  gap: 8px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.imm-upload:hover {
+  border-color: var(--color-accent);
+  background: var(--color-accent-soft);
+}
+
+.imm-add-notes {
+  border: none;
+  background: none;
+  color: var(--color-accent);
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 0;
+  width: fit-content;
+}
+
+.imm-reason-btn {
+  border: 1.5px solid #e2e8f0;
+  background: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    transform 0.15s ease;
+}
+
+.imm-reason-row {
+  gap: 10px;
+}
+
+.imm-reason-btn.tone-medical {
+  color: #dc2626;
+  border-color: #fecaca;
+}
+.imm-reason-btn.tone-religious {
+  color: #2563eb;
+  border-color: #bfdbfe;
+}
+.imm-reason-btn.tone-personalbelief {
+  color: #c2410c;
+  border-color: #fdba74;
+}
+.imm-reason-btn.tone-others {
+  color: #64748b;
+  border-color: #cbd5e1;
+}
+
+.imm-reason-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+}
+
+.imm-reason-btn.tone-medical.is-on {
+  background: #fef2f2;
+  border-color: #dc2626;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.12);
+}
+.imm-reason-btn.tone-religious.is-on {
+  background: #eff6ff;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+.imm-reason-btn.tone-personalbelief.is-on {
+  background: #fff7ed;
+  border-color: #c2410c;
+  box-shadow: 0 0 0 3px rgba(194, 65, 12, 0.12);
+}
+.imm-reason-btn.tone-others.is-on {
+  background: #f1f5f9;
+  border-color: #64748b;
+  box-shadow: 0 0 0 3px rgba(100, 116, 139, 0.12);
+}
+
+.imm-exempt-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.imm-exempt-student {
+  margin: -2px 0 4px !important;
+  font-size: 0.92rem !important;
+  font-weight: 600;
+  color: var(--text-secondary) !important;
+}
+
+.imm-exempt-scope {
+  margin: 0 0 14px;
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+.imm-exempt-scope strong {
+  color: var(--color-accent, #5d5fef);
+  font-weight: 700;
+}
+
+.imm-upload.has-file {
+  border-style: solid;
+  border-color: #86efac;
+  background: #f0fdf4;
+  color: #166534;
+}
+
+.imm-upload-file {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 16px;
+  text-align: left;
+  place-items: unset;
+}
+
+.imm-upload-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+.imm-upload-remove {
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 8px;
+  background: rgba(22, 101, 52, 0.1);
+  color: #166534;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.15s ease;
+}
+
+.imm-upload-remove:hover {
+  background: rgba(220, 38, 38, 0.12);
+  color: #dc2626;
+}
+
+.imm-exempt-all {
+  padding: 40px 20px 28px;
+  text-align: center;
+  border: 1px dashed var(--border, #e8edf5);
+  border-radius: 14px;
+  background: linear-gradient(180deg, #fbfcff 0%, #f8fafc 100%);
+}
+
+.imm-exempt-all-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 14px;
+  border-radius: 16px;
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+.imm-exempt-all .imm-toggle-row {
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.imm-exempt-msg {
+  margin: 0 0 20px;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.imm-exempt-meta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+}
+
+.imm-doc-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--color-accent-soft, #e8f2ff);
+  color: var(--color-accent, #5d5fef);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.imm-reason-pill {
+  display: inline-flex;
+  font-style: normal;
+  font-weight: 700;
+  color: #b91c1c;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 999px;
+  padding: 3px 10px;
+  margin-left: 6px;
+}
+
+.imm-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  background: none;
+  color: var(--color-accent);
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.imm-link:hover {
+  opacity: 0.8;
+}
+
+@media (max-width: 720px) {
+  .imm-card {
+    padding: 0.9rem;
+  }
+  .imm-table {
+    table-layout: auto;
+  }
+  .imm-col-vaccine,
+  .imm-col-doses,
+  .imm-col-status,
+  .imm-col-actions {
+    width: auto;
+  }
+  .imm-reminder-row {
+    grid-template-columns: 22px 1fr;
+    grid-template-rows: auto auto;
+  }
+  .imm-mini-badge,
+  .imm-reminder-date {
+    justify-self: start;
+  }
+}

@@ -1,0 +1,265 @@
+/* Full-screen credit receipt — matches invoice receipt viewer chrome */
+
+.crp-overlay {
+  z-index: 1500;
+}
+
+.crp-root {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.crp-stage {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  display: grid;
+  place-items: center;
+  padding: 28px 16px 40px;
+  background:
+    radial-gradient(700px 320px at 50% 0%, rgba(93, 95, 239, 0.16), transparent 70%),
+    #0b1220;
+}
+
+.crp-paper-wrap {
+  transform-origin: center top;
+  transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
+  width: 210mm;
+}
+
+.crp-paper {
+  width: 210mm;
+  min-height: 297mm;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 2px;
+  padding: 18mm 16mm 16mm;
+  box-shadow:
+    0 40px 90px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(255, 255, 255, 0.04);
+  color: #0f172a;
+  font-family: var(--font-body, Poppins, sans-serif);
+  display: flex;
+  flex-direction: column;
+}
+
+.crp-paper-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid #e8edf5;
+}
+
+.crp-brand {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.crp-logo {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(145deg, #7c6cff, #5d5fef);
+  color: #fff;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.crp-brand strong {
+  display: block;
+  font-size: 0.98rem;
+}
+
+.crp-brand p {
+  margin: 2px 0 0;
+  font-size: 0.82rem;
+  color: #475569;
+}
+
+.crp-brand em {
+  display: block;
+  margin-top: 2px;
+  font-style: normal;
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+.crp-title {
+  text-align: right;
+}
+
+.crp-title h2 {
+  margin: 0;
+  font-size: 1.55rem;
+  letter-spacing: 0.04em;
+}
+
+.crp-title > span {
+  display: block;
+  margin-top: 4px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.crp-paid {
+  display: inline-flex;
+  margin-top: 10px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #dcfce7;
+  color: #15803d;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.crp-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px 28px;
+  margin: 22px 0;
+}
+
+.crp-grid span {
+  display: block;
+  margin-top: 10px;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #94a3b8;
+}
+
+.crp-grid span:first-child {
+  margin-top: 0;
+}
+
+.crp-grid strong {
+  display: block;
+  margin-top: 3px;
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.crp-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+}
+
+.crp-table th {
+  background: #deecff;
+  color: #0f172a;
+  text-align: left;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  padding: 10px 12px;
+}
+
+.crp-table td {
+  padding: 14px 12px;
+  border-bottom: 1px solid #e8edf5;
+  vertical-align: middle;
+  font-size: 0.9rem;
+}
+
+.crp-table td strong {
+  display: block;
+}
+
+.crp-table td em {
+  display: block;
+  margin-top: 3px;
+  font-style: normal;
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+.crp-table td:last-child,
+.crp-table th:last-child {
+  text-align: right;
+}
+
+.crp-totals {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 16px;
+  margin-top: 22px;
+  align-items: end;
+}
+
+.crp-totals span {
+  display: block;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #94a3b8;
+}
+
+.crp-totals strong {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.92rem;
+}
+
+.crp-total-amt {
+  min-width: 160px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: #e8f2ff;
+  text-align: right;
+}
+
+.crp-total-amt strong {
+  font-size: 1.15rem;
+  color: #5d5fef;
+}
+
+.crp-foot {
+  margin-top: auto;
+  padding-top: 18px;
+  border-top: 1px dashed #e2e8f0;
+  text-align: right;
+}
+
+.crp-foot p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+.crp-foot em {
+  display: block;
+  margin-top: 6px;
+  font-style: normal;
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .crp-paper-wrap,
+  .crp-paper {
+    width: min(210mm, calc(100vw - 24px));
+    min-height: auto;
+  }
+
+  .crp-paper {
+    padding: 24px 18px;
+  }
+
+  .crp-paper-head {
+    flex-direction: column;
+  }
+
+  .crp-grid,
+  .crp-totals {
+    grid-template-columns: 1fr;
+  }
+
+  .crp-title {
+    text-align: left;
+  }
+}

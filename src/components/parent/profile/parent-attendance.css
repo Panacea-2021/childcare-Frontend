@@ -1,0 +1,180 @@
+/* Parent Profile — Attendance tab */
+
+.pat-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.pat-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.pat-progress-bar {
+  height: 10px;
+  border-radius: 999px;
+  background: #eef2f7;
+  overflow: hidden;
+}
+
+.pat-progress-fill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--color-accent, #5d5fef), #818cf8);
+  transition: width 600ms ease;
+}
+
+.pat-progress-label {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.pat-cal-card,
+.pat-table-card {
+  padding: 1rem 1.15rem 1.15rem;
+}
+
+.pat-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.85rem;
+}
+
+.pat-card-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--text-primary, #1f2937);
+}
+
+.pat-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-bottom: 0.75rem;
+}
+
+.pat-leg {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.pat-leg::before {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: 4px;
+}
+
+.pat-leg--present::before {
+  background: #34d399;
+}
+
+.pat-leg--late::before {
+  background: #f59e0b;
+}
+
+.pat-leg--absent::before {
+  background: #f87171;
+}
+
+.pat-leg--leave::before {
+  background: #60a5fa;
+}
+
+.pat-cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.35rem;
+}
+
+.pat-cal-dow {
+  text-align: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #94a3b8;
+  padding: 0.25rem 0;
+}
+
+.pat-cal-cell {
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  font-size: 0.82rem;
+  font-weight: 650;
+  color: #475569;
+  background: #f8fafc;
+  transition:
+    transform 140ms ease,
+    box-shadow 140ms ease;
+}
+
+.pat-cal-cell.is-empty {
+  background: transparent;
+  border: none;
+}
+
+.pat-cal-cell.is-present {
+  background: #ecfdf5;
+  color: #047857;
+  border-color: #a7f3d0;
+}
+
+.pat-cal-cell.is-late {
+  background: #fffbeb;
+  color: #b45309;
+  border-color: #fde68a;
+}
+
+.pat-cal-cell.is-absent {
+  background: #fef2f2;
+  color: #b91c1c;
+  border-color: #fecaca;
+}
+
+.pat-cal-cell.is-leave {
+  background: #eff6ff;
+  color: #1d4ed8;
+  border-color: #bfdbfe;
+}
+
+.pat-cal-cell.is-none {
+  background: #f8fafc;
+  color: #94a3b8;
+}
+
+.pat-cal-cell:not(.is-empty):hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.06);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pat-progress-fill,
+  .pat-cal-cell:not(.is-empty):hover {
+    transition: none;
+    transform: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .pat-cal-cell {
+    border-radius: 8px;
+    font-size: 0.75rem;
+  }
+}

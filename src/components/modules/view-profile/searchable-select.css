@@ -1,0 +1,166 @@
+/* Shared searchable select — Settings / Profile / My Account */
+
+.vp-dd {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.vp-dd-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0 14px;
+  border: 1px solid #d8def0;
+  border-radius: 12px;
+  background: #ffffff;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-align: left;
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    background 0.18s ease;
+}
+
+.vp-dd-trigger .is-placeholder {
+  color: #9aa3b2;
+}
+
+.vp-dd-trigger:hover:not(:disabled) {
+  border-color: #c4b5fd;
+}
+
+.vp-dd-trigger.is-open,
+.vp-dd-trigger:focus-visible {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(93, 95, 239, 0.12);
+}
+
+.vp-dd-trigger:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.vp-dd-chevron {
+  color: var(--color-accent);
+  flex-shrink: 0;
+  transition: transform 0.18s ease;
+}
+
+.vp-dd-trigger.is-open .vp-dd-chevron {
+  transform: rotate(180deg);
+}
+
+.vp-dd-menu {
+  position: fixed;
+  z-index: 2200;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow:
+    0 18px 48px rgba(31, 41, 55, 0.14),
+    0 4px 12px rgba(31, 41, 55, 0.06);
+  padding: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  max-height: 320px;
+}
+
+.vp-dd-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--color-input-bg);
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.vp-dd-search input {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 0.86rem;
+  color: var(--text-primary);
+}
+
+.vp-dd-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #c5cde0 transparent;
+}
+
+.vp-dd-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.vp-dd-list::-webkit-scrollbar-thumb {
+  background: #c5cde0;
+  border-radius: 99px;
+}
+
+.vp-dd-item {
+  width: 100%;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 12px;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  text-align: left;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.vp-dd-item:hover,
+.vp-dd-item:focus-visible {
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+  outline: none;
+}
+
+.vp-dd-item.is-selected {
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+  font-weight: var(--font-weight-medium);
+}
+
+.vp-dd-item-label {
+  flex: 1;
+  min-width: 0;
+}
+
+.vp-dd-check {
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.vp-dd-empty {
+  padding: 14px 12px;
+  font-size: 0.86rem;
+  color: var(--text-secondary);
+  text-align: center;
+}

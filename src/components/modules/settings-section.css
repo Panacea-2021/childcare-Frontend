@@ -1,0 +1,122 @@
+/* Shared Settings section chrome (paired with SettingsSectionShell) */
+
+.cm-page--settings {
+  gap: 1rem;
+  --cm-accent-soft: rgba(93, 95, 239, 0.12);
+}
+
+.settings-section {
+  width: 100%;
+  min-height: calc(100vh - 120px);
+  animation: settings-section-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes settings-section-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.settings-section-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+.settings-section-body > .cm-panel,
+.settings-section-panel {
+  background: var(--color-white, #fff);
+  border: 1px solid var(--border, #e8edf5);
+  border-radius: 16px;
+  box-shadow: 0 6px 24px rgba(31, 41, 55, 0.05);
+  padding: 1.15rem 1.25rem 1.25rem;
+  position: relative;
+  overflow: hidden;
+  transition:
+    box-shadow 240ms ease,
+    transform 240ms ease,
+    border-color 240ms ease;
+}
+
+.settings-section-panel:hover,
+.settings-section-body > .cm-panel:hover {
+  border-color: #dbe4f5;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.07);
+}
+
+.settings-section-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-accent, #5d5fef) 0%, #a78bfa 50%, #ed70a8 100%);
+  pointer-events: none;
+}
+
+.settings-section .ui-table-wrap {
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.settings-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--border, #e8edf5);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04);
+}
+
+.settings-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1 1 240px;
+  min-width: 200px;
+  max-width: 360px;
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid var(--border, #e8edf5);
+  border-radius: 10px;
+  background: var(--color-input-bg, #f8fafc);
+  color: var(--text-secondary, #64748b);
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.settings-search:focus-within {
+  border-color: var(--color-accent, #5d5fef);
+  box-shadow: 0 0 0 3px rgba(93, 95, 239, 0.12);
+}
+
+.settings-search input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font: inherit;
+  font-size: 0.9rem;
+  color: var(--text, #0f172a);
+  min-width: 0;
+}
+
+.settings-empty {
+  text-align: center;
+  padding: 3rem 1.25rem;
+  color: var(--text-secondary, #64748b);
+}
+
+.settings-empty strong {
+  display: block;
+  color: var(--text, #0f172a);
+  font-size: 1.02rem;
+  margin-bottom: 0.35rem;
+}

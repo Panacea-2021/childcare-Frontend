@@ -1,0 +1,111 @@
+/* Activity Excel Report — premium builder with inline Columns panel */
+
+.aer-report {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-height: 100%;
+}
+
+.aer-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.aer-card {
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.03),
+    0 10px 28px rgba(15, 23, 42, 0.045);
+  padding: 20px;
+}
+
+.aer-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.aer-card-head h3 {
+  margin: 0;
+  font-size: 1.02rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+
+.aer-card-head p {
+  margin: 4px 0 0;
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+.aer-filter-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.aer-filter-grid .asr-field {
+  margin: 0;
+}
+
+.aer-columns {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.aer-mode-field {
+  margin: 0;
+  max-width: 320px;
+}
+
+.aer-mode-field .ui-select {
+  min-height: 48px;
+  border-radius: 14px;
+  background: var(--color-input-bg);
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.aer-mode-field .ui-select:hover {
+  border-color: rgba(93, 95, 239, 0.28);
+  background: #fff;
+}
+
+.aer-mode-field .ui-select:focus,
+.aer-mode-field .ui-select:focus-visible {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 4px rgba(93, 95, 239, 0.12);
+  outline: none;
+  background: #fff;
+}
+
+/* Keep inline selector flush under the Columns dropdown */
+.aer-columns .ab-columns-inline {
+  margin: 0;
+}
+
+.aer-columns .ab-columns-inline .ab-col-panel-inline {
+  margin-top: 14px;
+}
+
+.aer-loading {
+  min-height: 280px;
+}
+
+@media (max-width: 720px) {
+  .aer-card {
+    padding: 16px;
+  }
+
+  .aer-mode-field {
+    max-width: none;
+  }
+}

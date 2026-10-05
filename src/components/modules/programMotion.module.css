@@ -1,0 +1,118 @@
+/* Shared Program module motion — Center Dashboard style */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.revealIn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.kpiEnter {
+  animation: progKpiIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--stagger, 0ms);
+}
+
+@keyframes progKpiIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.panelEnter {
+  animation: progPanelIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--stagger, 0ms);
+}
+
+@keyframes progPanelIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rowEnter {
+  animation: progRowIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--stagger, 0ms);
+}
+
+@keyframes progRowIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.lift {
+  transition:
+    transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.28s ease,
+    border-color 0.28s ease,
+    filter 0.28s ease;
+}
+
+.lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 32px rgba(15, 23, 42, 0.1), 0 0 0 1px rgba(93, 95, 239, 0.12);
+}
+
+.titleWrap {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+}
+
+/* Pastel star sticker (childcare feel) */
+.sticker {
+  display: inline-flex;
+  flex-shrink: 0;
+  margin-top: 0.05rem;
+  width: 28px;
+  height: 28px;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 6px rgba(244, 114, 182, 0.35));
+}
+
+.stickerSvg {
+  width: 28px;
+  height: 28px;
+  overflow: visible;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .revealIn,
+  .kpiEnter,
+  .panelEnter,
+  .rowEnter,
+  .lift,
+  .lift:hover {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .sticker {
+    transform: none !important;
+  }
+}

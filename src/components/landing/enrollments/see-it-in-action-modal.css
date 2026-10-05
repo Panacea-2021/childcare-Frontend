@@ -1,0 +1,468 @@
+/* See it in Action — Panacea demo booking modal */
+
+.sia-root {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+}
+
+.sia-backdrop {
+  position: absolute;
+  inset: 0;
+  border: none;
+  background: rgba(31, 41, 55, 0.5);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+}
+
+.sia-panel {
+  position: relative;
+  z-index: 1;
+  width: min(640px, 100%);
+  max-height: min(92vh, 820px);
+  border-radius: 28px;
+  background: linear-gradient(180deg, #ffffff 0%, #fff8fb 48%, #ffffff 100%);
+  border: 1px solid rgba(237, 208, 228, 0.7);
+  box-shadow:
+    0 36px 90px rgba(15, 23, 42, 0.24),
+    0 0 0 1px rgba(93, 95, 239, 0.06),
+    0 0 72px rgba(237, 208, 228, 0.4);
+  padding: 1.5rem 2rem 1.85rem;
+  overflow: visible;
+}
+
+.sia-glow {
+  position: absolute;
+  inset: -28% -18% auto;
+  height: 220px;
+  background: radial-gradient(circle, rgba(237, 208, 228, 0.55), rgba(93, 95, 239, 0.12), transparent 70%);
+  pointer-events: none;
+}
+
+.sia-top {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.65rem;
+}
+
+.sia-iconBtn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--border, #e8edf5);
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--text-secondary, #6b7280);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: background 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.sia-iconBtn:hover {
+  background: #e8f2ff;
+  color: #5d5fef;
+  transform: translateY(-1px);
+}
+
+.sia-iconSpacer {
+  width: 42px;
+  height: 42px;
+}
+
+.sia-progress {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.sia-progress p {
+  margin: 0 0 0.7rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary, #6b7280);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.sia-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.55rem;
+}
+
+.sia-steps span {
+  height: 5px;
+  border-radius: 999px;
+  background: #e8edf5;
+  transition: background 220ms ease, box-shadow 220ms ease;
+}
+
+.sia-steps span.is-on {
+  background: linear-gradient(90deg, #5d5fef, #c98bb8);
+  box-shadow: 0 0 14px rgba(93, 95, 239, 0.35);
+}
+
+.sia-body {
+  position: relative;
+  min-height: 340px;
+  padding-bottom: 0.25rem;
+}
+
+.sia-body h2 {
+  margin: 0 0 1.5rem;
+  font-size: clamp(1.65rem, 3.2vw, 2rem);
+  letter-spacing: -0.035em;
+  line-height: 1.22;
+  color: var(--text-primary, #1f2937);
+  font-weight: 700;
+}
+
+.sia-lead {
+  margin: 0 0 1.5rem;
+  color: var(--text-secondary, #6b7280);
+  line-height: 1.6;
+  font-size: 1.05rem;
+}
+
+.sia-field {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.sia-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.sia-input {
+  width: 100%;
+  min-height: 56px;
+  font-size: 1rem !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(232, 237, 245, 0.95) !important;
+  background: rgba(248, 250, 252, 0.95) !important;
+  padding: 0.85rem 1.1rem !important;
+  transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease !important;
+}
+
+.sia-input:focus {
+  border-color: rgba(93, 95, 239, 0.45) !important;
+  box-shadow: 0 0 0 4px rgba(237, 208, 228, 0.5) !important;
+  background: #fff !important;
+}
+
+.sia-phoneRow {
+  display: grid;
+  grid-template-columns: minmax(118px, 138px) 1fr;
+  gap: 0.75rem;
+  margin-bottom: 0.45rem;
+  align-items: start;
+}
+
+.sia-hint {
+  margin: 0 0 0.85rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary, #6b7280);
+}
+
+.sia-dial {
+  position: relative;
+  z-index: 6;
+}
+
+.sia-dial.is-open {
+  z-index: 12;
+}
+
+.sia-dialTrigger {
+  width: 100%;
+  min-height: 56px;
+  border-radius: 16px;
+  border: 1px solid rgba(232, 237, 245, 0.95);
+  background: rgba(248, 250, 252, 0.95);
+  padding: 0.55rem 0.55rem 0.55rem 0.65rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.25rem;
+  cursor: pointer;
+  color: var(--text-primary, #1f2937);
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.sia-dial.is-open .sia-dialTrigger,
+.sia-dialTrigger:hover {
+  border-color: rgba(93, 95, 239, 0.45);
+  box-shadow: 0 0 0 4px rgba(237, 208, 228, 0.5);
+  background: #fff;
+}
+
+.sia-flag {
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.sia-dialMenu {
+  position: absolute;
+  left: 0;
+  top: calc(100% + 6px);
+  width: min(320px, 78vw);
+  border-radius: 16px;
+  background: #fff;
+  border: 1px solid rgba(237, 208, 228, 0.8);
+  box-shadow: 0 22px 50px rgba(15, 23, 42, 0.18);
+  overflow: hidden;
+  z-index: 20;
+}
+
+.sia-dialSearch {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.65rem 0.75rem;
+  border-bottom: 1px solid var(--border, #e8edf5);
+  color: var(--text-secondary, #6b7280);
+}
+
+.sia-dialSearch input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font: inherit;
+  font-size: 0.9rem;
+  color: var(--text-primary, #1f2937);
+}
+
+.sia-dialList {
+  list-style: none;
+  margin: 0;
+  padding: 0.35rem;
+  max-height: 240px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.sia-dialList button {
+  width: 100%;
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  text-align: left;
+  padding: 0.65rem 0.7rem;
+  border-radius: 12px;
+  cursor: pointer;
+  font: inherit;
+  color: var(--text-primary, #1f2937);
+  transition: background 140ms ease;
+}
+
+.sia-dialList button:hover,
+.sia-dialList button.is-active {
+  background: linear-gradient(90deg, #e8f2ff, #edd0e4);
+}
+
+.sia-dialMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.sia-dialMeta strong {
+  font-size: 0.88rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sia-dialMeta em {
+  font-style: normal;
+  font-size: 0.78rem;
+  color: var(--text-secondary, #6b7280);
+  font-weight: 600;
+}
+
+.sia-dialEmpty {
+  padding: 0.85rem;
+  text-align: center;
+  color: var(--text-secondary, #6b7280);
+  font-size: 0.85rem;
+}
+
+.sia-code .sia-input {
+  padding-inline: 0.7rem !important;
+}
+
+.sia-cta {
+  width: 100%;
+  min-height: 56px;
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  border-radius: 999px !important;
+  margin-top: 0.65rem;
+  background: linear-gradient(135deg, #5d5fef, #7a5fd4 50%, #c98bb8) !important;
+  border: none !important;
+  box-shadow: 0 14px 32px rgba(93, 95, 239, 0.3);
+  transition: transform 160ms ease, box-shadow 160ms ease !important;
+}
+
+.sia-cta:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 18px 40px rgba(93, 95, 239, 0.36);
+}
+
+.sia-cta:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.sia-dropdown {
+  position: relative;
+  margin-bottom: 1rem;
+  z-index: 2;
+}
+
+.sia-dropdown.is-open {
+  z-index: 8;
+}
+
+.sia-dropTrigger {
+  width: 100%;
+  min-height: 56px;
+  border-radius: 16px;
+  border: 1px solid rgba(232, 237, 245, 0.95);
+  background: rgba(248, 250, 252, 0.95);
+  padding: 0.85rem 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.85rem;
+  cursor: pointer;
+  color: var(--text-primary, #1f2937);
+  font: inherit;
+  font-size: 1rem;
+  text-align: left;
+  transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.sia-dropTrigger:hover:not(:disabled),
+.sia-dropdown.is-open .sia-dropTrigger {
+  border-color: rgba(93, 95, 239, 0.4);
+  box-shadow: 0 0 0 4px rgba(237, 208, 228, 0.45);
+  background: #fff;
+}
+
+.sia-dropTrigger:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.sia-dropTrigger span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sia-dropList {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0.45rem;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 4px);
+  max-height: 260px;
+  overflow: auto;
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid rgba(237, 208, 228, 0.75);
+  box-shadow: 0 22px 48px rgba(15, 23, 42, 0.16);
+}
+
+.sia-dropList button {
+  width: 100%;
+  border: none;
+  background: transparent;
+  text-align: left;
+  padding: 0.8rem 0.95rem;
+  border-radius: 12px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.98rem;
+  color: var(--text-primary, #1f2937);
+  transition: background 140ms ease, color 140ms ease;
+}
+
+.sia-dropList button:hover,
+.sia-dropList button.is-active {
+  background: linear-gradient(90deg, #e8f2ff, #edd0e4);
+  color: #4b51e0;
+  font-weight: 600;
+}
+
+.sia-trust {
+  position: relative;
+  margin: 1.5rem 0 0;
+  text-align: center;
+  font-size: 0.92rem;
+  color: var(--text-secondary, #6b7280);
+}
+
+.sia-trust strong {
+  color: var(--text-primary, #1f2937);
+}
+
+@media (max-width: 640px) {
+  .sia-root {
+    padding: 0.85rem;
+    align-items: flex-end;
+  }
+
+  .sia-panel {
+    width: 100%;
+    max-height: 94vh;
+    padding: 1.15rem 1.2rem 1.35rem;
+    border-radius: 22px 22px 18px 18px;
+    overflow-y: auto;
+  }
+
+  .sia-body {
+    min-height: 300px;
+  }
+
+  .sia-body h2 {
+    font-size: 1.45rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .sia-input,
+  .sia-dropTrigger,
+  .sia-cta {
+    min-height: 52px;
+  }
+
+  .sia-phoneRow {
+    grid-template-columns: 96px 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sia-cta,
+  .sia-iconBtn {
+    transition: none !important;
+  }
+}

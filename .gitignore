@@ -1,0 +1,27 @@
+node_modules
+.next
+out
+dist
+.env
+.env.local
+.env*.local
+*.log
+.DS_Store
+coverage
+*.tsbuildinfo
+
+# Local analysis artifacts (not part of the app)
+.tmp-program-frames/
+.tmp-addprogram-frames/
+.tmp-dashboard-frames/
+.tmp-forms-setting/
+.tmp-bus-setting/
+Program.mp4
+AddProgram.mp4
+ProgramDashboard-1.mp4
+Animation.mp4
+ProgramMovement.mp4
+.tmp-movement-frames/
+
+# Agent tooling state (not part of the app)
+.commandcode/

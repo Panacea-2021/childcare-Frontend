@@ -1,0 +1,742 @@
+/* Demo scheduling page — Panacea */
+
+.ds-page {
+  position: relative;
+  overflow-x: clip;
+}
+
+.ds-atmosphere {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ds-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: 0.55;
+}
+
+.ds-orb-a {
+  width: 420px;
+  height: 420px;
+  top: 4%;
+  left: -8%;
+  background: radial-gradient(circle, rgba(237, 208, 228, 0.7), transparent 70%);
+}
+
+.ds-orb-b {
+  width: 380px;
+  height: 380px;
+  top: 12%;
+  right: -6%;
+  background: radial-gradient(circle, rgba(93, 95, 239, 0.22), transparent 70%);
+}
+
+.ds-main {
+  position: relative;
+  z-index: 1;
+  padding: 2.5rem 0 4rem;
+}
+
+.ds-kicker {
+  margin: 0 0 0.55rem;
+  color: var(--color-accent, #5d5fef);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ds-heroCopy {
+  max-width: 52rem;
+  margin: 0 0 1.75rem;
+  text-align: left;
+}
+
+.ds-heroCopy h1,
+.ds-thanks h1,
+.ds-info > h1 {
+  margin: 0 0 0.65rem;
+  font-size: clamp(1.85rem, 4vw, 2.55rem);
+  letter-spacing: -0.035em;
+  line-height: 1.15;
+  color: var(--text-primary, #1f2937);
+}
+
+.ds-heroCopy p,
+.ds-thanks p {
+  margin: 0;
+  color: var(--text-secondary, #6b7280);
+  line-height: 1.6;
+  font-size: 1.05rem;
+}
+
+.ds-scheduler {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 0;
+  width: 100%;
+  max-width: none;
+  margin: 0 0 3.75rem;
+  border-radius: 28px;
+  background: #fff;
+  border: 1px solid rgba(237, 208, 228, 0.65);
+  box-shadow:
+    0 28px 70px rgba(15, 23, 42, 0.12),
+    0 0 0 1px rgba(93, 95, 239, 0.04),
+    0 0 50px rgba(237, 208, 228, 0.28);
+  overflow: hidden;
+}
+
+.ds-calPane {
+  padding: 1.5rem 1.6rem 1.7rem;
+  background: linear-gradient(180deg, #fffafc, #ffffff 40%);
+  border-right: 1px solid var(--border, #e8edf5);
+}
+
+.ds-calHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.ds-calHead strong {
+  font-size: 1.05rem;
+  color: var(--text-primary, #1f2937);
+}
+
+.ds-iconBtn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border, #e8edf5);
+  background: #fff;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  color: var(--text-secondary, #6b7280);
+  transition: background 150ms ease, color 150ms ease;
+}
+
+.ds-iconBtn:hover {
+  background: #e8f2ff;
+  color: #5d5fef;
+}
+
+.ds-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.25rem;
+  margin-bottom: 0.35rem;
+}
+
+.ds-weekdays span {
+  text-align: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-secondary, #6b7280);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.ds-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.35rem;
+}
+
+.ds-day {
+  aspect-ratio: 1;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-primary, #1f2937);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 150ms ease, color 150ms ease, transform 150ms ease;
+}
+
+.ds-day.is-empty {
+  pointer-events: none;
+}
+
+.ds-day:disabled {
+  opacity: 0.28;
+  cursor: not-allowed;
+}
+
+.ds-day:not(:disabled):hover {
+  background: #e8f2ff;
+  color: #4b51e0;
+}
+
+.ds-day.is-today:not(.is-selected) {
+  box-shadow: inset 0 0 0 1.5px rgba(93, 95, 239, 0.45);
+}
+
+.ds-day.is-selected {
+  background: linear-gradient(135deg, #5d5fef, #c98bb8);
+  color: #fff;
+  box-shadow: 0 10px 22px rgba(93, 95, 239, 0.32);
+  transform: scale(1.04);
+}
+
+.ds-timePane {
+  padding: 1.45rem 1.45rem 1.55rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 480px;
+  background: linear-gradient(180deg, #ffffff, #f8fafc 100%);
+}
+
+.ds-metaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.1rem;
+  margin-bottom: 0.85rem;
+  font-size: 0.84rem;
+  color: var(--text-secondary, #6b7280);
+  font-weight: 600;
+}
+
+.ds-metaRow span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.ds-timePane h2 {
+  margin: 0 0 0.35rem;
+  font-size: 1.35rem;
+  letter-spacing: -0.02em;
+  color: var(--text-primary, #1f2937);
+}
+
+.ds-showing {
+  margin: 0 0 0.75rem;
+  color: var(--text-secondary, #6b7280);
+  font-size: 0.92rem;
+}
+
+.ds-showing strong {
+  color: var(--text-primary, #1f2937);
+}
+
+.ds-tz {
+  position: relative;
+  margin-bottom: 0.85rem;
+  z-index: 5;
+}
+
+.ds-tzTrigger {
+  border: none;
+  background: transparent;
+  color: #5d5fef;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  cursor: pointer;
+  padding: 0.2rem 0;
+  text-align: left;
+}
+
+.ds-tzMenu {
+  position: absolute;
+  left: 0;
+  top: calc(100% + 8px);
+  width: min(340px, 100%);
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid rgba(237, 208, 228, 0.75);
+  box-shadow: 0 20px 48px rgba(15, 23, 42, 0.16);
+  overflow: hidden;
+}
+
+.ds-tzMenu::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 28px;
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  border-left: 1px solid rgba(237, 208, 228, 0.75);
+  border-top: 1px solid rgba(237, 208, 228, 0.75);
+  transform: rotate(45deg);
+}
+
+.ds-tzSearch {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.7rem 0.8rem;
+  border-bottom: 1px solid var(--border, #e8edf5);
+  color: var(--text-secondary, #6b7280);
+}
+
+.ds-tzSearch input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font: inherit;
+  font-size: 0.9rem;
+}
+
+.ds-tzMenu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0.35rem;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.ds-tzMenu button {
+  width: 100%;
+  border: none;
+  background: transparent;
+  text-align: left;
+  padding: 0.7rem 0.75rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.86rem;
+  color: var(--text-primary, #1f2937);
+}
+
+.ds-tzMenu button:hover,
+.ds-tzMenu button.is-active {
+  background: linear-gradient(90deg, #e8f2ff, #edd0e4);
+  color: #4b51e0;
+  font-weight: 600;
+}
+
+.ds-slots {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-right: 0.25rem;
+  max-height: 280px;
+  scrollbar-width: thin;
+}
+
+.ds-slots button {
+  width: 100%;
+  min-height: 46px;
+  border-radius: 12px;
+  border: 1px solid var(--border, #e8edf5);
+  background: #fff;
+  color: var(--text-primary, #1f2937);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 150ms ease, background 150ms ease, color 150ms ease, transform 150ms ease;
+}
+
+.ds-slots button:hover {
+  border-color: rgba(93, 95, 239, 0.4);
+  background: #f8fafc;
+  transform: translateY(-1px);
+}
+
+.ds-slots button.is-selected {
+  border-color: transparent;
+  background: linear-gradient(135deg, #5d5fef, #c98bb8);
+  color: #fff;
+  box-shadow: 0 10px 22px rgba(93, 95, 239, 0.28);
+}
+
+.ds-continue {
+  margin-top: 0.9rem;
+  width: 100%;
+  min-height: 48px;
+  border-radius: 999px !important;
+  background: linear-gradient(135deg, #5d5fef, #7a5fd4 50%, #c98bb8) !important;
+  border: none !important;
+}
+
+.ds-continue:disabled {
+  opacity: 0.45;
+}
+
+.ds-stories {
+  width: 100%;
+  margin: 0 0 2.5rem;
+  padding: 2rem 0 0.5rem;
+}
+
+.ds-storiesHead {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.ds-stories h2 {
+  text-align: left;
+  margin: 0;
+  max-width: 28rem;
+  font-size: clamp(1.35rem, 2.8vw, 1.85rem);
+  letter-spacing: -0.03em;
+  color: var(--text-primary, #1f2937);
+  line-height: 1.25;
+}
+
+.ds-viewAll {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.55rem 1.1rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #5d5fef, #c98bb8);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.88rem;
+  text-decoration: none;
+  box-shadow: 0 10px 24px rgba(93, 95, 239, 0.28);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.ds-viewAll:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 28px rgba(93, 95, 239, 0.34);
+}
+
+.ds-storyGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.35rem);
+}
+
+.ds-storyCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 22px;
+  background: #fff;
+  border: 1px solid rgba(232, 237, 245, 0.95);
+  overflow: hidden;
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.07);
+  transition: box-shadow 200ms ease;
+  min-height: 100%;
+}
+
+.ds-storyCard:hover {
+  box-shadow: 0 22px 48px rgba(15, 23, 42, 0.12);
+}
+
+.ds-storyTag {
+  position: absolute;
+  top: 0.85rem;
+  left: 0.85rem;
+  z-index: 1;
+  display: inline-flex;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  background: #1f2937;
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+.ds-storyVisual {
+  height: 150px;
+  display: grid;
+  place-items: center;
+  padding: 1.1rem;
+}
+
+.tone-photo .ds-storyVisual {
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.45), transparent 55%),
+    linear-gradient(135deg, rgba(93, 95, 239, 0.22), rgba(237, 208, 228, 0.65));
+}
+
+.tone-mint .ds-storyVisual {
+  background:
+    radial-gradient(circle at 70% 20%, rgba(255, 255, 255, 0.5), transparent 50%),
+    linear-gradient(145deg, #d0edda, #e8f2ff);
+}
+
+.tone-blush .ds-storyVisual {
+  background:
+    radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.45), transparent 55%),
+    linear-gradient(145deg, #edd0e4, #e8f2ff);
+}
+
+.tone-quote .ds-storyVisual {
+  background: linear-gradient(145deg, #fff8fb, #e8f2ff);
+  align-items: stretch;
+}
+
+.ds-storyVisual strong {
+  font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+  letter-spacing: -0.03em;
+  color: #4b51e0;
+  opacity: 0.8;
+}
+
+.ds-storyVisual blockquote {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: var(--text-primary, #1f2937);
+}
+
+.ds-storyVisual cite {
+  display: block;
+  margin-top: 0.55rem;
+  font-style: normal;
+  font-size: 0.75rem;
+  color: var(--text-secondary, #6b7280);
+  font-weight: 600;
+}
+
+.ds-storyBody {
+  padding: 1.15rem 1.15rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.ds-storyBody h3 {
+  margin: 0 0 0.55rem;
+  font-size: 1.05rem;
+  line-height: 1.3;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.ds-storyBody h3 span {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary, #6b7280);
+}
+
+.ds-featurePills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 0.55rem;
+}
+
+.ds-featurePills span {
+  padding: 0.22rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(208, 237, 218, 0.65);
+  color: #1f6b45;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.ds-storyBody p {
+  margin: 0 0 0.85rem;
+  color: var(--text-secondary, #6b7280);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  flex: 1;
+}
+
+.ds-readMore {
+  border: none;
+  background: none;
+  padding: 0;
+  color: #5d5fef;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  width: fit-content;
+  transition: color 150ms ease;
+}
+
+.ds-readMore:hover {
+  color: #4b51e0;
+}
+
+.ds-info {
+  max-width: 640px;
+  margin: 0 auto 3rem;
+  background: #fff;
+  border-radius: 24px;
+  border: 1px solid rgba(237, 208, 228, 0.65);
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.1);
+  padding: 1.75rem 1.75rem 1.35rem;
+}
+
+.ds-apptSummary {
+  margin: 0 0 1.35rem;
+}
+
+.ds-apptSummary p {
+  margin: 0 0 0.35rem;
+  font-weight: 600;
+  color: var(--text-primary, #1f2937);
+}
+
+.ds-edit {
+  margin-left: 0.55rem;
+  border: none;
+  background: none;
+  color: #5d5fef;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.ds-apptSummary span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--text-secondary, #6b7280);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.ds-formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.9rem 0.85rem;
+  margin-bottom: 1.25rem;
+}
+
+.ds-span2 {
+  grid-column: 1 / -1;
+}
+
+.ds-phoneLine {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.55rem;
+  align-items: center;
+}
+
+.ds-phoneCode {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 44px;
+  padding: 0 0.75rem;
+  border-radius: 12px;
+  border: 1px solid var(--border, #e8edf5);
+  background: #f8fafc;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.ds-privacy h2 {
+  margin: 0 0 0.55rem;
+  font-size: 1.05rem;
+}
+
+.ds-privacyBox {
+  border-radius: 14px;
+  border: 1px solid var(--border, #e8edf5);
+  background: #f8fafc;
+  padding: 0.95rem 1rem;
+}
+
+.ds-privacyBox p {
+  margin: 0 0 0.7rem;
+  color: var(--text-secondary, #6b7280);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.ds-check {
+  display: flex;
+  gap: 0.65rem;
+  align-items: flex-start;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--text-primary, #1f2937);
+}
+
+.ds-check input {
+  margin-top: 0.2rem;
+  accent-color: #5d5fef;
+  width: 16px;
+  height: 16px;
+}
+
+.ds-infoActions {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border, #e8edf5);
+}
+
+.ds-thanks {
+  max-width: 640px;
+  margin: 1rem auto 3rem;
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+  border-radius: 28px;
+  background: linear-gradient(180deg, #fff, #fff8fb);
+  border: 1px solid rgba(237, 208, 228, 0.7);
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.1);
+}
+
+.ds-thanks .ui-btn {
+  margin-top: 1.35rem;
+}
+
+@media (max-width: 900px) {
+  .ds-scheduler {
+    grid-template-columns: 1fr;
+  }
+
+  .ds-calPane {
+    border-right: none;
+    border-bottom: 1px solid var(--border, #e8edf5);
+  }
+
+  .ds-storyGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ds-storiesHead {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .ds-stories h2 {
+    max-width: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .ds-main {
+    padding-top: 1.5rem;
+  }
+
+  .ds-storyGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .ds-formGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .ds-info {
+    padding: 1.25rem 1.1rem;
+  }
+
+  .ds-slots {
+    max-height: 220px;
+  }
+}

@@ -1,0 +1,135 @@
+/* Shared infinite logo marquee */
+
+.lm-root {
+  text-align: center;
+  width: 100%;
+}
+
+.lm-label {
+  margin: 0 0 1.05rem;
+  font-size: 0.78rem;
+  font-weight: 650;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #6b6280;
+}
+
+.lm-marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.lm-marquee.is-static {
+  mask-image: none;
+  -webkit-mask-image: none;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.lm-marquee.is-static::-webkit-scrollbar {
+  display: none;
+}
+
+.lm-track {
+  list-style: none;
+  margin: 0;
+  padding: 0.35rem 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.35rem;
+  width: max-content;
+  animation: lm-scroll linear infinite;
+}
+
+.lm-marquee.is-static .lm-track {
+  animation: none;
+  margin-inline: auto;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: auto;
+  max-width: 100%;
+  gap: 1rem 1.25rem;
+}
+
+.lm-marquee.is-pauseHover:hover .lm-track {
+  animation-play-state: paused;
+}
+
+@keyframes lm-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.lm-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  width: 104px;
+  flex-shrink: 0;
+}
+
+.lm-mark {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #ffffff;
+  border: 1px solid #e8e0f2;
+  box-shadow: 0 10px 24px rgba(55, 30, 90, 0.08);
+  overflow: hidden;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.lm-item:hover .lm-mark {
+  transform: scale(1.05);
+  box-shadow: 0 14px 28px rgba(55, 30, 90, 0.12);
+}
+
+.lm-mark img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  display: block;
+}
+
+.lm-item em {
+  font-style: normal;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #8a819c;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .lm-item {
+    width: 88px;
+  }
+
+  .lm-mark {
+    width: 60px;
+    height: 60px;
+  }
+
+  .lm-mark img {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lm-track {
+    animation: none !important;
+  }
+
+  .lm-item:hover .lm-mark {
+    transform: none;
+  }
+}

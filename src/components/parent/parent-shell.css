@@ -1,0 +1,222 @@
+/* Parent Portal shell — extends Admin appshell.css without changing Admin. */
+
+.shell-layout--parent .shell-content {
+  overflow-x: hidden;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.shell-layout--parent .shell-pageMotion {
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: clip;
+}
+
+.parent-shell-schoolName {
+  display: inline-flex;
+  align-items: center;
+  max-width: min(420px, 42vw);
+  margin-left: 0.35rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 10px;
+  border: 1px solid #d7deea;
+  background: #ffffff;
+  color: var(--text-primary, #1f2937);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.parent-shell-menuBtn {
+  display: none;
+}
+
+.parent-shell-drawerClose {
+  display: none;
+}
+
+.parent-shell-backdrop {
+  display: none;
+}
+
+/* Collapsed tooltip */
+.parent-shell-sidebar.shell-collapsed .shell-navItem {
+  position: relative;
+}
+
+.parent-shell-tooltip {
+  display: none;
+  position: absolute;
+  left: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0.35rem 0.65rem;
+  border-radius: 8px;
+  background: #1f2937;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 1200;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.18);
+}
+
+.parent-shell-sidebar.shell-collapsed .shell-navItem:hover .parent-shell-tooltip,
+.parent-shell-sidebar.shell-collapsed .shell-navItem:focus-visible .parent-shell-tooltip {
+  display: block;
+}
+
+/* Mobile drawer — override Admin bottom-bar sidebar for parent only */
+@media (max-width: 640px) {
+  .shell-layout--parent .parent-shell-menuBtn {
+    display: inline-grid;
+  }
+
+  .shell-layout--parent .parent-shell-collapseBtn {
+    display: none;
+  }
+
+  .shell-layout--parent .shell-centerBrand {
+    display: flex !important;
+    min-width: 0;
+    flex: 1;
+  }
+
+  .shell-layout--parent .shell-brandName {
+    display: none;
+  }
+
+  .shell-layout--parent .parent-shell-schoolName {
+    max-width: min(220px, 52vw);
+    font-size: 0.8rem;
+    padding: 0.3rem 0.55rem;
+  }
+
+  .shell-layout--parent .parent-shell-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 1090;
+    background: rgba(15, 23, 42, 0.35);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 200ms ease;
+  }
+
+  .shell-layout--parent .parent-shell-backdrop.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .shell-layout--parent .shell-sidebar.parent-shell-sidebar,
+  .shell-layout--parent .shell-sidebar.parent-shell-sidebar.shell-collapsed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    height: 100%;
+    width: min(292px, 86vw) !important;
+    flex-direction: column;
+    z-index: 1100;
+    border-right: 1px solid #e8edf5;
+    border-top: none;
+    transform: translateX(-105%);
+    transition: transform 220ms var(--ease, ease);
+    overflow: hidden;
+    box-shadow: 8px 0 28px rgba(15, 23, 42, 0.12);
+  }
+
+  .shell-layout--parent .shell-sidebar.parent-shell-sidebar.is-drawer-open {
+    transform: translateX(0);
+  }
+
+  .shell-layout--parent .parent-shell-sidebar .shell-sidebarTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  .shell-layout--parent .parent-shell-drawerClose {
+    display: inline-grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    border: 1px solid #d7deea;
+    background: #fff;
+    color: var(--text-primary, #1f2937);
+    cursor: pointer;
+  }
+
+  .shell-layout--parent .parent-shell-sidebar .shell-nav {
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 100%;
+    padding: 0.75rem;
+    gap: 0.25rem;
+  }
+
+  .shell-layout--parent .parent-shell-sidebar .shell-navItem {
+    flex-shrink: 0;
+    grid-template-columns: 22px 1fr;
+    justify-items: start;
+    padding: 0.8rem 0.95rem;
+  }
+
+  .shell-layout--parent .parent-shell-sidebar .shell-navLabel {
+    display: inline !important;
+  }
+
+  .shell-layout--parent .parent-shell-sidebar .parent-shell-tooltip {
+    display: none !important;
+  }
+
+  .shell-layout--parent .shell-mainCol,
+  .shell-layout--parent .shell-sidebar.shell-collapsed ~ .shell-mainCol {
+    margin-left: 0;
+  }
+
+  .shell-layout--parent .shell-topbar,
+  .shell-layout--parent .shell-sidebar.shell-collapsed ~ .shell-mainCol .shell-topbar {
+    left: 0;
+  }
+
+  .shell-layout--parent .shell-content {
+    padding-bottom: var(--space-page, 24px);
+  }
+}
+
+@media (min-width: 641px) and (max-width: 900px) {
+  .shell-layout--parent .parent-shell-schoolName {
+    max-width: min(280px, 36vw);
+  }
+}
+
+/* Messages: lock the content column so chat scrolls internally */
+.shell-layout--parent.shell-layout--messages {
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.shell-layout--parent.shell-layout--messages .shell-mainCol {
+  height: 100dvh;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.shell-layout--parent .shell-content--messages {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+  padding-bottom: var(--space-page, 32px);
+  scrollbar-gutter: auto;
+}

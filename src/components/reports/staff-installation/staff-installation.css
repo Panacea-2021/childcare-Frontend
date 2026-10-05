@@ -1,0 +1,288 @@
+/* Staff Installation Report — hero accents (reuses pai-* from parent-installation.css) */
+
+.sai-hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.35fr 0.65fr;
+  gap: 20px;
+  align-items: stretch;
+  padding: 24px 26px;
+  border-radius: 22px;
+  border: 1px solid var(--border);
+  background:
+    radial-gradient(ellipse 55% 90% at 0% 0%, rgba(93, 95, 239, 0.09), transparent 55%),
+    radial-gradient(ellipse 40% 70% at 100% 100%, rgba(222, 236, 255, 0.7), transparent 60%),
+    var(--color-white);
+  box-shadow: var(--shadow-sm);
+  overflow: visible;
+}
+
+.sai-hero-top {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 18px;
+  min-width: 0;
+  z-index: 2;
+}
+
+.sai-hero-copy h1 {
+  margin: 0 0 8px;
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2vw, 1.65rem);
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.sai-hero-copy p {
+  margin: 0;
+  max-width: 48ch;
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.sai-header-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.sai-overflow {
+  position: relative;
+}
+
+.sai-overflow-menu {
+  position: fixed;
+  z-index: 12000;
+  min-width: 210px;
+  padding: 8px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--color-white);
+  box-shadow: var(--shadow-float);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sai-overflow-menu button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+}
+
+.sai-overflow-menu button:hover {
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+}
+
+.sai-hero-illus {
+  position: relative;
+  min-height: 160px;
+  border-radius: 18px;
+  background: linear-gradient(160deg, rgba(222, 236, 255, 0.55), rgba(248, 250, 252, 0.9));
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.sai-hero-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(28px);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.sai-hero-blob-a {
+  width: 110px;
+  height: 110px;
+  top: 10%;
+  left: 18%;
+  background: rgba(93, 95, 239, 0.28);
+}
+
+.sai-hero-blob-b {
+  width: 90px;
+  height: 90px;
+  bottom: 12%;
+  right: 16%;
+  background: rgba(59, 130, 246, 0.22);
+}
+
+.sai-float {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid var(--border);
+  color: var(--color-accent);
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(6px);
+}
+
+.sai-float-lg {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+}
+
+.sai-hero-particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 10px rgba(93, 95, 239, 0.45);
+}
+
+/* Table polish */
+.sai-table-card {
+  overflow: visible;
+}
+
+.sai-table-scroll {
+  overflow-x: auto;
+  overflow-y: visible;
+}
+
+.sai-table {
+  min-width: 1480px;
+  table-layout: fixed;
+}
+
+.sai-table thead th {
+  white-space: nowrap;
+}
+
+.sai-table tbody td {
+  vertical-align: middle;
+}
+
+.sai-staff-meta {
+  min-width: 0;
+}
+
+.sai-staff-meta strong {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 140px;
+}
+
+.sai-cell-text {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.sai-mono {
+  font-variant-numeric: tabular-nums;
+  font-size: 0.86rem;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.sai-email {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.86rem;
+  font-weight: 500;
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.sai-email:hover {
+  text-decoration: underline;
+  color: var(--color-accent-hover);
+}
+
+.sai-actions-col {
+  position: sticky;
+  right: 0;
+  z-index: 3;
+  text-align: center;
+  background: var(--color-white);
+  box-shadow: -6px 0 10px -8px rgba(15, 23, 42, 0.18);
+}
+
+.sai-table thead .sai-actions-col {
+  background: var(--color-accent);
+  z-index: 4;
+  box-shadow: none;
+}
+
+.sai-table tbody tr:hover .sai-actions-col,
+.sai-table tbody tr.sai-row-active .sai-actions-col {
+  background: #f7f8f4;
+}
+
+.sai-action-menu {
+  position: fixed;
+  z-index: 12000;
+  min-width: 220px;
+  padding: 8px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--color-white);
+  box-shadow: var(--shadow-float);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sai-action-menu button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+}
+
+.sai-action-menu button:hover {
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+}
+
+@media (max-width: 900px) {
+  .sai-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .sai-hero-illus {
+    min-height: 120px;
+    order: -1;
+  }
+}

@@ -1,0 +1,50 @@
+import type { ActivityTypeDefinition } from '@/types/activity';
+
+/** Exact Communication activity catalog for the Post Activity selector. */
+export const ACTIVITY_TYPES: ActivityTypeDefinition[] = [
+  { id: 'name-to-face', name: 'Name to Face', icon: 'Star', category: 'Communication', description: 'Help children learn names and faces', color: '#5D5FEF', bgColor: '#E8F2FF' },
+  { id: 'announcement', name: 'Announcement', icon: 'Megaphone', category: 'Communication', description: 'Share center-wide updates', color: '#2563EB', bgColor: '#DBEAFE' },
+  { id: 'photo', name: 'Photo', icon: 'Camera', category: 'Communication', description: 'Capture classroom moments', color: '#0891B2', bgColor: '#CFFAFE' },
+  { id: 'video', name: 'Video', icon: 'Video', category: 'Communication', description: 'Share video highlights', color: '#7C3AED', bgColor: '#EDE9FE' },
+  { id: 'diary', name: 'Diary', icon: 'BookOpen', category: 'Communication', description: 'Daily diary notes for families', color: '#0D9488', bgColor: '#CCFBF1' },
+  { id: 'food', name: 'Food', icon: 'Apple', category: 'Care & Health', description: 'Meal and snack updates', color: '#EA580C', bgColor: '#FFEDD5' },
+  { id: 'potty', name: 'Potty', icon: 'Bath', category: 'Care & Health', description: 'Potty training logs', color: '#0284C7', bgColor: '#E0F2FE' },
+  { id: 'medical-log', name: 'Medical Log', icon: 'Hospital', category: 'Care & Health', description: 'Medical observations', color: '#DC2626', bgColor: '#FEE2E2' },
+  { id: 'todays-mood', name: "Today's Mood", icon: 'Smile', category: 'Care & Health', description: 'How children felt today', color: '#D97706', bgColor: '#FEF3C7' },
+  { id: 'reminder', name: 'Reminder', icon: 'Clock', category: 'Communication', description: 'Remind parents of upcoming items', color: '#4F46E5', bgColor: '#E0E7FF' },
+  { id: 'file-upload', name: 'File Upload', icon: 'FolderOpen', category: 'Communication', description: 'Share documents and files', color: '#475569', bgColor: '#F1F5F9' },
+  { id: 'nap', name: 'Nap (Time Mode)', icon: 'Moon', category: 'Care & Health', description: 'Nap times and rest notes', color: '#6366F1', bgColor: '#E0E7FF' },
+  { id: 'incident', name: 'Incident', icon: 'Siren', category: 'Care & Health', description: 'Incident reports', color: '#B91C1C', bgColor: '#FEE2E2' },
+  { id: 'bottle', name: 'Bottle', icon: 'Milk', category: 'Care & Health', description: 'Bottle feeding logs', color: '#DB2777', bgColor: '#FCE7F3' },
+  { id: 'stem', name: 'STEM', icon: 'FlaskConical', category: 'Learning & Development', description: 'Science and STEM activities', color: '#059669', bgColor: '#D1FAE5' },
+  { id: 'sensorial', name: 'Sensorial', icon: 'Rainbow', category: 'Learning & Development', description: 'Sensorial exploration', color: '#C026D3', bgColor: '#FAE8FF' },
+  { id: 'epl', name: 'EPL', icon: 'Sparkles', category: 'Learning & Development', description: 'Practical life exercises', color: '#CA8A04', bgColor: '#FEF9C3' },
+  { id: 'gross-motor', name: 'Gross Motor', icon: 'PersonStanding', category: 'Learning & Development', description: 'Large motor skill play', color: '#16A34A', bgColor: '#DCFCE7' },
+  { id: 'accident', name: 'Accident', icon: 'Bandage', category: 'Care & Health', description: 'Accident documentation', color: '#E11D48', bgColor: '#FFE4E6' },
+  { id: 'fine-motor', name: 'Fine Motor', icon: 'PenTool', category: 'Learning & Development', description: 'Fine motor practice', color: '#9333EA', bgColor: '#F3E8FF' },
+  { id: 'dramatics', name: 'Dramatics', icon: 'Theater', category: 'Creative & Play', description: 'Drama and role play', color: '#DB2777', bgColor: '#FCE7F3' },
+  { id: 'circle-time', name: 'Circle Time', icon: 'CircleDot', category: 'Learning & Development', description: 'Group circle sessions', color: '#5D5FEF', bgColor: '#E8F2FF' },
+  { id: 'self-reliance', name: 'Self Reliance', icon: 'User', category: 'Learning & Development', description: 'Independence skills', color: '#0F766E', bgColor: '#CCFBF1' },
+  { id: 'block-hour', name: 'Block Hour', icon: 'Blocks', category: 'Creative & Play', description: 'Block building time', color: '#B45309', bgColor: '#FEF3C7' },
+  { id: 'language', name: 'Language', icon: 'Languages', category: 'Learning & Development', description: 'Language development', color: '#1D4ED8', bgColor: '#DBEAFE' },
+  { id: 'math', name: 'Math', icon: 'Calculator', category: 'Learning & Development', description: 'Early math activities', color: '#7C3AED', bgColor: '#EDE9FE' },
+  { id: 'rhyme', name: 'Rhyme', icon: 'Music', category: 'Creative & Play', description: 'Rhymes and songs', color: '#EC4899', bgColor: '#FCE7F3' },
+  { id: 'art-craft', name: 'Art & Craft', icon: 'Palette', category: 'Creative & Play', description: 'Art and craft projects', color: '#F97316', bgColor: '#FFEDD5' },
+  { id: 'science', name: 'Science', icon: 'Atom', category: 'Learning & Development', description: 'Science discoveries', color: '#0EA5E9', bgColor: '#E0F2FE' },
+  { id: 'technology', name: 'Technology', icon: 'Cpu', category: 'Learning & Development', description: 'Tech exploration', color: '#334155', bgColor: '#F1F5F9' },
+  { id: 'stories', name: 'Stories', icon: 'BookMarked', category: 'Communication', description: 'Story time shares', color: '#A855F7', bgColor: '#F3E8FF' },
+  { id: 'milestone', name: 'Milestone', icon: 'Flag', category: 'Learning & Development', description: 'Celebrate milestones', color: '#EAB308', bgColor: '#FEF9C3' },
+  { id: 'kudos', name: 'Kudos', icon: 'Trophy', category: 'Communication', description: 'Celebrate achievements', color: '#F59E0B', bgColor: '#FEF3C7' },
+  { id: 'medicine', name: 'Medicine', icon: 'Pill', category: 'Care & Health', description: 'Medicine administration', color: '#EF4444', bgColor: '#FEE2E2' },
+  { id: 'observations', name: 'Observations', icon: 'Search', category: 'Learning & Development', description: 'Learning observations', color: '#64748B', bgColor: '#F1F5F9' },
+  { id: 'art', name: 'Art', icon: 'Paintbrush', category: 'Creative & Play', description: 'Creative art sessions', color: '#F43F5E', bgColor: '#FFE4E6' },
+  { id: 'research', name: 'Research', icon: 'Microscope', category: 'Learning & Development', description: 'Inquiry and research', color: '#06B6D4', bgColor: '#CFFAFE' },
+  { id: 'environment', name: 'Environment', icon: 'Leaf', category: 'Learning & Development', description: 'Nature and environment', color: '#22C55E', bgColor: '#DCFCE7' },
+  { id: 'portfolio', name: 'Portfolio', icon: 'Briefcase', category: 'Learning & Development', description: 'Portfolio updates', color: '#8B5CF6', bgColor: '#EDE9FE' },
+  { id: 'dancing', name: 'Dancing', icon: 'Music2', category: 'Creative & Play', description: 'Dance and movement', color: '#EC4899', bgColor: '#FCE7F3' },
+  { id: 'playing', name: 'Playing', icon: 'Gamepad2', category: 'Creative & Play', description: 'Free play moments', color: '#14B8A6', bgColor: '#CCFBF1' },
+];
+
+export function getActivityTypeById(id: string) {
+  return ACTIVITY_TYPES.find((t) => t.id === id);
+}

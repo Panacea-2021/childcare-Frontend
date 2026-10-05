@@ -1,0 +1,184 @@
+/* Learning & Assessment — Assessments home */
+
+.as-page {
+  position: relative;
+}
+
+.as-tabs {
+  display: flex;
+  gap: 6px;
+  margin: 18px 0 14px;
+  border-bottom: 1px solid var(--border, #e8edf5);
+  padding-bottom: 0;
+}
+
+.as-tab {
+  border: none;
+  background: transparent;
+  padding: 10px 18px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary, #6b7280);
+  cursor: pointer;
+  font-family: var(--font-body, 'Poppins', sans-serif);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+
+.as-tab:hover {
+  color: var(--text-primary, #1f2937);
+}
+
+.as-tab.is-active {
+  color: var(--color-accent, #5d5fef);
+  border-bottom-color: var(--color-accent, #5d5fef);
+}
+
+.as-panel {
+  padding-top: 0;
+}
+
+.as-student-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.as-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-accent-soft, #e8f2ff);
+  color: var(--color-accent, #5d5fef);
+  font-size: 0.7rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.as-student-name {
+  font-weight: 600;
+  color: var(--text-primary, #1f2937);
+}
+
+.as-row-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.as-row-actions .ui-btn {
+  padding: 5px 10px;
+  font-size: 0.74rem;
+}
+
+/* Portfolio grid */
+.as-portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+  padding: 18px;
+}
+
+.as-portfolio-card {
+  background: var(--card-bg, #ffffff);
+  border: 1px solid var(--border, #e8edf5);
+  border-radius: var(--card-radius, 18px);
+  padding: 16px;
+  box-shadow: var(--shadow-xs);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.as-portfolio-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.as-portfolio-head div {
+  display: flex;
+  flex-direction: column;
+}
+
+.as-portfolio-head strong {
+  font-size: 0.88rem;
+  color: var(--text-primary, #1f2937);
+}
+
+.as-portfolio-head span {
+  font-size: 0.74rem;
+  color: var(--text-secondary, #6b7280);
+}
+
+.as-portfolio-summary {
+  margin: 0;
+  font-size: 0.84rem;
+  line-height: 1.55;
+  color: var(--text, #1f2937);
+  flex: 1;
+}
+
+.as-portfolio-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border, #e8edf5);
+  font-size: 0.76rem;
+  color: var(--text-secondary, #6b7280);
+}
+
+/* Drawer */
+.as-drawer {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.as-drawer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.84rem;
+}
+
+.as-drawer-row span {
+  color: var(--text-secondary, #6b7280);
+}
+
+.as-drawer-row strong {
+  font-weight: 600;
+  color: var(--text-primary, #1f2937);
+  text-align: right;
+}
+
+.as-drawer-notes {
+  margin-top: 6px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border, #e8edf5);
+}
+
+.as-drawer-notes span {
+  font-size: 0.76rem;
+  color: var(--text-secondary, #6b7280);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.as-drawer-notes p {
+  margin: 0;
+  font-size: 0.86rem;
+  line-height: 1.6;
+  color: var(--text, #1f2937);
+}
+
+@media (max-width: 640px) {
+  .as-tabs {
+    flex-wrap: wrap;
+  }
+}

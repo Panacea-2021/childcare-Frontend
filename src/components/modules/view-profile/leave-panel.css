@@ -1,0 +1,296 @@
+/* Staff Leave — Panacea tokens / Poppins */
+
+.lv-panel {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  font-family: var(--font-body);
+}
+
+.lv-toolbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.lv-range {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: nowrap;
+  min-width: 0;
+}
+
+.lv-range__sep {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: var(--font-weight-medium);
+  flex-shrink: 0;
+}
+
+.lv-newBtn {
+  flex-shrink: 0;
+  white-space: nowrap;
+  margin-left: 0;
+}
+
+/* Date pills — same pattern as dashboard / attendance month control */
+.lv-dateBox {
+  position: relative;
+  display: inline-flex;
+  align-items: stretch;
+  flex-shrink: 0;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ffffff 0%, #f5f3ff 55%, #fdf2f8 100%);
+  border: 1.5px solid #c4b5fd;
+  box-shadow:
+    0 8px 20px rgba(93, 95, 239, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transition:
+    border-color 0.22s ease,
+    box-shadow 0.22s ease,
+    transform 0.22s ease;
+}
+
+.lv-dateBox:hover,
+.lv-dateBox:focus-within {
+  border-color: var(--color-accent);
+  box-shadow:
+    0 0 0 4px rgba(93, 95, 239, 0.14),
+    0 10px 24px rgba(93, 95, 239, 0.12);
+  transform: translateY(-1px);
+}
+
+.lv-dateTrigger {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.55rem 0.95rem;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+.lv-dateText {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+  text-align: left;
+}
+
+.lv-dateHint {
+  font-size: 0.68rem;
+  font-weight: var(--font-weight-medium);
+  color: var(--text-secondary);
+  line-height: 1;
+}
+
+.lv-dateValue {
+  color: #1e293b;
+  font-weight: var(--font-weight-semibold);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.9rem;
+  font-family: var(--font-body);
+  line-height: 1.2;
+}
+
+.lv-dateIcon {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  color: var(--color-accent);
+  background: linear-gradient(160deg, #eef2ff 0%, #fce7f3 100%);
+  border: 1px solid #ddd6fe;
+  flex-shrink: 0;
+}
+
+.lv-dateInput {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  border: none;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+  color-scheme: light;
+}
+
+.lv-tableCard {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.lv-tableCard .ui-table tbody td,
+.lv-entries .ui-table tbody td {
+  background: #ffffff;
+}
+
+.lv-tableCard .ui-table tbody tr:hover td,
+.lv-entries .ui-table tbody tr:hover td {
+  background: #fafbff;
+}
+
+.lv-entries {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.lv-entries__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+  background: #fafbff;
+}
+
+.lv-entries__head h3 {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+}
+
+.lv-status {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: var(--font-weight-semibold);
+}
+
+.lv-status--pending {
+  background: #fff7ed;
+  color: #c2410c;
+}
+
+.lv-status--approved {
+  background: #ecfdf5;
+  color: #047857;
+}
+
+.lv-status--denied {
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+.lv-dropzone {
+  border: 1.5px dashed #cfd8e6;
+  border-radius: 14px;
+  background: #f8fafc;
+  padding: 28px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition:
+    border-color 160ms ease,
+    background 160ms ease;
+}
+
+.lv-dropzone:hover,
+.lv-dropzone.is-active {
+  border-color: var(--color-accent);
+  background: var(--color-accent-soft);
+}
+
+.lv-dropzone__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  color: var(--color-accent);
+}
+
+.lv-dropzone p {
+  margin: 0;
+  font-size: 0.86rem;
+}
+
+.lv-dropzone strong {
+  color: var(--text-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+.lv-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.lv-empty {
+  padding: 36px 20px;
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: var(--font-weight-medium);
+}
+
+.lv-fileLink {
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  max-width: 180px;
+  font-family: var(--font-body);
+  font-size: 0.86rem;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-accent);
+  text-align: left;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+.lv-fileLink:hover {
+  color: var(--color-accent-hover);
+}
+
+@media (max-width: 700px) {
+  .lv-toolbar {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .lv-range {
+    flex-wrap: wrap;
+  }
+}

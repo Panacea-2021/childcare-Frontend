@@ -1,0 +1,21 @@
+/* Enquiry Activity Log — extends enquiry-report premium shell */
+
+.enq-activity .enq-card .asr-field {
+  margin-top: 0;
+}
+
+.enq-activity .enq-card .asr-range {
+  margin-top: 0;
+}
+
+.enq-activity .enq-date-card .asr-range {
+  padding: 16px;
+  border-radius: 16px;
+}
+
+.enq-activity .enq-date-card .vp-fp-trigger {
+  min-height: 48px;
+  height: 48px;
+  max-height: 48px;
+  border-radius: 14px;
+}

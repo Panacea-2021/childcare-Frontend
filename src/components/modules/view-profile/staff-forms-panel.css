@@ -1,0 +1,244 @@
+/* Staff Forms — match Attendance / Leave panel layout */
+
+.sf-panel {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  font-family: var(--font-body);
+}
+
+.sf-toolbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  flex-wrap: nowrap;
+}
+
+.sf-filters {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: nowrap;
+  min-width: 0;
+  flex: 1;
+}
+
+.sf-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 1 240px;
+  min-width: 160px;
+  max-width: 260px;
+  min-height: 44px;
+  padding: 0 14px;
+  border: 1px solid #e8edf5;
+  border-radius: var(--input-radius, 12px);
+  background: var(--color-input-bg);
+  color: var(--text-secondary);
+}
+
+.sf-search input {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--text-primary);
+}
+
+/* Match Search By Name + profile MultiSelectDropdown look */
+.sf-statusFilter {
+  flex: 0 0 200px;
+  width: 200px;
+  max-width: 200px;
+}
+
+.sf-statusFilter .vp-dd {
+  width: 100%;
+}
+
+.sf-statusFilter .vp-dd-trigger {
+  min-height: 44px;
+  background: var(--color-input-bg);
+}
+
+.sf-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.sf-actions .ui-btn {
+  white-space: nowrap;
+}
+
+.sf-iconBtn {
+  width: 44px;
+  height: 44px;
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #ffffff;
+  color: var(--color-accent);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.sf-iconBtn:hover {
+  background: var(--color-accent-soft);
+}
+
+.sf-moreWrap {
+  position: relative;
+}
+
+.sf-moreMenu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 30;
+  min-width: 180px;
+  padding: 8px;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sf-moreMenu button {
+  border: none;
+  background: transparent;
+  text-align: left;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 0.86rem;
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.sf-moreMenu button:hover {
+  background: #f5f7ff;
+}
+
+.sf-tableCard {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.sf-tableCard .cm-pagination,
+.sf-tableCard .cm-footer,
+.sf-tableCard .sf-footer {
+  margin-top: 0;
+  border-radius: 0 0 16px 16px;
+}
+
+.sf-tableCard .ui-table tbody td {
+  background: #ffffff;
+}
+
+.sf-tableCard .ui-table tbody tr:hover td {
+  background: #fafbff;
+}
+
+.sf-tableCard .ui-table th.sf-sortable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.sf-thInner {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sf-sortIcon {
+  opacity: 0.7;
+}
+
+.sf-empty {
+  padding: 40px 16px;
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  font-weight: var(--font-weight-medium);
+}
+
+.sf-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: var(--font-weight-semibold);
+}
+
+.sf-badge--pending {
+  background: #fff7ed;
+  color: #c2410c;
+}
+
+.sf-badge--submitted {
+  background: #e8f2ff;
+  color: #4338ca;
+}
+
+.sf-badge--approved {
+  background: #ecfdf5;
+  color: #047857;
+}
+
+.sf-badge--expired {
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+.sf-badge--draft {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+@media (max-width: 900px) {
+  .sf-toolbar {
+    flex-wrap: wrap;
+  }
+
+  .sf-filters {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .sf-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .sf-search {
+    flex: 1 1 180px;
+    max-width: none;
+  }
+
+  .sf-statusFilter {
+    flex: 1 1 180px;
+    width: auto;
+    max-width: none;
+  }
+}

@@ -1,0 +1,558 @@
+/* Notification Preferences — Profile (UI mock) */
+
+.npref-page {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding-bottom: 48px;
+  font-family: var(--font-body);
+  position: relative;
+}
+
+.npref-crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 -6px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.npref-crumbs strong {
+  color: var(--text-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+.npref-crumbsSep {
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+}
+
+.npref-hero {
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 92% 18%, rgba(93, 95, 239, 0.12), transparent 42%),
+    linear-gradient(145deg, #f4f8ff 0%, #ffffff 58%, #f8fafc 100%);
+  box-shadow: var(--shadow-md);
+  padding: 18px 18px 16px;
+  overflow: hidden;
+}
+
+.npref-heroTop {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.npref-backBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #ffffff;
+  color: var(--text-primary);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition:
+    background 160ms ease,
+    color 160ms ease,
+    border-color 160ms ease;
+}
+
+.npref-backBtn:hover {
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+  border-color: var(--color-accent-soft-deep, #cfe0ff);
+}
+
+.npref-heroMain {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  min-width: 0;
+  flex: 1;
+}
+
+.npref-heroArt {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+}
+
+.npref-heroBell {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+  color: var(--color-accent);
+  background: linear-gradient(160deg, #ffffff 0%, var(--color-accent-soft) 100%);
+  border: 1px solid var(--color-accent-soft-deep, #cfe0ff);
+  box-shadow: 0 8px 20px rgba(93, 95, 239, 0.12);
+}
+
+.npref-heroBadge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-accent);
+  color: #ffffff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  line-height: 1;
+  border: 2px solid #ffffff;
+  box-shadow: 0 4px 10px rgba(93, 95, 239, 0.28);
+}
+
+.npref-heroSpark {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  opacity: 0.35;
+}
+
+.npref-heroSpark--a {
+  top: 6px;
+  left: 4px;
+}
+
+.npref-heroSpark--b {
+  right: 2px;
+  bottom: 8px;
+  width: 6px;
+  height: 6px;
+  background: var(--color-accent-hover);
+  opacity: 0.28;
+}
+
+.npref-heroCopy {
+  min-width: 0;
+  flex: 1;
+}
+
+.npref-nickRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.npref-nickname {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--color-accent);
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.npref-nickHint {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  font-weight: var(--font-weight-medium);
+}
+
+.npref-pageTitle {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 2.4vw, 1.85rem);
+  font-weight: 700;
+  color: #111827;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.npref-pageDesc {
+  margin: 8px 0 0;
+  font-size: 0.94rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  max-width: 560px;
+}
+
+.npref-featureRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.npref-featureChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: #ffffff;
+  color: var(--text-primary);
+  font-size: 0.76rem;
+  font-weight: var(--font-weight-semibold);
+}
+
+.npref-featureChip svg {
+  color: var(--color-accent);
+}
+
+.npref-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 44px;
+  padding: 0 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--color-input-bg);
+  color: var(--text-secondary);
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    background 160ms ease;
+}
+
+.npref-search:focus-within {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(93, 95, 239, 0.12);
+  background: #ffffff;
+}
+
+.npref-search input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  color: var(--text-primary);
+}
+
+.npref-search input::placeholder {
+  color: var(--text-muted);
+}
+
+.npref-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.npref-card {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.npref-cardHead {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 18px;
+  border: none;
+  background: #ffffff;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-body);
+  transition: background 160ms ease;
+}
+
+.npref-cardHead:hover {
+  background: #fafbff;
+}
+
+.npref-cardHeadLeft {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.npref-catBadge {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--color-accent);
+  background: var(--color-accent-soft);
+  border: 1px solid var(--color-accent-soft-deep, #cfe0ff);
+}
+
+.npref-cardTitle {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.npref-chevron {
+  color: var(--text-secondary);
+  transition: transform 180ms ease, color 160ms ease;
+  flex-shrink: 0;
+}
+
+.npref-chevron.is-open {
+  transform: rotate(180deg);
+  color: var(--color-accent);
+}
+
+.npref-cardBody {
+  border-top: 1px solid var(--border);
+  padding: 0 0 6px;
+}
+
+.npref-group + .npref-group {
+  border-top: 1px solid var(--border);
+}
+
+.npref-groupHead {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 72px 72px;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 18px;
+  background: #f8fafc;
+}
+
+.npref-groupHead.has-controls {
+  grid-template-columns: minmax(0, 1fr) 72px 72px;
+  align-items: end;
+}
+
+.npref-groupTitle {
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.npref-groupTitleSpacer {
+  display: block;
+  min-width: 0;
+}
+
+.npref-groupHead.is-columns-only {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.npref-colLabel {
+  margin: 0;
+  text-align: center;
+  font-size: 0.78rem;
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-secondary);
+}
+
+.npref-groupControl {
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+}
+
+.npref-groupControl .npref-colLabel {
+  line-height: 1;
+}
+
+.npref-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 72px 72px;
+  align-items: center;
+  gap: 12px;
+  min-height: 52px;
+  padding: 14px 18px;
+  border-top: 1px solid #eef2f7;
+}
+
+.npref-rowLabel {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.npref-switchCell {
+  display: flex;
+  justify-content: center;
+}
+
+.npref-switch {
+  position: relative;
+  width: 42px;
+  height: 22px;
+  border: none;
+  border-radius: 999px;
+  background: #d1d5db;
+  padding: 0;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition:
+    background 160ms ease,
+    box-shadow 160ms ease,
+    transform 120ms ease;
+}
+
+.npref-switch:hover {
+  box-shadow: 0 0 0 3px rgba(93, 95, 239, 0.1);
+}
+
+.npref-switch:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.npref-switch.is-on {
+  background: var(--color-accent);
+}
+
+.npref-switch.is-on:hover {
+  background: var(--color-accent-hover);
+}
+
+/* Mixed / indeterminate group state */
+.npref-switch.is-mixed {
+  background: color-mix(in srgb, var(--color-accent) 55%, #d1d5db);
+}
+
+.npref-switch.is-mixed .npref-switchThumb {
+  transform: translateX(10px);
+}
+
+.npref-switchThumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.2);
+  transition: transform 160ms ease;
+}
+
+.npref-switch.is-on .npref-switchThumb {
+  transform: translateX(20px);
+}
+
+.npref-empty {
+  margin: 0;
+  padding: 28px 18px;
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.npref-toast {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 28px;
+  z-index: 40;
+  width: max-content;
+  max-width: calc(100vw - 32px);
+  margin-inline: auto;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: #111827;
+  color: #ffffff;
+  font-size: 0.84rem;
+  font-weight: var(--font-weight-medium);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.18);
+  pointer-events: none;
+  text-align: center;
+}
+
+@media (max-width: 720px) {
+  .npref-hero {
+    padding: 14px;
+  }
+
+  .npref-heroMain {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .npref-groupHead,
+  .npref-groupHead.has-controls,
+  .npref-row {
+    grid-template-columns: minmax(0, 1fr) 64px 64px;
+    gap: 10px;
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+}
+
+@media (max-width: 520px) {
+  .npref-groupHead,
+  .npref-groupHead.has-controls,
+  .npref-row {
+    grid-template-columns: minmax(0, 1fr) 1fr 1fr;
+    gap: 8px 12px;
+  }
+
+  .npref-row {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .npref-rowLabel {
+    grid-column: 1 / -1;
+    font-size: 0.86rem;
+  }
+
+  .npref-groupTitle,
+  .npref-groupTitleSpacer {
+    grid-column: 1 / -1;
+    margin-bottom: 2px;
+  }
+
+  .npref-groupHead.is-columns-only .npref-groupTitleSpacer {
+    display: none;
+  }
+
+  .npref-groupHead:not(.has-controls) .npref-colLabel,
+  .npref-groupHead.has-controls .npref-groupControl {
+    justify-self: stretch;
+  }
+
+  .npref-switchCell {
+    justify-content: center;
+  }
+
+  .npref-groupControl {
+    width: 100%;
+  }
+}

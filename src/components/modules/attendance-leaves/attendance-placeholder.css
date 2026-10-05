@@ -1,0 +1,51 @@
+.att-ph {
+  min-height: 420px;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+}
+
+.att-ph-card {
+  text-align: center;
+  max-width: 420px;
+  width: 100%;
+  padding: 2.25rem 1.75rem;
+  border-radius: 18px;
+  background: #fff;
+  border: 1px solid var(--border, #e8edf5);
+  box-shadow: 0 12px 36px rgba(31, 41, 55, 0.06);
+}
+
+.att-ph-ico {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 1rem;
+  background: var(--color-accent-soft, #e8f2ff);
+  color: var(--color-accent, #5d5fef);
+}
+
+.att-ph-card h1 {
+  margin: 0 0 8px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  font-family: var(--font-body, Poppins, sans-serif);
+}
+
+.att-ph-card p {
+  margin: 0 0 14px;
+  color: var(--text-secondary, #64748b);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.att-ph-card em {
+  font-style: normal;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-accent, #5d5fef);
+}

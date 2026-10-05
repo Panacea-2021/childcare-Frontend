@@ -1,0 +1,615 @@
+/* Staff Leave Settings — polished policy / holiday / weekend UI */
+
+.sls-root {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  min-width: 0;
+}
+
+.sls-skel {
+  display: grid;
+  gap: 12px;
+}
+
+.sls-skel span {
+  height: 72px;
+  border-radius: 16px;
+  background: linear-gradient(90deg, #f1f5f9, #e8f2ff, #f1f5f9);
+  background-size: 200% 100%;
+  animation: sls-shimmer 1.2s ease infinite;
+}
+
+@keyframes sls-shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+.sls-hero {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 1rem 1.15rem 1.15rem;
+  border-radius: 20px;
+  border: 1px solid var(--border, #e8edf5);
+  background:
+    radial-gradient(120% 160% at 0% 0%, rgba(93, 95, 239, 0.12), transparent 55%),
+    radial-gradient(90% 120% at 100% 0%, rgba(232, 242, 255, 0.9), transparent 50%),
+    #ffffff;
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.05);
+  overflow: hidden;
+  position: relative;
+}
+
+.sls-hero::after {
+  content: '';
+  position: absolute;
+  inset: auto -20% -60% auto;
+  width: 220px;
+  height: 220px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(93, 95, 239, 0.16), transparent 68%);
+  pointer-events: none;
+}
+
+.sls-hero-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  position: relative;
+  z-index: 1;
+}
+
+.sls-hero-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: linear-gradient(145deg, var(--color-accent, #5d5fef), var(--color-accent-hover, #4b51e0));
+  box-shadow: 0 12px 24px rgba(93, 95, 239, 0.28);
+}
+
+.sls-hero-title h2 {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.sls-hero-title p {
+  margin: 2px 0 0;
+  color: var(--text-secondary, #64748b);
+  font-size: 0.86rem;
+}
+
+.sls-tabs {
+  display: flex;
+  gap: 4px;
+  border-bottom: 1px solid var(--border, #e8edf5);
+  padding: 0 4px;
+}
+
+.sls-tab {
+  position: relative;
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 0.7rem 1rem 0.85rem;
+  font: inherit;
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--text-secondary, #64748b);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.sls-tab:hover {
+  color: var(--text-primary, #0f172a);
+}
+
+.sls-tab.is-active {
+  color: var(--color-accent, #5d5fef);
+}
+
+.sls-tab-line {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 0;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--color-accent, #5d5fef);
+}
+
+.sls-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.sls-session {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: var(--color-accent-soft, #e8f2ff);
+  border: 1px solid var(--border, #e8edf5);
+  color: var(--text-secondary, #64748b);
+  font-size: 0.84rem;
+}
+
+.sls-session svg {
+  color: var(--color-accent, #5d5fef);
+  flex-shrink: 0;
+}
+
+.sls-card {
+  border: 1px solid var(--border, #e8edf5);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.04);
+  overflow: clip;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.sls-card:hover {
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.07);
+}
+
+.sls-card-role {
+  border-color: rgba(93, 95, 239, 0.22);
+  background: linear-gradient(180deg, #fbfcff 0%, #ffffff 42%);
+}
+
+.sls-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  flex-wrap: wrap;
+}
+
+.sls-card-toggle {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+  min-width: 0;
+}
+
+.sls-card-toggle > svg {
+  margin-top: 2px;
+  color: var(--color-accent, #5d5fef);
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  flex-shrink: 0;
+}
+
+.sls-card-toggle > svg.is-closed {
+  transform: rotate(-90deg);
+}
+
+.sls-card-toggle > strong {
+  font-size: 1rem;
+}
+
+.sls-role-title {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.sls-role-title strong {
+  color: var(--color-accent, #5d5fef);
+  font-size: 1rem;
+}
+
+.sls-role-title em {
+  font-style: normal;
+  font-size: 0.78rem;
+  color: var(--text-secondary, #64748b);
+}
+
+.sls-card-head-right {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.sls-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: var(--text-primary, #0f172a);
+  cursor: pointer;
+  user-select: none;
+}
+
+.sls-check input {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 6px;
+  border: 1.5px solid #cbd5e1;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  background: #fff;
+  transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.sls-check input:checked {
+  background: var(--color-accent, #5d5fef);
+  border-color: var(--color-accent, #5d5fef);
+  box-shadow: 0 0 0 3px rgba(93, 95, 239, 0.18);
+}
+
+.sls-check input:checked::after {
+  content: '';
+  width: 4px;
+  height: 8px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg) translateY(-1px);
+}
+
+.sls-card-body {
+  display: grid;
+  grid-template-rows: 1fr;
+  transition: grid-template-rows 0.34s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.sls-card-body.is-closed {
+  grid-template-rows: 0fr;
+}
+
+.sls-card-body-inner {
+  min-height: 0;
+  overflow: hidden;
+  border-top: 1px solid var(--border, #e8edf5);
+}
+
+.sls-table-wrap {
+  padding: 0 0 12px;
+  overflow-x: auto;
+}
+
+.sls-table {
+  width: 100%;
+}
+
+.sls-table th,
+.sls-table td {
+  vertical-align: middle;
+}
+
+.sls-table tbody tr {
+  transition: background 0.18s ease;
+}
+
+.sls-table tbody tr:hover {
+  background: rgba(232, 242, 255, 0.45);
+}
+
+.sls-row-edit {
+  background: linear-gradient(90deg, rgba(222, 236, 255, 0.85), rgba(232, 242, 255, 0.55)) !important;
+  box-shadow: inset 0 0 0 1px rgba(93, 95, 239, 0.12);
+}
+
+.sls-inline-input {
+  min-height: 36px !important;
+  padding: 0.35rem 0.65rem !important;
+  font-size: 0.86rem !important;
+}
+
+.sls-inline-input.sls-num {
+  max-width: 96px;
+}
+
+.sls-half-dd {
+  min-width: 96px;
+}
+
+.sls-inline-actions {
+  display: inline-flex;
+  gap: 6px;
+}
+
+.sls-ico {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  border: 1px solid var(--border, #e8edf5);
+  background: #fff;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.sls-ico:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 16px rgba(15, 23, 42, 0.08);
+}
+
+.sls-ico.ok {
+  color: #16a34a;
+  border-color: #bbf7d0;
+  background: #f0fdf4;
+}
+
+.sls-ico.cancel {
+  color: #dc2626;
+  border-color: #fecaca;
+  background: #fef2f2;
+}
+
+.sls-add-link {
+  appearance: none;
+  border: 1px dashed rgba(93, 95, 239, 0.35);
+  background: rgba(232, 242, 255, 0.35);
+  color: var(--color-accent, #5d5fef);
+  font: inherit;
+  font-weight: 600;
+  font-size: 0.86rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 4px 14px 4px;
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sls-add-link:hover {
+  background: var(--color-accent-soft, #e8f2ff);
+  border-color: var(--color-accent, #5d5fef);
+  box-shadow: 0 8px 18px rgba(93, 95, 239, 0.12);
+}
+
+.sls-configure {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 1.5rem 1.25rem;
+  border-radius: 18px;
+  border: 1px dashed rgba(93, 95, 239, 0.35);
+  background:
+    linear-gradient(180deg, rgba(232, 242, 255, 0.55), rgba(255, 255, 255, 0.95)),
+    #fff;
+  overflow: hidden;
+}
+
+.sls-configure::before {
+  content: '';
+  position: absolute;
+  inset: -40% auto auto 30%;
+  width: 180px;
+  height: 180px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(93, 95, 239, 0.14), transparent 70%);
+  animation: sls-float 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes sls-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(12px);
+  }
+}
+
+.sls-configure p {
+  margin: 0;
+  position: relative;
+  z-index: 1;
+  font-weight: 600;
+  color: var(--text-primary, #0f172a);
+}
+
+.sls-configure-spark {
+  color: var(--color-accent, #5d5fef);
+  position: relative;
+  z-index: 1;
+}
+
+.sls-configure-btn {
+  position: relative;
+  z-index: 1;
+  min-width: 140px;
+  box-shadow: 0 10px 22px rgba(93, 95, 239, 0.12);
+}
+
+.sls-holiday-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.sls-year-dd {
+  min-width: 120px;
+}
+
+.sls-row-btns {
+  display: inline-flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.sls-square-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  border: 1px solid var(--border, #e8edf5);
+  background: #f8fafc;
+  color: var(--text-secondary, #64748b);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: transform 0.15s ease, color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+.sls-square-btn:hover {
+  transform: translateY(-1px);
+  color: var(--color-accent, #5d5fef);
+  border-color: rgba(93, 95, 239, 0.35);
+  background: var(--color-accent-soft, #e8f2ff);
+}
+
+.sls-weekend-card {
+  border: 1px solid var(--border, #e8edf5);
+  border-radius: 18px;
+  background: #fff;
+  padding: 1rem 1rem 1.1rem;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sls-weekend-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 520px;
+}
+
+.sls-weekend-field .ui-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sls-weekend-table th,
+.sls-weekend-table td {
+  text-align: center;
+}
+
+.sls-weekend-table th:first-child,
+.sls-weekend-table td:first-child {
+  text-align: left;
+}
+
+.sls-week-check {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  border: 1.5px solid #cbd5e1;
+  background: #fff;
+  display: inline-grid;
+  place-items: center;
+  cursor: pointer;
+  color: #fff;
+  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.sls-week-check:hover {
+  transform: scale(1.06);
+  border-color: var(--color-accent, #5d5fef);
+}
+
+.sls-week-check.is-on {
+  background: var(--color-accent, #5d5fef);
+  border-color: var(--color-accent, #5d5fef);
+  box-shadow: 0 8px 16px rgba(93, 95, 239, 0.25);
+}
+
+.sls-weekend-foot {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.sls-unsaved {
+  font-style: normal;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-close, #e53935);
+  margin-right: auto;
+}
+
+.sls-add-role {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.sls-hint {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: var(--color-accent-soft, #e8f2ff);
+  color: var(--text-secondary, #64748b);
+  font-size: 0.84rem;
+}
+
+.sls-hint svg {
+  color: var(--color-accent, #5d5fef);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.sls-holiday-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sls-holiday-form .ui-grid-2 {
+  align-items: start;
+}
+
+.sls-holiday-form .ui-grid-2 .ui-field {
+  min-width: 0;
+}
+
+.sls-holiday-form .ui-label em {
+  color: var(--color-close, #e53935);
+  font-style: normal;
+  margin-right: 3px;
+}
+
+@media (max-width: 900px) {
+  .sls-card-head {
+    flex-direction: column;
+  }
+
+  .sls-tabs {
+    overflow-x: auto;
+  }
+
+  .sls-tab {
+    white-space: nowrap;
+  }
+}

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <rect width="1200" height="800" fill="#F3F5F9"/>
+  <rect x="0" y="0" width="220" height="800" fill="#FFFFFF"/>
+  <rect x="12" y="80" width="196" height="36" rx="8" fill="#E8F2FF"/>
+  <rect x="24" y="90" width="120" height="16" rx="4" fill="#5D5FEF"/>
+  <rect x="24" y="140" width="160" height="12" rx="4" fill="#CBD5E1"/>
+  <rect x="24" y="170" width="140" height="12" rx="4" fill="#CBD5E1"/>
+  <rect x="24" y="200" width="150" height="12" rx="4" fill="#CBD5E1"/>
+  <rect x="250" y="40" width="900" height="720" rx="16" fill="#FFFFFF" stroke="#E8EDF5"/>
+  <rect x="280" y="70" width="280" height="28" rx="6" fill="#5D5FEF" opacity="0.9"/>
+  <text x="300" y="90" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="16" font-weight="700">Students</text>
+  <rect x="280" y="130" width="840" height="48" rx="10" fill="#F8FAFC" stroke="#E8EDF5"/>
+  <rect x="300" y="210" width="800" height="64" rx="12" fill="#F8FAFC"/>
+  <circle cx="336" cy="242" r="18" fill="#14B8A6"/>
+  <text x="328" y="247" fill="#fff" font-family="Arial" font-size="12" font-weight="700">AS</text>
+  <text x="370" y="238" fill="#1F2937" font-family="Arial" font-size="15" font-weight="700">Alex Demo Student</text>
+  <text x="370" y="258" fill="#94A3B8" font-family="Arial" font-size="12">ADM-001</text>
+  <rect x="300" y="290" width="800" height="64" rx="12" fill="#F8FAFC"/>
+  <circle cx="336" cy="322" r="18" fill="#EC4899"/>
+  <text x="328" y="327" fill="#fff" font-family="Arial" font-size="12" font-weight="700">KS</text>
+  <text x="370" y="318" fill="#1F2937" font-family="Arial" font-size="15" font-weight="700">Kavya Sharma</text>
+  <text x="370" y="338" fill="#94A3B8" font-family="Arial" font-size="12">ADM-003</text>
+  <rect x="420" y="420" width="520" height="260" rx="16" fill="#FFFFFF" stroke="#E8EDF5"/>
+  <text x="450" y="460" fill="#5D5FEF" font-family="Arial" font-size="12" font-weight="700">STUDENT ACTIONS</text>
+  <text x="450" y="500" fill="#1F2937" font-family="Arial" font-size="22" font-weight="700">Select Students</text>
+  <rect x="450" y="530" width="140" height="32" rx="8" fill="#F8FAFC" stroke="#E8EDF5"/>
+  <rect x="610" y="530" width="140" height="32" rx="8" fill="#F8FAFC" stroke="#E8EDF5"/>
+  <rect x="770" y="530" width="140" height="32" rx="8" fill="#F8FAFC" stroke="#E8EDF5"/>
+  <rect x="560" y="620" width="100" height="36" rx="8" fill="#FFFFFF" stroke="#E8EDF5"/>
+  <rect x="680" y="620" width="100" height="36" rx="8" fill="#5D5FEF"/>
+</svg>

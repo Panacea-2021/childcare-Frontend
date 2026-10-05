@@ -1,0 +1,285 @@
+/* Staff Form Submission — Staff Schedule dialog language + centered filter modal */
+
+.stf-dialog .cal-dialog-body,
+.stf-filter-dialog .cal-dialog-body {
+  gap: 18px;
+}
+
+.stf-field-block {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.stf-field-label {
+  margin: 0;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.stf-field-label .stf-req {
+  color: var(--color-accent);
+  margin-left: 2px;
+}
+
+.stf-form-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.stf-form-select {
+  flex: 1;
+  min-width: 0;
+}
+
+.stf-filter-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 16px;
+  border: 1px solid rgba(232, 237, 245, 0.95);
+  background: linear-gradient(180deg, #ffffff, #f8fafc);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    color 180ms ease,
+    background 180ms ease,
+    transform 160ms ease;
+}
+
+.stf-filter-btn:hover {
+  border-color: rgba(93, 95, 239, 0.32);
+  color: var(--color-accent);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
+  transform: translateY(-1px);
+}
+
+.stf-filter-btn:focus-visible {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 4px rgba(93, 95, 239, 0.14);
+}
+
+.stf-filter-btn.is-active {
+  border-color: rgba(93, 95, 239, 0.45);
+  color: var(--color-accent);
+  background: linear-gradient(135deg, var(--color-accent-soft), #f8fbff);
+  box-shadow: 0 8px 18px rgba(93, 95, 239, 0.12);
+}
+
+.stf-filter-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.stf-filter-dot {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(93, 95, 239, 0.18);
+}
+
+.stf-filter-backdrop {
+  /* Above main report dialog (1400) and premium select/date menus (1500) shell;
+     date/select menus portal to body at 1500 — lift them when filters are open. */
+  z-index: 1600;
+  padding: 24px;
+}
+
+body:has(.stf-filter-backdrop) .cal-prem-menu,
+body:has(.stf-filter-backdrop) .cal-prem-datepop {
+  z-index: 1700;
+}
+
+.stf-filter-dialog {
+  width: min(540px, calc(100vw - 48px));
+  max-height: min(85vh, 640px);
+}
+
+.stf-check {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(232, 237, 245, 0.95);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(248, 250, 252, 0.9));
+  cursor: pointer;
+  transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+  user-select: none;
+}
+
+.stf-check:hover {
+  border-color: rgba(93, 95, 239, 0.28);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.05);
+}
+
+.stf-check.is-on {
+  border-color: rgba(93, 95, 239, 0.4);
+  background: linear-gradient(135deg, var(--color-accent-soft), #f8fbff);
+}
+
+.stf-check input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.stf-check-box {
+  width: 22px;
+  height: 22px;
+  border-radius: 7px;
+  border: 1.5px solid #cbd5e1;
+  background: #fff;
+  display: inline-grid;
+  place-items: center;
+  color: #fff;
+  flex-shrink: 0;
+  transition: background 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+.stf-check.is-on .stf-check-box {
+  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-hover));
+  border-color: transparent;
+  box-shadow: 0 4px 12px rgba(93, 95, 239, 0.28);
+}
+
+.stf-check-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.stf-check-copy strong {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.stf-check-copy span {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.stf-format {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.stf-format-opt {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 56px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(232, 237, 245, 0.95);
+  background: #fff;
+  cursor: pointer;
+  text-align: left;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background 180ms ease,
+    transform 160ms ease;
+}
+
+.stf-format-opt:hover {
+  border-color: rgba(93, 95, 239, 0.28);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.05);
+}
+
+.stf-format-opt.is-on {
+  border-color: rgba(93, 95, 239, 0.45);
+  background: linear-gradient(135deg, var(--color-accent-soft), #f8fbff);
+  box-shadow: 0 10px 22px rgba(93, 95, 239, 0.12);
+}
+
+.stf-format-opt input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.stf-radio {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  border: 1.5px solid #cbd5e1;
+  display: inline-grid;
+  place-items: center;
+  flex-shrink: 0;
+  background: #fff;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.stf-format-opt.is-on .stf-radio {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(93, 95, 239, 0.12);
+}
+
+.stf-radio-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--color-accent);
+}
+
+.stf-format-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.stf-format-text strong {
+  font-size: 0.92rem;
+  font-weight: 650;
+  color: var(--text-primary);
+}
+
+.stf-format-text span {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 640px) {
+  .stf-format {
+    grid-template-columns: 1fr;
+  }
+
+  .stf-dialog .cal-dialog-footer,
+  .stf-filter-dialog .cal-dialog-footer {
+    flex-direction: column-reverse;
+  }
+
+  .stf-dialog .cal-dialog-footer .cal-btn-ghost,
+  .stf-dialog .cal-dialog-footer .cal-btn-save,
+  .stf-filter-dialog .cal-dialog-footer .cal-btn-ghost,
+  .stf-filter-dialog .cal-dialog-footer .cal-btn-save {
+    width: 100%;
+  }
+
+  .stf-filter-dialog {
+    width: min(100%, calc(100vw - 32px));
+  }
+}

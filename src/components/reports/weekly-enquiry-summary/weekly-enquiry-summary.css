@@ -1,0 +1,113 @@
+/* Weekly Enquiry Summary — premium report builder (Panacea tokens) */
+
+.wes-report {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-height: 100%;
+}
+
+.wes-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.wes-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(93, 95, 239, 0.18);
+  background: linear-gradient(135deg, var(--color-accent-soft) 0%, #f8fbff 100%);
+}
+
+.wes-info-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  display: inline-grid;
+  place-items: center;
+  flex-shrink: 0;
+  background: #ffffff;
+  color: var(--color-accent);
+  box-shadow: inset 0 0 0 1px rgba(93, 95, 239, 0.14);
+}
+
+.wes-info p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+
+.wes-card {
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.03),
+    0 10px 28px rgba(15, 23, 42, 0.045);
+  padding: 20px;
+}
+
+.wes-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.wes-card-head h3 {
+  margin: 0;
+  font-size: 1.02rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+
+.wes-card-head p {
+  margin: 4px 0 0;
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+.wes-selected-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: var(--color-accent);
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 650;
+  white-space: nowrap;
+  box-shadow: 0 6px 14px rgba(93, 95, 239, 0.22);
+}
+
+.wes-loading {
+  min-height: 280px;
+}
+
+.wes-report .ab-default-hint {
+  margin-top: 16px;
+}
+
+@media (max-width: 720px) {
+  .wes-card {
+    padding: 16px;
+  }
+
+  .wes-card-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .wes-info {
+    flex-direction: column;
+  }
+}

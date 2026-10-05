@@ -1,0 +1,270 @@
+/* Enquiry Report — premium report builder shell (Panacea tokens) */
+
+.enq-report {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-height: 100%;
+}
+
+.enq-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.enq-card {
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.03),
+    0 10px 28px rgba(15, 23, 42, 0.045);
+  padding: 20px;
+}
+
+.enq-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.enq-card-head h3 {
+  margin: 0;
+  font-size: 1.02rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+
+.enq-card-head p {
+  margin: 4px 0 0;
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+.enq-selected-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: var(--color-accent);
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 650;
+  white-space: nowrap;
+  box-shadow: 0 6px 14px rgba(93, 95, 239, 0.22);
+}
+
+.enq-filter-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.enq-filter-span {
+  grid-column: 1 / -1;
+}
+
+.enq-filter-grid .asr-field,
+.enq-filter-grid .asr-dd {
+  margin: 0;
+}
+
+.enq-filter-grid .asr-dd-trigger,
+.enq-filter-grid .ui-input,
+.enq-filter-grid .ui-select {
+  min-height: 48px;
+  border-radius: 14px;
+}
+
+.enq-filter-grid .asr-dd-trigger {
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.enq-filter-grid .asr-dd-trigger:hover {
+  border-color: rgba(93, 95, 239, 0.28);
+  background: #fff;
+}
+
+.enq-filter-grid .asr-dd-trigger:focus-visible,
+.enq-filter-grid .asr-dd.is-open .asr-dd-trigger {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 4px rgba(93, 95, 239, 0.12);
+}
+
+.enq-loading {
+  min-height: 280px;
+}
+
+/* Premium columns appearance scoped to enquiry (and ReportColumnsSelector appearance=premium) */
+.ab-columns-premium .asr-segment {
+  gap: 0;
+}
+
+.ab-columns-premium .asr-segment-opt {
+  min-height: 44px;
+  border-radius: 12px;
+}
+
+.ab-columns-premium .ab-col-panel {
+  margin-top: 16px;
+  border-radius: 18px;
+  padding: 0;
+  background: #f8fafc;
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.03),
+    0 12px 28px rgba(15, 23, 42, 0.05);
+}
+
+.ab-columns-premium .ab-col-inner {
+  padding: 18px;
+  gap: 16px;
+}
+
+.ab-columns-premium .ab-col-sticky {
+  gap: 14px;
+}
+
+.ab-columns-premium .ab-col-search {
+  min-height: 48px;
+  position: relative;
+}
+
+.ab-columns-premium .ab-col-search-clear {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  display: inline-grid;
+  place-items: center;
+  border: none;
+  border-radius: 999px;
+  background: #f1f5f9;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.ab-columns-premium .ab-col-search-clear:hover {
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.ab-columns-premium .ab-col-search input {
+  padding-right: 40px;
+}
+
+.ab-columns-premium .ab-col-select-all {
+  min-height: 52px;
+  border-radius: 14px;
+  padding: 12px 16px;
+}
+
+.ab-columns-premium .ab-col-counter-badge {
+  background: var(--color-accent);
+  border-color: transparent;
+  color: #ffffff;
+  min-height: 28px;
+  padding: 0 12px;
+  box-shadow: 0 4px 12px rgba(93, 95, 239, 0.22);
+}
+
+.ab-columns-premium .ab-col-list.is-two-col {
+  gap: 10px 12px;
+  max-height: 320px;
+}
+
+.ab-columns-premium .ab-col-item {
+  min-height: 52px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  padding: 12px 14px;
+}
+
+.ab-columns-premium .ab-col-item:hover {
+  border-color: rgba(93, 95, 239, 0.28);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
+}
+
+.ab-columns-premium .ab-col-item.is-on {
+  border-color: rgba(93, 95, 239, 0.45);
+  background: linear-gradient(135deg, var(--color-accent-soft), #f8fbff);
+}
+
+.ab-columns-premium .ab-col-pager {
+  gap: 10px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+  margin-top: 2px;
+}
+
+.ab-columns-premium .ab-page-btn-nav {
+  min-width: auto;
+  padding: 0 14px;
+  border-radius: 999px;
+  gap: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ab-columns-premium .ab-col-empty {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 160px;
+  padding: 24px;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.ab-columns-premium .ab-col-empty strong {
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-weight: 650;
+}
+
+.ab-columns-premium .ab-col-empty span {
+  font-size: 0.84rem;
+}
+
+.ab-columns-premium .ab-col-empty-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  display: inline-grid;
+  place-items: center;
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+  margin-bottom: 4px;
+}
+
+.enq-report .ab-default-hint {
+  margin-top: 16px;
+}
+
+@media (max-width: 720px) {
+  .enq-filter-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .enq-card {
+    padding: 16px;
+  }
+
+  .enq-card-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -1,0 +1,498 @@
+/* Book a Demo — Panacea marketing form page */
+
+.bd-page {
+  position: relative;
+  overflow-x: clip;
+  background: #fafaf7;
+}
+
+.bd-page > .en-footer {
+  position: relative;
+  z-index: 3;
+}
+
+.bd-main {
+  position: relative;
+  z-index: 1;
+  padding: clamp(2rem, 4vw, 3.5rem) 0 clamp(3rem, 5vw, 4.5rem);
+  overflow: hidden;
+}
+
+.bd-atmosphere {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bd-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(50px);
+  opacity: 0.55;
+}
+
+.bd-orb-a {
+  width: 420px;
+  height: 420px;
+  top: 8%;
+  left: -10%;
+  background: radial-gradient(circle, rgba(237, 208, 228, 0.7), transparent 70%);
+}
+
+.bd-orb-b {
+  width: 380px;
+  height: 380px;
+  top: 18%;
+  right: -8%;
+  background: radial-gradient(circle, rgba(93, 95, 239, 0.22), transparent 70%);
+}
+
+.bd-wave {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 18%;
+  height: 220px;
+  background:
+    radial-gradient(120% 100% at 20% 100%, rgba(208, 237, 218, 0.45), transparent 55%),
+    radial-gradient(100% 120% at 80% 90%, rgba(232, 242, 255, 0.65), transparent 50%);
+}
+
+.bd-layout {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(1.75rem, 4vw, 3.5rem);
+  align-items: start;
+}
+
+.bd-copy h1 {
+  margin: 0 0 0.85rem;
+  font-size: clamp(2rem, 4.2vw, 3rem);
+  letter-spacing: -0.04em;
+  line-height: 1.12;
+  color: var(--text-primary, #1f2937);
+}
+
+.bd-copy h1 span {
+  background: linear-gradient(135deg, #5d5fef, #c98bb8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.bd-lead {
+  margin: 0 0 1.75rem;
+  color: var(--text-secondary, #6b7280);
+  font-size: 1.08rem;
+  line-height: 1.6;
+  max-width: 34rem;
+}
+
+.bd-copy h2 {
+  margin: 0 0 0.85rem;
+  font-size: 1.05rem;
+  color: var(--text-primary, #1f2937);
+}
+
+.bd-points {
+  list-style: none;
+  margin: 0 0 1.75rem;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.bd-points li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  color: var(--text-primary, #1f2937);
+  font-weight: 550;
+  line-height: 1.45;
+}
+
+.bd-points svg {
+  flex-shrink: 0;
+  color: #3d7a55;
+  margin-top: 0.1rem;
+}
+
+.bd-trust p {
+  margin: 0 0 0.75rem;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text-primary, #1f2937);
+}
+
+.bd-logos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.bd-logos span {
+  padding: 0.45rem 0.8rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid var(--border, #e8edf5);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--text-secondary, #6b7280);
+  text-transform: uppercase;
+}
+
+.bd-mascot {
+  margin-top: 2rem;
+  width: 72px;
+  height: 72px;
+  position: relative;
+}
+
+.bd-sun {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 30%, #fff7c2, #f5c842 55%, #e8a317);
+  box-shadow: 0 12px 28px rgba(232, 163, 23, 0.35);
+  animation: bdSun 4s ease-in-out infinite;
+}
+
+.bd-sun::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -8px;
+  width: 28px;
+  height: 18px;
+  translate: -50% 0;
+  background: #5d9a6e;
+  border-radius: 40% 40% 20% 20%;
+}
+
+@keyframes bdSun {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.bd-formCard {
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(165deg, rgba(232, 242, 255, 0.92), rgba(237, 208, 228, 0.28) 55%, #ffffff);
+  border: 1px solid rgba(237, 208, 228, 0.65);
+  border-radius: 24px;
+  padding: clamp(1.25rem, 2.5vw, 1.75rem);
+  box-shadow:
+    0 28px 60px rgba(15, 23, 42, 0.1),
+    0 0 0 1px rgba(93, 95, 239, 0.04);
+  overflow: visible;
+}
+
+.bd-formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.95rem 0.85rem;
+  margin-bottom: 1rem;
+  overflow: visible;
+}
+
+.bd-formCard .ui-input,
+.bd-formCard .ui-select {
+  min-height: 46px;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.bd-phoneRow {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem;
+}
+
+.bd-dial {
+  position: relative;
+  z-index: 4;
+}
+
+.bd-dialTrigger {
+  min-height: 46px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0 0.65rem;
+  border-radius: 12px;
+  border: 1px solid var(--border, #e8edf5);
+  background: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+.bd-dial.is-open .bd-dialTrigger {
+  border-color: rgba(93, 95, 239, 0.45);
+  box-shadow: 0 0 0 3px rgba(237, 208, 228, 0.45);
+}
+
+.bd-dialMenu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  width: min(300px, 78vw);
+  background: #fff;
+  border-radius: 14px;
+  border: 1px solid rgba(237, 208, 228, 0.7);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.14);
+  overflow: hidden;
+  z-index: 10;
+}
+
+.bd-dialSearch {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 0.7rem;
+  border-bottom: 1px solid var(--border, #e8edf5);
+  color: var(--text-secondary, #6b7280);
+}
+
+.bd-dialSearch input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font: inherit;
+  background: transparent;
+}
+
+.bd-dialMenu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0.3rem;
+  max-height: 220px;
+  overflow: auto;
+}
+
+.bd-dialMenu button {
+  width: 100%;
+  border: none;
+  background: transparent;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.55rem;
+  align-items: center;
+  text-align: left;
+  padding: 0.6rem 0.65rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font: inherit;
+}
+
+.bd-dialMenu button:hover,
+.bd-dialMenu button.is-active {
+  background: linear-gradient(90deg, #e8f2ff, #edd0e4);
+}
+
+.bd-dialMenu em {
+  font-style: normal;
+  color: var(--text-secondary, #6b7280);
+  font-weight: 650;
+  font-size: 0.8rem;
+}
+
+.bd-consent {
+  display: flex;
+  gap: 0.65rem;
+  align-items: flex-start;
+  margin: 0.35rem 0 1.1rem;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: var(--text-secondary, #6b7280);
+  cursor: pointer;
+}
+
+.bd-consent input {
+  margin-top: 0.15rem;
+  accent-color: #5d5fef;
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+
+.bd-submit {
+  width: 100%;
+  min-height: 50px;
+  border-radius: 999px !important;
+  background: linear-gradient(135deg, #5d5fef, #7a5fd4 50%, #c98bb8) !important;
+  border: none !important;
+  font-weight: 700 !important;
+  box-shadow: 0 14px 32px rgba(93, 95, 239, 0.3);
+  transition: transform 160ms ease, box-shadow 160ms ease !important;
+}
+
+.bd-submit:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 18px 38px rgba(93, 95, 239, 0.36);
+}
+
+.bd-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+@media (max-width: 960px) {
+  .bd-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .bd-formGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .bd-mascot {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bd-sun,
+  .bd-submit {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .fancy-selectChevron {
+    transition: none !important;
+  }
+}
+
+/* Fancy select — Book a Demo dropdowns */
+.fancy-select {
+  position: relative;
+  z-index: 2;
+}
+
+.fancy-select.is-open {
+  z-index: 8;
+}
+
+.fancy-selectLabel {
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.fancy-selectTrigger {
+  width: 100%;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.7rem 0.95rem;
+  border-radius: 14px;
+  border: 1px solid rgba(232, 237, 245, 0.98);
+  background: #fff;
+  font: inherit;
+  font-size: 0.95rem;
+  color: var(--text-primary, #1f2937);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    background 160ms ease,
+    transform 160ms ease;
+}
+
+.fancy-selectTrigger .is-placeholder {
+  color: #9aa3b2;
+}
+
+.fancy-selectTrigger .is-filled {
+  color: var(--text-primary, #1f2937);
+  font-weight: 600;
+}
+
+.fancy-selectChevron {
+  color: #5d5fef;
+  flex-shrink: 0;
+  transition: transform 200ms ease;
+}
+
+.fancy-select.is-open .fancy-selectChevron {
+  transform: rotate(180deg);
+}
+
+.fancy-selectTrigger:hover,
+.fancy-select.is-open .fancy-selectTrigger {
+  border-color: rgba(93, 95, 239, 0.45);
+  box-shadow:
+    0 0 0 4px rgba(237, 208, 228, 0.5),
+    0 10px 24px rgba(93, 95, 239, 0.1);
+  background: linear-gradient(180deg, #ffffff, #faf8ff);
+}
+
+.fancy-selectMenu {
+  list-style: none;
+  margin: 0.45rem 0 0;
+  padding: 0.4rem;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 2px);
+  max-height: 260px;
+  overflow: auto;
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid rgba(237, 208, 228, 0.8);
+  box-shadow:
+    0 22px 48px rgba(15, 23, 42, 0.14),
+    0 0 0 1px rgba(93, 95, 239, 0.04);
+  scrollbar-width: thin;
+}
+
+.fancy-selectMenu button {
+  width: 100%;
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem;
+  text-align: left;
+  padding: 0.72rem 0.85rem;
+  border-radius: 12px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.92rem;
+  color: var(--text-primary, #1f2937);
+  transition: background 140ms ease, color 140ms ease, transform 140ms ease;
+}
+
+.fancy-selectMenu button:hover {
+  background: linear-gradient(90deg, #e8f2ff, #edd0e4);
+  color: #4b51e0;
+  transform: translateX(2px);
+}
+
+.fancy-selectMenu button.is-active {
+  background: linear-gradient(135deg, #5d5fef, #7a5fd4 55%, #c98bb8);
+  color: #fff;
+  font-weight: 650;
+  box-shadow: 0 8px 18px rgba(93, 95, 239, 0.28);
+}
+
+.fancy-selectMenu button.is-active:hover {
+  transform: none;
+  color: #fff;
+}

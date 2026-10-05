@@ -1,0 +1,310 @@
+/* Field-style date/time pickers — match ui-input / dropdown height */
+
+.vp-fp {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.vp-fp-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  box-sizing: border-box;
+  height: 44px;
+  min-height: 44px;
+  max-height: 44px;
+  padding: 0 14px;
+  border: 1px solid #e8edf5;
+  border-radius: var(--input-radius, 12px);
+  background: var(--color-input-bg);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  line-height: 1.2;
+  cursor: pointer;
+  text-align: left;
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    background 0.18s ease;
+}
+
+.vp-fp-trigger:hover {
+  border-color: #cfd8f5;
+}
+
+.vp-fp-trigger.is-open,
+.vp-fp-trigger:focus-visible {
+  outline: none;
+  border-color: var(--color-accent);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(93, 95, 239, 0.12);
+}
+
+.vp-fp-value {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.vp-fp-value.is-placeholder {
+  color: #9aa3b2;
+  font-weight: var(--font-weight-medium);
+}
+
+.vp-fp-icon {
+  display: inline-grid;
+  place-items: center;
+  flex-shrink: 0;
+  margin-right: 2px;
+  color: var(--text-secondary);
+}
+
+.vp-fp-trigger.is-open .vp-fp-icon {
+  color: var(--color-accent);
+}
+
+/* Native time input with icon on the right */
+.vp-fp-timeWrap {
+  position: relative;
+  width: 100%;
+}
+
+.vp-fp-timeInput {
+  width: 100%;
+  box-sizing: border-box;
+  height: 44px;
+  min-height: 44px;
+  max-height: 44px;
+  padding: 0 42px 0 14px;
+  border: 1px solid #e8edf5;
+  border-radius: var(--input-radius, 12px);
+  background: var(--color-input-bg);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  line-height: 1.2;
+  outline: none;
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    background 0.18s ease;
+  color-scheme: light;
+}
+
+.vp-fp-timeInput:hover {
+  border-color: #cfd8f5;
+}
+
+.vp-fp-timeInput:focus {
+  border-color: var(--color-accent);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(93, 95, 239, 0.12);
+}
+
+.vp-fp-timeInput::-webkit-calendar-picker-indicator {
+  position: absolute;
+  right: 12px;
+  width: 20px;
+  height: 20px;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.vp-fp-timeIcon {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  transform: translateY(-50%);
+  display: inline-grid;
+  place-items: center;
+  color: var(--text-secondary);
+  pointer-events: none;
+}
+
+.vp-fp-timeWrap:focus-within .vp-fp-timeIcon {
+  color: var(--color-accent);
+}
+
+/* Reuse calendar panel look from pill picker, but keep field trigger separate */
+.vp-fp-panel {
+  position: fixed;
+  z-index: 2300;
+  width: 312px;
+  padding: 14px;
+  border-radius: 16px;
+  border: 1px solid var(--border, #e8edf5);
+  background: #ffffff;
+  box-shadow:
+    0 20px 48px rgba(15, 23, 42, 0.14),
+    0 6px 16px rgba(15, 23, 42, 0.06);
+  animation: vp-fp-in 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes vp-fp-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.vp-fp-panel--above {
+  animation-name: vp-fp-in-above;
+}
+
+@keyframes vp-fp-in-above {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.vp-fp-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+  padding: 2px 2px 10px;
+  border-bottom: 1px solid var(--border, #e8edf5);
+}
+
+.vp-fp-head strong {
+  font-family: var(--font-body), 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary, #1f2937);
+}
+
+.vp-fp-navBtn {
+  width: 34px;
+  height: 34px;
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid var(--border, #e8edf5);
+  border-radius: 10px;
+  background: var(--color-input-bg, #f8fafc);
+  color: var(--color-accent, #5d5fef);
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.vp-fp-navBtn:hover {
+  background: var(--color-accent-soft, #e8f2ff);
+  border-color: var(--color-accent-soft-deep, #d6e4ff);
+  color: var(--color-accent-hover, #4b51e0);
+}
+
+.vp-fp-dow {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin-bottom: 6px;
+  text-align: center;
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+  color: #94a3b8;
+  text-transform: uppercase;
+}
+
+.vp-fp-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.vp-fp-day {
+  height: 36px;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  font-family: var(--font-body), 'Poppins', sans-serif;
+  font-size: 0.86rem;
+  font-weight: 550;
+  color: var(--text-primary, #1f2937);
+  cursor: pointer;
+  transition:
+    background 0.14s ease,
+    color 0.14s ease,
+    box-shadow 0.14s ease;
+}
+
+.vp-fp-day:hover:not(.is-selected) {
+  background: var(--color-accent-soft, #e8f2ff);
+  color: var(--color-accent, #5d5fef);
+}
+
+.vp-fp-day.is-outside {
+  color: #cbd5e1;
+  font-weight: 500;
+}
+
+.vp-fp-day.is-today:not(.is-selected) {
+  font-weight: 700;
+  color: var(--color-accent, #5d5fef);
+  box-shadow: inset 0 0 0 1.5px rgba(93, 95, 239, 0.45);
+}
+
+.vp-fp-day.is-selected {
+  background: var(--color-accent, #5d5fef);
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 6px 14px rgba(93, 95, 239, 0.28);
+}
+
+.vp-fp-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border, #e8edf5);
+}
+
+.vp-fp-footBtn {
+  border: none;
+  background: transparent;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-family: var(--font-body), 'Poppins', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 650;
+  color: #64748b;
+  cursor: pointer;
+  transition:
+    color 0.14s ease,
+    background 0.14s ease;
+}
+
+.vp-fp-footBtn:hover {
+  background: var(--color-input-bg, #f8fafc);
+  color: var(--text-primary, #1f2937);
+}
+
+.vp-fp-footBtn.is-accent {
+  color: var(--color-accent, #5d5fef);
+}
+
+.vp-fp-footBtn.is-accent:hover {
+  background: var(--color-accent-soft, #e8f2ff);
+  color: var(--color-accent-hover, #4b51e0);
+}

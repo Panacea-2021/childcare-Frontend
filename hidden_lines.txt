@@ -1,0 +1,33 @@
+﻿C:\Users\thont\OneDrive\Desktop\Deekshith\ChilldCare_FrontEnd\src\components\modules\calendar\school\EventDetailModal.tsx:35:document.body.style.overflow = 'hidden';
+C:\Users\thont\OneDrive\Desktop\Deekshith\ChilldCare_FrontEnd\src\components\modules\calendar\school\EventFormModal.tsx:176:document.body.style.overflow = 'hidden';
+C:\Users\thont\OneDrive\Desktop\Deekshith\ChilldCare_FrontEnd\src\components\modules\calendar\ScheduleModal.tsx:141:document.body.style.overflow = 'hidden';
+C:\Users\thont\OneDrive\Desktop\Deekshith\ChilldCare_FrontEnd\src\components\modules\center-management\AddNoteModal.tsx:84:hidden
+C:\Users\thont\OneDrive\Desktop\Deekshith\ChilldCare_FrontEnd\src\components\modules\center-management\AddParentModal.tsx:107:hidden
+C:\Users\thont\OneDrive\Desktop\Deekshith\ChilldCare_FrontEnd\src\components\modules\center-management\AddPickupModal.tsx:92:hidden
+C:\Users\thont\OneDrive\Desktop\Deekshith\ChilldCare_FrontEnd\src\components\modules\center-management\BulkUploadStaffScreen.tsx:312:hidden: { opacity: 0 },
+C:\Users\thont\OneDrive\Desktop\Deekshith\ChilldCare_FrontEnd\src\components\modules\center-management\BulkUploadStaffScreen.tsx:322:hidden: { opacity: 0, y: 14 },
+C:\Users\thont\OneDrive\Desktop\Deekshith\ChilldCare_FrontEnd\src\components\modules\center-management\BulkUploadStaffScreen.tsx:329:initial="hidden"
+C:\Users\thont\OneDrive\Desktop\Deekshith\ChilldCare_FrontEnd\src\components\modules\center-management\BulkUploadStaffScreen.tsx:344:{/* Hidden File Input */}
+C:\Users\thont\OneDrive\Desktop\Deekshith\ChilldCare_FrontEnd\src\components\modules\center-management\BulkUploadStaffScreen.tsx:497:<div style={{ width: '240px', background: '#e2e8f0', borderRadius: '999px', height: '8px', overflow: 'hidden', marginBottom: '10px' }}>
+C:\Users\thont\OneDrive\Desktop\Deekshith\ChilldCare_FrontEnd\src\components\modules\center-management\BulkUploadStaffScreen.tsx:646:overflow: 'hidden',
+C:\Users\thont\OneDrive\Desktop\Deekshith\ChilldCare_FrontEnd\src\components\modules\center-management\RoomsPage.tsx:476:hidden: { opacity: 0 },
+C:\Users\thont\OneDrive\Desktop\Deekshith\ChilldCare_FrontEnd\src\components\modules\center-management\RoomsPage.tsx:486:hidden: { opacity: 0, y: 16 },
+C:\Users\thont\OneDrive\Desktop\Deekshith\ChilldCare_FrontEnd\src\components\modules\center-management\RoomsPage.tsx:662:<div style={{ width: '100%', background: '#e2e8f0', height: '6px', borderRadius: '999px', overflow: 'hidden' }}>
+C:\Users\thont\OneDrive\Desktop\Deekshith\ChilldCare_FrontEnd\src\components\modules\center-management\RoomsPage.tsx:791:<div style={{ border: '1px solid #e2e8f0', borderRadius: '16px', overflow: 'hidden', background: '#ffffff' }}>
+C:\Users\thont\OneDrive\Desktop\Deekshith\ChilldCare_FrontEnd\src\components\modules\center-management\RoomsPage.tsx:919:<div style={{ border: '1px solid #e2e8f0', borderRadius: '16px', overflow: 'hidden', background: '#ffffff' }}>
+C:\Users\thont\OneDrive\Desktop\Deekshith\ChilldCare_FrontEnd\src\components\modules\center-management\RoomsPage.tsx:1068:initial="hidden"
+C:\Users\thont\OneDrive\Desktop\Deekshith\ChilldCare_FrontEnd\src\components\modules\center-management\RoomsPage.tsx:1242:<div style={{ width: '100%', background: '#e2e8f0', height: '6px', borderRadius: '999px', overflow: 'hidden' }}>
+C:\Users\thont\OneDrive\Desktop\Deekshith\ChilldCare_FrontEnd\src\components\modules\center-management\RoomsPage.tsx:1387:overflow: 'hidden',
+C:\Users\thont\OneDrive\Desktop\Deekshith\ChilldCare_FrontEnd\src\components\modules\center-management\RoomsPage.tsx:1530:<div style={{ width: '100%', background: '#e2e8f0', height: '6px', borderRadius: '999px', overflow: 'hidden' }}>
+C:\Users\thont\OneDrive\Desktop\Deekshith\ChilldCare_FrontEnd\src\components\modules\center-management\StaffFormScreen.tsx:437:overflow: 'hidden',
+C:\Users\thont\OneDrive\Desktop\Deekshith\ChilldCare_FrontEnd\src\components\modules\center-management\StaffProfilePage.tsx:405:hidden: { opacity: 0 },
+C:\Users\thont\OneDrive\Desktop\Deekshith\ChilldCare_FrontEnd\src\components\modules\center-management\StaffProfilePage.tsx:415:hidden: { opacity: 0, y: 16 },
+C:\Users\thont\OneDrive\Desktop\Deekshith\ChilldCare_FrontEnd\src\components\modules\center-management\StaffProfilePage.tsx:421:{/* Hidden photo file input */}
+C:\Users\thont\OneDrive\Desktop\Deekshith\ChilldCare_FrontEnd\src\components\modules\center-management\StaffProfilePage.tsx:554:initial="hidden"
+C:\Users\thont\OneDrive\Desktop\Deekshith\ChilldCare_FrontEnd\src\components\modules\center-management\StudentProfilePage.tsx:587:hidden
+C:\Users\thont\OneDrive\Desktop\Deekshith\ChilldCare_FrontEnd\src\components\modules\view-profile\LeavePanel.tsx:497:className="lv-hidden"
+C:\Users\thont\OneDrive\Desktop\Deekshith\ChilldCare_FrontEnd\src\components\modules\view-profile\NotesPanel.tsx:477:className="nt-hidden"
+C:\Users\thont\OneDrive\Desktop\Deekshith\ChilldCare_FrontEnd\src\components\modules\view-profile\PersonalFilesPanel.tsx:986:className="pf-hidden"
+C:\Users\thont\OneDrive\Desktop\Deekshith\ChilldCare_FrontEnd\src\components\modules\SettingsPage.tsx:460:className="st-hidden"
+C:\Users\thont\OneDrive\Desktop\Deekshith\ChilldCare_FrontEnd\src\components\ui\Drawer.tsx:42:document.body.style.overflow = 'hidden';
+C:\Users\thont\OneDrive\Desktop\Deekshith\ChilldCare_FrontEnd\src\components\ui\Modal.tsx:43:document.body.style.overflow = 'hidden';

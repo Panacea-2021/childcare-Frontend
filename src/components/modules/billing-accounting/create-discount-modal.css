@@ -1,0 +1,316 @@
+/* Create Discount — clean single-column flow + Panacea motion */
+
+.cdm-root {
+  --cdm-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+  max-width: 100%;
+  padding-right: 4px;
+}
+
+.cdm-root > .ui-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin: 0;
+}
+
+.cdm-hint {
+  margin: 0.55rem 0 0;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--text-secondary, #64748b);
+}
+
+.cdm-seg {
+  position: relative;
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr;
+  min-width: 240px;
+  padding: 4px;
+  border-radius: 12px;
+  border: 1px solid var(--border, #e8edf5);
+  background: var(--color-input-bg, #f8fafc);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.cdm-seg-compact {
+  min-width: 108px;
+  width: 108px;
+}
+
+.cdm-seg-pill {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  width: calc(50% - 6px);
+  border-radius: 9px;
+  background: linear-gradient(135deg, var(--color-accent) 0%, #7c7ef5 100%);
+  box-shadow: 0 8px 16px rgba(93, 95, 239, 0.28);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.cdm-seg button {
+  position: relative;
+  z-index: 1;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary, #64748b);
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 0.55rem 0.85rem;
+  border-radius: 9px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transition: color 160ms var(--cdm-ease);
+}
+
+.cdm-seg button.is-active {
+  color: #fff;
+}
+
+.cdm-seg button:hover:not(.is-active) {
+  color: var(--text-primary, #0f172a);
+}
+
+.cdm-row-3 {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) 120px minmax(0, 1fr);
+  column-gap: 1.1rem;
+  row-gap: 1rem;
+  align-items: start;
+}
+
+.cdm-row-3 > .ui-field {
+  display: grid;
+  grid-template-rows: 36px 44px;
+  align-content: start;
+  gap: 0;
+  margin: 0;
+  min-width: 0;
+}
+
+.cdm-row-3 > .ui-field > .ui-label {
+  display: flex;
+  align-items: flex-end;
+  height: 36px;
+  margin: 0;
+  padding: 0 0 6px;
+  line-height: 1.2;
+  overflow: hidden;
+}
+
+.cdm-row-3 > .ui-field > .ui-input,
+.cdm-row-3 > .ui-field > .cdm-seg,
+.cdm-row-3 > .ui-field > .cdm-control {
+  height: 44px !important;
+  min-height: 44px !important;
+  max-height: 44px;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.cdm-row-3 .cdm-seg-compact {
+  width: 100%;
+  min-width: 0;
+  display: grid;
+  padding: 3px;
+}
+
+.cdm-row-3 .cdm-seg-pill {
+  top: 3px;
+  bottom: 3px;
+  width: calc(50% - 5px);
+}
+
+.cdm-row-3 .cdm-seg button {
+  height: 100%;
+  min-height: 0;
+  padding: 0;
+  line-height: 1;
+}
+
+.cdm-dynamic {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+.cdm-radios {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.85rem 1.75rem;
+  margin-top: 0.15rem;
+}
+
+.cdm-radios.is-stacked {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.85rem;
+}
+
+.cdm-radio {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  cursor: pointer;
+  user-select: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-primary, #0f172a);
+  transition: color 160ms var(--cdm-ease);
+}
+
+.cdm-radio input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cdm-radio-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid #c7d2fe;
+  background: #fff;
+  flex-shrink: 0;
+  position: relative;
+  transition:
+    border-color 160ms var(--cdm-ease),
+    box-shadow 160ms var(--cdm-ease),
+    transform 160ms var(--cdm-ease);
+}
+
+.cdm-radio-dot::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  transform: scale(0);
+  transition: transform 180ms var(--cdm-ease);
+}
+
+.cdm-radio.is-on .cdm-radio-dot {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(93, 95, 239, 0.12);
+}
+
+.cdm-radio.is-on .cdm-radio-dot::after {
+  transform: scale(1);
+}
+
+.cdm-radio:hover .cdm-radio-dot {
+  border-color: var(--color-accent);
+}
+
+.cdm-conditional {
+  overflow: hidden;
+}
+
+.cdm-conditional-inner {
+  padding: 1.15rem 1.1rem;
+  border-radius: 14px;
+  border: 1px solid var(--border, #e8edf5);
+  background: linear-gradient(165deg, var(--color-accent-soft, #e8f2ff) 0%, #fff 68%);
+  box-shadow: 0 10px 24px rgba(93, 95, 239, 0.06);
+}
+
+.cdm-date-wrap {
+  position: relative;
+}
+
+.cdm-date-wrap .cdm-date-ico {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+.cdm-info {
+  display: flex;
+  gap: 0.7rem;
+  align-items: flex-start;
+  margin-top: 1.1rem;
+  padding: 0.85rem 0.95rem;
+  border-radius: 12px;
+  border: 1px solid var(--border, #e8edf5);
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.cdm-info-ico {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  background: var(--color-accent-soft, #e8f2ff);
+  color: var(--color-accent);
+}
+
+.cdm-info p {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--text-secondary, #64748b);
+}
+
+/* Modal body: breathing room + Panacea scrollbar */
+.ui-modal-body:has(.cdm-root) {
+  padding: 28px 22px 20px 28px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(93, 95, 239, 0.45) rgba(232, 242, 255, 0.85);
+}
+
+.ui-modal-body:has(.cdm-root)::-webkit-scrollbar {
+  width: 10px;
+}
+
+.ui-modal-body:has(.cdm-root)::-webkit-scrollbar-track {
+  margin: 10px 0;
+  background: linear-gradient(180deg, #f4f7ff 0%, #eef2ff 100%);
+  border-radius: 999px;
+  border: 1px solid rgba(232, 237, 245, 0.9);
+}
+
+.ui-modal-body:has(.cdm-root)::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #8b8df5 0%, var(--color-accent) 100%);
+  border-radius: 999px;
+  border: 2px solid #eef2ff;
+  min-height: 48px;
+  box-shadow: 0 4px 12px rgba(93, 95, 239, 0.22);
+}
+
+.ui-modal-body:has(.cdm-root)::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #7c7ef5 0%, var(--color-accent-hover, #4b51e0) 100%);
+}
+
+.ui-modal-body:has(.cdm-root)::-webkit-scrollbar-button {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+@media (max-width: 720px) {
+  .cdm-row-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .cdm-seg {
+    min-width: 100%;
+    width: 100%;
+  }
+}

@@ -1,0 +1,322 @@
+/* Parent Communication — page shell matching Center Management list pages */
+
+.pc-page {
+  --pc-accent-soft: rgba(93, 95, 239, 0.1);
+  --pc-lift-shadow: 0 12px 32px rgba(15, 23, 42, 0.07);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: relative;
+  z-index: 1;
+  overflow: visible;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0 0 2rem;
+  box-shadow: none;
+  min-height: 0;
+  font-family: var(--font-body), 'Poppins', sans-serif;
+  color: var(--text-primary, #1f2937);
+  animation: pc-enter 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.pc-page::before {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  inset: -8px -12px auto;
+  height: 180px;
+  border-radius: 999px;
+  background: radial-gradient(closest-side, var(--pc-accent-soft), transparent 72%);
+  opacity: 0.9;
+  animation: pc-ambient 8s ease-in-out infinite alternate;
+}
+
+.pc-page::after {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  right: -40px;
+  top: 120px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(93, 95, 239, 0.06), transparent 68%);
+  opacity: 0.85;
+}
+
+.pc-page > * {
+  position: relative;
+  z-index: 1;
+  animation: pc-section-in 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.pc-page > *:nth-child(1) {
+  animation-delay: 0ms;
+}
+.pc-page > *:nth-child(2) {
+  animation-delay: 45ms;
+}
+.pc-page > *:nth-child(3) {
+  animation-delay: 90ms;
+}
+.pc-page > *:nth-child(4) {
+  animation-delay: 130ms;
+}
+.pc-page > *:nth-child(5) {
+  animation-delay: 170ms;
+}
+.pc-page > *:nth-child(6) {
+  animation-delay: 210ms;
+}
+.pc-page > *:nth-child(n + 7) {
+  animation-delay: 240ms;
+}
+
+.pc-page--activities {
+  --pc-accent-soft: rgba(93, 95, 239, 0.12);
+}
+.pc-page--daily-reports {
+  --pc-accent-soft: rgba(14, 165, 233, 0.11);
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+.pc-page--daily-reports > * {
+  max-width: 100%;
+  min-width: 0;
+}
+.pc-page--notes {
+  --pc-accent-soft: rgba(236, 72, 153, 0.1);
+}
+.pc-page--concerns {
+  --pc-accent-soft: rgba(249, 115, 22, 0.11);
+}
+.pc-page--newsletters {
+  --pc-accent-soft: rgba(168, 85, 247, 0.11);
+}
+.pc-page--resource-center {
+  --pc-accent-soft: rgba(16, 185, 129, 0.11);
+}
+
+.pc-panel {
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid var(--border, #e8edf5);
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04);
+  transition:
+    box-shadow 240ms ease,
+    border-color 240ms ease;
+}
+
+.pc-panel:hover {
+  box-shadow: var(--pc-lift-shadow);
+  border-color: #dbe4f5;
+}
+
+.pc-meta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid var(--border, #e8edf5);
+  color: var(--text-secondary, #64748b);
+  font-size: 0.82rem;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
+}
+
+/* ——— Overview KPI cards only (Program Dashboard palette) ——— */
+.pc-page .act-stat-card.pc-tone-purple,
+.pc-page .dr-stat-card.pc-tone-purple,
+.pc-page .notes-stat-card.pc-tone-purple,
+.pc-page .concerns-stat-card.pc-tone-purple,
+.pc-page .rc-stat.pc-tone-purple,
+.pc-page .nl-design-card.pc-tone-purple {
+  background: linear-gradient(160deg, #eef0ff 0%, #d0d5ed 45%, #b8bff5 100%) !important;
+  border-color: #c7cef8 !important;
+  box-shadow: 0 10px 24px rgba(93, 95, 239, 0.14);
+}
+
+.pc-page .act-stat-card.pc-tone-green,
+.pc-page .dr-stat-card.pc-tone-green,
+.pc-page .notes-stat-card.pc-tone-green,
+.pc-page .concerns-stat-card.pc-tone-green,
+.pc-page .rc-stat.pc-tone-green,
+.pc-page .nl-design-card.pc-tone-green {
+  background: linear-gradient(160deg, #eaf8ef 0%, #d0edda 45%, #a8d9b8 100%) !important;
+  border-color: #b7dfc4 !important;
+  box-shadow: 0 10px 24px rgba(47, 107, 69, 0.12);
+}
+
+.pc-page .act-stat-card.pc-tone-pink,
+.pc-page .dr-stat-card.pc-tone-pink,
+.pc-page .notes-stat-card.pc-tone-pink,
+.pc-page .concerns-stat-card.pc-tone-pink,
+.pc-page .rc-stat.pc-tone-pink,
+.pc-page .nl-design-card.pc-tone-pink {
+  background: linear-gradient(160deg, #ffe6f2 0%, #f7b6d4 48%, #ed70a8 100%) !important;
+  border-color: #f9a8d4 !important;
+  box-shadow: 0 10px 24px rgba(157, 16, 72, 0.12);
+}
+
+.pc-page .act-stat-card.pc-tone-coral,
+.pc-page .dr-stat-card.pc-tone-coral,
+.pc-page .notes-stat-card.pc-tone-coral,
+.pc-page .concerns-stat-card.pc-tone-coral,
+.pc-page .rc-stat.pc-tone-coral,
+.pc-page .nl-design-card.pc-tone-coral {
+  background: linear-gradient(160deg, #fdf2f8 0%, #fbcfe8 45%, #f9a8d4 100%) !important;
+  border-color: #f9a8d4 !important;
+  box-shadow: 0 10px 24px rgba(157, 23, 77, 0.12);
+}
+
+.pc-page .act-stat-card.pc-tone-amber,
+.pc-page .dr-stat-card.pc-tone-amber,
+.pc-page .notes-stat-card.pc-tone-amber,
+.pc-page .concerns-stat-card.pc-tone-amber,
+.pc-page .rc-stat.pc-tone-amber,
+.pc-page .nl-design-card.pc-tone-amber {
+  background: linear-gradient(160deg, #fff7ed 0%, #fed7aa 45%, #fdba74 100%) !important;
+  border-color: #fdba74 !important;
+  box-shadow: 0 10px 24px rgba(180, 83, 9, 0.12);
+}
+
+.pc-page .act-stat-card.pc-tone-sky,
+.pc-page .dr-stat-card.pc-tone-sky,
+.pc-page .notes-stat-card.pc-tone-sky,
+.pc-page .concerns-stat-card.pc-tone-sky,
+.pc-page .rc-stat.pc-tone-sky,
+.pc-page .nl-design-card.pc-tone-sky {
+  background: linear-gradient(160deg, #ecfeff 0%, #bae6fd 45%, #7dd3fc 100%) !important;
+  border-color: #7dd3fc !important;
+  box-shadow: 0 10px 24px rgba(14, 165, 233, 0.14);
+}
+
+.pc-page .act-stat-card.pc-tone-mint,
+.pc-page .dr-stat-card.pc-tone-mint,
+.pc-page .notes-stat-card.pc-tone-mint,
+.pc-page .concerns-stat-card.pc-tone-mint,
+.pc-page .rc-stat.pc-tone-mint,
+.pc-page .nl-design-card.pc-tone-mint {
+  background: linear-gradient(160deg, #f0fdfa 0%, #99f6e4 45%, #5eead4 100%) !important;
+  border-color: #5eead4 !important;
+  box-shadow: 0 10px 24px rgba(15, 118, 110, 0.12);
+}
+
+.pc-page .act-stat-card.pc-tone-lavender,
+.pc-page .dr-stat-card.pc-tone-lavender,
+.pc-page .notes-stat-card.pc-tone-lavender,
+.pc-page .concerns-stat-card.pc-tone-lavender,
+.pc-page .rc-stat.pc-tone-lavender,
+.pc-page .nl-design-card.pc-tone-lavender {
+  background: linear-gradient(160deg, #f5f3ff 0%, #ddd6fe 45%, #c4b5fd 100%) !important;
+  border-color: #c4b5fd !important;
+  box-shadow: 0 10px 24px rgba(109, 40, 217, 0.12);
+}
+
+/* Soft dashboard tint for filter / panel surfaces */
+.pc-page .act-filters,
+.pc-page .act-filters-panel,
+.pc-page .dr-filters,
+.pc-page .notes-filters,
+.pc-page .concerns-filters,
+.pc-page .nl-filters {
+  background: linear-gradient(135deg, #ffffff 0%, #eef2ff 100%) !important;
+  border-color: #d7e3ff !important;
+}
+
+.pc-page .pc-panel,
+.pc-page .act-feed-area.pc-panel,
+.pc-page .nl-table-panel,
+.pc-page .rc-panel,
+.pc-page .notes-list-shell.pc-panel {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 55%, #eef2ff 140%);
+  border-color: #dbe4f5;
+}
+
+.pc-page .dr-table-wrap {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  border-color: #d7e3ff;
+}
+
+.pc-page .act-stat-card,
+.pc-page .dr-stat-card,
+.pc-page .notes-stat-card,
+.pc-page .concerns-stat-card,
+.pc-page .rc-stat {
+  transition:
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 220ms ease,
+    border-color 220ms ease;
+}
+
+.pc-page .act-stat-card:hover,
+.pc-page .dr-stat-card:hover,
+.pc-page .notes-stat-card:hover,
+.pc-page .concerns-stat-card:hover,
+.pc-page .rc-stat:hover,
+.pc-page .act-card:hover,
+.pc-page .notes-card:hover,
+.pc-page .concerns-card:hover,
+.pc-page .act-sched-card:hover {
+  transform: translateY(-2px);
+}
+
+@keyframes pc-enter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pc-section-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pc-ambient {
+  from {
+    opacity: 0.75;
+    transform: scale(1);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pc-page,
+  .pc-page > * {
+    animation: none !important;
+  }
+
+  .pc-page::before {
+    animation: none;
+  }
+
+  .pc-page .act-stat-card:hover,
+  .pc-page .dr-stat-card:hover,
+  .pc-page .notes-stat-card:hover,
+  .pc-page .concerns-stat-card:hover,
+  .pc-page .rc-stat:hover,
+  .pc-page .act-card:hover,
+  .pc-page .notes-card:hover,
+  .pc-page .concerns-card:hover,
+  .pc-page .act-sched-card:hover {
+    transform: none;
+  }
+}

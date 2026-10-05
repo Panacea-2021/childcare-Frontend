@@ -1,0 +1,86 @@
+/* Enquiry Source Report — premium period card + info banner */
+
+.esr-report {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.esr-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.esr-period-card .asr-field {
+  margin-bottom: 0;
+}
+
+.esr-period-card .asr-range-item .ui-input,
+.esr-period-card .asr-range-item .vp-fp-trigger,
+.esr-period-card .vp-fp-trigger {
+  min-height: 48px;
+  border-radius: 14px;
+}
+
+.esr-req-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+  font-size: 0.75rem;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  border: 1px solid rgba(93, 95, 239, 0.18);
+}
+
+.esr-info-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(93, 95, 239, 0.18);
+  background: linear-gradient(135deg, var(--color-accent-soft), #f8fbff);
+  box-shadow: var(--shadow-xs);
+}
+
+.esr-info-icon {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 999px;
+  display: inline-grid;
+  place-items: center;
+  background: #fff;
+  color: var(--color-accent);
+  border: 1px solid rgba(93, 95, 239, 0.2);
+  box-shadow: 0 4px 12px rgba(93, 95, 239, 0.12);
+}
+
+.esr-info-banner p {
+  margin: 0;
+  font-size: 0.86rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.esr-loading {
+  min-height: 220px;
+}
+
+@media (max-width: 560px) {
+  .esr-info-banner {
+    gap: 10px;
+    padding: 12px 14px;
+  }
+
+  .enq-card-head {
+    gap: 10px;
+  }
+}

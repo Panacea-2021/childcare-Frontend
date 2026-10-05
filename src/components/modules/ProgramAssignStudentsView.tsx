@@ -1,0 +1,487 @@
+'use client';
+
+import { useEffect, useMemo, useState } from 'react';
+import { loadStudents, roomName } from '@/lib/center-management/studentsStore';
+import { useCenterCatalog } from '@/lib/center-management/programCatalog';
+import { FieldDatePicker } from '@/components/modules/view-profile/FieldDatePicker';
+import '@/components/ui/module.css';
+import '@/components/modules/view-profile/field-picker.css';
+import styles from './ProgramViewPage.module.css';
+
+type ProgramLike = {
+  name: string;
+  days: string[];
+  startDate?: string;
+};
+
+export type NewlyAssignedStudent = {
+  id: string;
+  name: string;
+  age: string;
+  studentStatus: 'Active' | 'Inactive';
+  status: 'Active';
+  startDate: string;
+  endDate: string;
+  days: string[];
+  sourceId?: string;
+};
+
+type Props = {
+  program: ProgramLike;
+  assignedCount: number;
+  maxCapacity: number;
+  alreadyAssignedNames?: string[];
+  onBack: () => void;
+  onAssign: (students: NewlyAssignedStudent[]) => void;
+};
+
+const WEEK_DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] as const;
+const DAY_FULL: Record<(typeof WEEK_DAYS)[number], string> = {
+  Mon: 'Monday',
+  Tue: 'Tuesday',
+  Wed: 'Wednesday',
+  Thu: 'Thursday',
+  Fri: 'Friday',
+  Sat: 'Saturday',
+  Sun: 'Sunday',
+};
+
+function displayToIso(display: string): string {
+  const m = (display || '').trim().match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+  if (!m) return '';
+  return `${m[3]}-${m[2]}-${m[1]}`;
+}
+
+function isoToDisplay(iso: string): string {
+  if (!iso) return '';
+  const [y, m, d] = iso.split('-');
+  if (!y || !m || !d) return iso;
+  return `${d}/${m}/${y}`;
+}
+
+function todayIso(): string {
+  const n = new Date();
+  const y = n.getFullYear();
+  const m = String(n.getMonth() + 1).padStart(2, '0');
+  const d = String(n.getDate()).padStart(2, '0');
+  return `${y}-${m}-${d}`;
+}
+
+function SortIcon() {
+  return (
+    <span className={styles.sortIcon} aria-hidden>
+      ↑↓
+    </span>
+  );
+}
+
+function EmptyData() {
+  return (
+    <div className={styles.assignEmpty}>
+      <div className={styles.assignEmptyIcon} aria-hidden>
+        <svg width="64" height="56" viewBox="0 0 64 56" fill="none">
+          <rect x="8" y="14" width="48" height="36" rx="6" fill="#E8F2FF" stroke="#5D5FEF" strokeWidth="1.5" />
+          <path d="M20 14V10a4 4 0 0 1 4-4h16a4 4 0 0 1 4 4v4" stroke="#5D5FEF" strokeWidth="1.5" />
+          <path d="M22 28h20M22 36h14" stroke="#5D5FEF" strokeWidth="1.5" strokeLinecap="round" />
+        </svg>
+      </div>
+      <p className={styles.assignEmptyText}>No data</p>
+    </div>
+  );
+}
+
+export function ProgramAssignStudentsView({
+  program,
+  assignedCount,
+  maxCapacity,
+  alreadyAssignedNames = [],
+  onBack,
+  onAssign,
+}: Props) {
+  const assignedNameSet = useMemo(
+    () => new Set(alreadyAssignedNames.map((n) => n.toLowerCase())),
+    [alreadyAssignedNames],
+  );
+
+  const [startDate, setStartDate] = useState(
+    () => displayToIso(program.startDate || '') || todayIso(),
+  );
+  const [endDate, setEndDate] = useState('');
+  const [days, setDays] = useState<string[]>(
+    () => (program.days.length ? [...program.days] : ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']),
+  );
+  const [daysOpen, setDaysOpen] = useState(false);
+  const [search, setSearch] = useState('');
+  const [room, setRoom] = useState('All');
+  const [group, setGroup] = useState('All');
+  const [selectedIds, setSelectedIds] = useState<string[]>([]);
+  const [nameSortAsc, setNameSortAsc] = useState(true);
+  const [error, setError] = useState('');
+
+  const [allStudents, setAllStudents] = useState<
+    Array<{ id: string; name: string; room: string; age: string; groupIds: string[] }>
+  >([]);
+
+  useEffect(() => {
+    setAllStudents(
+      loadStudents().map((s) => ({
+        id: s.id,
+        name: s.name,
+        room: s.roomIds.map(roomName).filter(Boolean).join(', ') || 'Unassigned',
+        age: s.ageLabel,
+        groupIds: s.groupIds,
+      })),
+    );
+  }, []);
+
+  const { roomNames: centerRoomNames, groups: centerGroups } = useCenterCatalog();
+
+  const groupNameById = useMemo(() => {
+    const map = new Map(centerGroups.map((g) => [g.id, g.name]));
+    return (id: string) => map.get(id) ?? '';
+  }, [centerGroups]);
+
+  const remainingSlots = Math.max(0, maxCapacity - assignedCount);
+
+  const roomOptions = useMemo(() => ['All', ...centerRoomNames], [centerRoomNames]);
+
+  const filtered = useMemo(() => {
+    const q = search.trim().toLowerCase();
+    let list = allStudents.filter((s) => {
+      if (assignedNameSet.has(s.name.toLowerCase())) return false;
+      const matchesName = !q || s.name.toLowerCase().includes(q);
+      const matchesRoom =
+        room === 'All' ||
+        s.room.split(',').map((r) => r.trim()).includes(room);
+      const matchesGroup =
+        group === 'All' ||
+        s.groupIds.includes(group) ||
+        s.groupIds.some((gid) => groupNameById(gid) === group);
+      return matchesName && matchesRoom && matchesGroup;
+    });
+    list = [...list].sort((a, b) => {
+      const cmp = a.name.localeCompare(b.name);
+      return nameSortAsc ? cmp : -cmp;
+    });
+    return list;
+  }, [allStudents, search, room, group, assignedNameSet, nameSortAsc, groupNameById]);
+
+  const toggleDay = (day: string) => {
+    setDays((prev) => (prev.includes(day) ? prev.filter((d) => d !== day) : [...prev, day]));
+  };
+
+  const toggleId = (id: string) => {
+    setSelectedIds((prev) => {
+      if (prev.includes(id)) return prev.filter((x) => x !== id);
+      if (remainingSlots > 0 && prev.length >= remainingSlots) {
+        setError(`You can assign up to ${remainingSlots} more student(s) (${maxCapacity} max capacity).`);
+        return prev;
+      }
+      setError('');
+      return [...prev, id];
+    });
+  };
+
+  const pickWithinRemaining = (current: string[], candidates: string[]) => {
+    if (remainingSlots <= 0) return current;
+    const merged = [...current];
+    for (const id of candidates) {
+      if (merged.includes(id)) continue;
+      if (merged.length >= remainingSlots) break;
+      merged.push(id);
+    }
+    return merged;
+  };
+
+  const allFilteredSelected =
+    filtered.length > 0 && filtered.every((s) => selectedIds.includes(s.id));
+
+  const canAssign = selectedIds.length > 0 && days.length > 0;
+
+  const handleAssign = () => {
+    if (selectedIds.length === 0) {
+      setError('Select at least one student');
+      return;
+    }
+    if (days.length === 0) {
+      setError('Select at least one day');
+      return;
+    }
+    const effectiveStart = startDate || todayIso();
+    const picked = allStudents.filter((s) => selectedIds.includes(s.id));
+    if (picked.length === 0) {
+      setError('No students selected');
+      return;
+    }
+    const records: NewlyAssignedStudent[] = picked.map((s) => ({
+      id: `asg-${s.id}-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
+      name: s.name,
+      age: s.age,
+      studentStatus: 'Active',
+      status: 'Active',
+      startDate: isoToDisplay(effectiveStart),
+      endDate: isoToDisplay(endDate) || '01/01/2031',
+      days: [...days],
+      sourceId: s.id,
+    }));
+    onAssign(records);
+  };
+
+  return (
+    <div className={`mod-page ${styles.page}`}>
+      <div className={styles.assignCrumb}>
+        <button type="button" className={styles.crumbBackVisible} onClick={onBack}>
+          ← Program
+        </button>
+        <span className={styles.crumbPipe}>|</span>
+      </div>
+
+      <h1 className={styles.assignPageTitle}>{program.name}</h1>
+
+      <div className={styles.assignTopRow}>
+        <div className="ui-field">
+          <label className="ui-label">Start Date</label>
+          <FieldDatePicker
+            value={startDate}
+            onChange={setStartDate}
+            ariaLabel="Start date"
+          />
+        </div>
+        <div className="ui-field">
+          <label className="ui-label">End Date</label>
+          <FieldDatePicker
+            value={endDate}
+            onChange={setEndDate}
+            ariaLabel="End date"
+          />
+        </div>
+        <div className={`ui-field ${styles.assignDaysField}`}>
+          <label className="ui-label">Days Of Week</label>
+          <div className={styles.multiWrap}>
+            <button
+              type="button"
+              className={`ui-input ${styles.daysBox}`}
+              onClick={() => setDaysOpen((o) => !o)}
+            >
+              <span className={styles.chipsInline}>
+                {days.length === 0 ? (
+                  <span className={styles.daysPlaceholder}>Select Days</span>
+                ) : (
+                  days.map((d) => (
+                    <span key={d} className={styles.chip}>
+                      {DAY_FULL[d as (typeof WEEK_DAYS)[number]] || d}
+                      <span
+                        role="button"
+                        tabIndex={0}
+                        aria-label={`Remove ${d}`}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleDay(d);
+                        }}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            toggleDay(d);
+                          }
+                        }}
+                      >
+                        ×
+                      </span>
+                    </span>
+                  ))
+                )}
+              </span>
+              <span className={styles.daysChevron} aria-hidden>
+                ▾
+              </span>
+            </button>
+            {daysOpen ? (
+              <div className={styles.multiMenu}>
+                {WEEK_DAYS.map((d) => (
+                  <label key={d} className={styles.multiOption}>
+                    <input
+                      type="checkbox"
+                      checked={days.includes(d)}
+                      onChange={() => toggleDay(d)}
+                    />
+                    {DAY_FULL[d]}
+                  </label>
+                ))}
+              </div>
+            ) : null}
+          </div>
+        </div>
+        <div className={styles.assignBtnWrap}>
+          <button
+            type="button"
+            className="ui-btn ui-btn-primary"
+            disabled={!canAssign}
+            onClick={handleAssign}
+          >
+            Assign
+          </button>
+        </div>
+      </div>
+      {error ? <p className={styles.assignError}>{error}</p> : null}
+
+      <div className={styles.assignFiltersCard}>
+        <div className={styles.assignFilters}>
+          <div className={styles.filterField}>
+            <label htmlFor="assign-student-search">Search Name</label>
+            <div className={styles.searchField}>
+              <input
+                id="assign-student-search"
+                className="ui-input"
+                placeholder="Search By Student Name"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+              <span className={styles.searchIcon} aria-hidden>
+                ⌕
+              </span>
+            </div>
+          </div>
+          <div className={styles.filterField}>
+            <label htmlFor="assign-student-room">Room</label>
+            <select
+              id="assign-student-room"
+              className="ui-select"
+              value={room}
+              onChange={(e) => setRoom(e.target.value)}
+            >
+              {roomOptions.map((r) => (
+                <option key={r} value={r}>
+                  {r}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className={styles.filterField}>
+            <label htmlFor="assign-student-group">Groups</label>
+            <select
+              id="assign-student-group"
+              className="ui-select"
+              value={group}
+              onChange={(e) => setGroup(e.target.value)}
+            >
+              <option value="All">All</option>
+              {centerGroups.map((g) => (
+                <option key={g.id} value={g.name}>
+                  {g.name}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div className={styles.assignMeta}>
+        <span className={styles.selectedCount}>
+          {selectedIds.length} student(s) selected
+          {remainingSlots > 0 ? ` · ${Math.max(0, remainingSlots - selectedIds.length)} slots left` : ''}
+        </span>
+        <div className={styles.capacityStats}>
+          <div className={styles.capacityItem}>
+            <span className={styles.capLabel}>Assigned members :</span>
+            <span className={styles.capValue}>{assignedCount}</span>
+          </div>
+          <div className={styles.capacityItem}>
+            <span className={styles.capLabel}>Maximum capacity :</span>
+            <span className={styles.capValue}>{maxCapacity}</span>
+          </div>
+        </div>
+      </div>
+
+      <div className={styles.assignTableCard}>
+        <div className={styles.tableScroll}>
+          <table className={`ui-table ${styles.assignTable}`}>
+            <thead>
+              <tr>
+                <th style={{ width: 48 }}>
+                  <input
+                    type="checkbox"
+                    className={styles.roundCheck}
+                    aria-label="Select all students"
+                    checked={allFilteredSelected}
+                    onChange={(e) => {
+                      const ids = filtered.map((s) => s.id);
+                      setSelectedIds((prev) => {
+                        if (!e.target.checked) {
+                          setError('');
+                          return prev.filter((id) => !ids.includes(id));
+                        }
+                        const next = pickWithinRemaining(prev, ids);
+                        if (remainingSlots > 0 && next.length >= remainingSlots) {
+                          setError(`You can assign up to ${remainingSlots} more student(s) (${maxCapacity} max capacity).`);
+                        } else {
+                          setError('');
+                        }
+                        return next;
+                      });
+                    }}
+                  />
+                </th>
+                <th>
+                  <button
+                    type="button"
+                    className={styles.sortBtn}
+                    onClick={() => setNameSortAsc((v) => !v)}
+                  >
+                    Name
+                    <SortIcon />
+                  </button>
+                </th>
+                <th>
+                  <span className={styles.sortBtn}>
+                    Rooms
+                    <SortIcon />
+                  </span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {filtered.length === 0 ? (
+                <tr>
+                  <td colSpan={3}>
+                    <EmptyData />
+                  </td>
+                </tr>
+              ) : (
+                filtered.map((s) => {
+                  const atCap =
+                    remainingSlots > 0 &&
+                    selectedIds.length >= remainingSlots &&
+                    !selectedIds.includes(s.id);
+                  return (
+                  <tr key={s.id} className={selectedIds.includes(s.id) ? styles.rowSelected : undefined}>
+                    <td>
+                      <input
+                        type="checkbox"
+                        className={styles.roundCheck}
+                        checked={selectedIds.includes(s.id)}
+                        disabled={atCap}
+                        onChange={() => toggleId(s.id)}
+                        aria-label={`Select ${s.name}`}
+                      />
+                    </td>
+                    <td>
+                      <div className={styles.personCell}>
+                        <span className={styles.avatar} aria-hidden>
+                          {s.name.charAt(0)}
+                        </span>
+                        <strong>{s.name}</strong>
+                      </div>
+                    </td>
+                    <td>{s.room}</td>
+                  </tr>
+                );
+                })
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  );
+}

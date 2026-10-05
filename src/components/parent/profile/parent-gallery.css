@@ -1,0 +1,120 @@
+/* Parent Profile → Gallery (activity media) */
+
+.pg-gallery {
+  overflow: hidden;
+}
+
+.pg-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));
+  gap: 1rem;
+  padding: 1.15rem;
+}
+
+.pg-gallery-tile {
+  appearance: none;
+  border: 1px solid var(--border, #e8edf5);
+  border-radius: 14px;
+  background: #fff;
+  padding: 0;
+  overflow: hidden;
+  cursor: pointer;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.05);
+  transition: box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.pg-gallery-tile:hover {
+  border-color: color-mix(in srgb, var(--color-accent, #5d5fef) 35%, var(--border, #e8edf5));
+  box-shadow: 0 14px 32px rgba(93, 95, 239, 0.14);
+}
+
+.pg-gallery-media {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: linear-gradient(145deg, #eef2ff, #f8fafc);
+}
+
+.pg-gallery-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pg-gallery-tile:hover .pg-gallery-media img {
+  transform: scale(1.06);
+}
+
+.pg-gallery-shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.22) 48%,
+    transparent 62%
+  );
+  transform: translateX(-120%);
+  pointer-events: none;
+}
+
+.pg-gallery-tile:hover .pg-gallery-shine {
+  animation: pg-shine 0.85s ease forwards;
+}
+
+@keyframes pg-shine {
+  to {
+    transform: translateX(120%);
+  }
+}
+
+.pg-gallery-play {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.2);
+}
+
+.pg-gallery-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0.7rem 0.75rem 0.8rem;
+  min-width: 0;
+}
+
+.pg-gallery-meta strong {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text, #0f172a);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pg-gallery-meta em {
+  font-style: normal;
+  font-size: 0.72rem;
+  color: var(--text-secondary, #64748b);
+}
+
+@media (max-width: 640px) {
+  .pg-gallery-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+    padding: 0.9rem;
+  }
+}
